@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		087EF3AC243F604B0030720F /* mapster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087EF3A2243F604B0030720F /* mapster.framework */; };
-		087EF3B1243F604B0030720F /* mapsterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3B0243F604B0030720F /* mapsterTests.swift */; };
+		087EF3B1243F604B0030720F /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3B0243F604B0030720F /* MapTests.swift */; };
 		087EF3B3243F604B0030720F /* mapster.h in Headers */ = {isa = PBXBuildFile; fileRef = 087EF3A5243F604B0030720F /* mapster.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		087EF3BD243F61540030720F /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3BC243F61540030720F /* Map.swift */; };
+		0895ECFB243F63C300F9FFE7 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFA243F63C300F9FFE7 /* Tile.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,8 +29,10 @@
 		087EF3A5243F604B0030720F /* mapster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mapster.h; sourceTree = "<group>"; };
 		087EF3A6243F604B0030720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		087EF3AB243F604B0030720F /* mapsterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = mapsterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		087EF3B0243F604B0030720F /* mapsterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = mapsterTests.swift; sourceTree = "<group>"; };
+		087EF3B0243F604B0030720F /* MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
 		087EF3B2243F604B0030720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		087EF3BC243F61540030720F /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
+		0895ECFA243F63C300F9FFE7 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +77,8 @@
 			children = (
 				087EF3A5243F604B0030720F /* mapster.h */,
 				087EF3A6243F604B0030720F /* Info.plist */,
+				087EF3BC243F61540030720F /* Map.swift */,
+				0895ECFA243F63C300F9FFE7 /* Tile.swift */,
 			);
 			path = mapster;
 			sourceTree = "<group>";
@@ -80,7 +86,7 @@
 		087EF3AF243F604B0030720F /* mapsterTests */ = {
 			isa = PBXGroup;
 			children = (
-				087EF3B0243F604B0030720F /* mapsterTests.swift */,
+				087EF3B0243F604B0030720F /* MapTests.swift */,
 				087EF3B2243F604B0030720F /* Info.plist */,
 			);
 			path = mapsterTests;
@@ -148,6 +154,7 @@
 				TargetAttributes = {
 					087EF3A1243F604B0030720F = {
 						CreatedOnToolsVersion = 11.4;
+						LastSwiftMigration = 1140;
 					};
 					087EF3AA243F604B0030720F = {
 						CreatedOnToolsVersion = 11.4;
@@ -195,6 +202,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				087EF3BD243F61540030720F /* Map.swift in Sources */,
+				0895ECFB243F63C300F9FFE7 /* Tile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,7 +211,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				087EF3B1243F604B0030720F /* mapsterTests.swift in Sources */,
+				087EF3B1243F604B0030720F /* MapTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -339,6 +348,7 @@
 		087EF3B7243F604B0030720F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -356,6 +366,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = mywhy.mapster;
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 			};
 			name = Debug;
@@ -363,6 +374,7 @@
 		087EF3B8243F604B0030720F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEFINES_MODULE = YES;
@@ -387,6 +399,7 @@
 		087EF3BA243F604B0030720F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = D352L7GNVF;
@@ -405,6 +418,7 @@
 		087EF3BB243F604B0030720F /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = D352L7GNVF;
