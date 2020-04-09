@@ -8,12 +8,19 @@
 
 import Foundation
 
-public struct Tile : Equatable{
-    let x : Int
-    let y : Int
+public struct Tile : Equatable {
+
+    let coords : UInt32 // trick to save memory
     
+    var x : UInt16 {
+        return UInt16(coords & 0xFFFF)
+    }
     
-    var coords : (Int, Int) {
-        return (x, y)
+    var y : UInt16 {
+        return UInt16((coords >> 16) & 0xFFFF)
+    }
+    
+    init(x : UInt16, y: UInt16) {
+        coords = (UInt32(x) & 0xFFFF) + ((UInt32(y)&0xFFFF)<<16)
     }
 }
