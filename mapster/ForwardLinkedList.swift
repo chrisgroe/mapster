@@ -83,9 +83,7 @@ public class ForwardLinkedList<Element>
     
     private var pennultimateNode : Node? {
         get {
-            if head == nil {
-                return nil
-            }
+            assert(head != nil)
             
             var node = head
             var pennu : Node? = nil
@@ -102,23 +100,22 @@ public class ForwardLinkedList<Element>
     }
     
     private func gotoNode(at index: Int) -> Node? {
-        if (index >= startIndex) && (index<endIndex)
-        {
-            // special case
-            if (index == 0) {
-                return head
+        assert((index >= startIndex) && (index<endIndex))
+    
+        // special case
+        if (index == 0) {
+            return head
+        }
+        
+        var next = head?.next
+        var currIndex = 1
+        
+        while (next != nil) {
+            if index==currIndex {
+                return next
             }
-            
-            var next = head?.next
-            var currIndex = 1
-            
-            while (next != nil) {
-                if index==currIndex {
-                    return next
-                }
-                next = next?.next
-                currIndex+=1
-            }
+            next = next?.next
+            currIndex+=1
         }
         return nil
     } 
@@ -169,19 +166,16 @@ public class ForwardLinkedList<Element>
     
     @discardableResult
     private func removeNextNode(at node: Node) -> Element? {
-        
         let next = node.next
+        assert(next != nil)
+
+        endIndex -= 1
+        let nextnext = next?.next
         
-        if next != nil {
-            endIndex -= 1
-            let nextnext = next?.next
-            
-            node.next = nextnext
-            
-            return next!.data
-        } else {
-            return nil
-        }
+        node.next = nextnext
+        
+        return next!.data
+        
     }
     
     /// Inserts a new element at the specified position.
