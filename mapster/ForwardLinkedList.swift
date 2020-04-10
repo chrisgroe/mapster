@@ -8,7 +8,7 @@ public class ForwardLinkedList<Element>
 {
     public typealias Index = Int
     
-    class Node {
+    fileprivate class Node {
         var data : Element
         var next : Node?
         
@@ -18,7 +18,7 @@ public class ForwardLinkedList<Element>
         }
     }
     
-    var head : Node?
+    private var head : Node?
     
     /// The position of the first element in a nonempty array.
     public var startIndex : Index  = 0
@@ -67,7 +67,7 @@ public class ForwardLinkedList<Element>
     /// The last node in the collection
     ///
     /// Is nil when the LinkedList is empty.
-    var lastNode : Node? {
+    private var lastNode : Node? {
         get {
             if head == nil {
                 return nil
@@ -81,7 +81,7 @@ public class ForwardLinkedList<Element>
         }
     }
     
-    var pennultimateNode : Node? {
+    private var pennultimateNode : Node? {
         get {
             if head == nil {
                 return nil
@@ -97,7 +97,7 @@ public class ForwardLinkedList<Element>
         }
     }
     
-    func hasNext(_ node : Node?) -> Bool {
+    private func hasNext(_ node : Node?) -> Bool {
         node!.next != nil
     }
     
@@ -154,7 +154,7 @@ public class ForwardLinkedList<Element>
     ///     - newElement: The element to append to the LinkedList.
     /// - Returns: the inserted node.
     @discardableResult
-    func insertNode( behind node: Node?, _ newElement: Element) -> Node {
+    private func insertNode( behind node: Node?, _ newElement: Element) -> Node {
         // pack Element in Node
         let newNode = Node(data: newElement)
         endIndex += 1
@@ -168,7 +168,7 @@ public class ForwardLinkedList<Element>
     }
     
     @discardableResult
-    func removeNextNode(at node: Node) -> Element? {
+    private func removeNextNode(at node: Node) -> Element? {
         
         let next = node.next
         
@@ -283,41 +283,7 @@ public class ForwardLinkedList<Element>
     }
 }
 
-// MARK: - Sequence Protocol
-extension ForwardLinkedList : Sequence
-{
-    public typealias Iterator = LinkedListIterator
-    
-    public class LinkedListIterator : IteratorProtocol
-    {
-        var head : Node?
-        var node : Node?
-        
-        internal init(start : Node?, end: Node?) {
-            self.head = start
-            node = start
-        }
-        public func next() -> Element? {
-            if node == nil {
-                return nil
-            }
-            
-            if node === head {
-                head = nil
-                return node?.data
-            }
-            
-            node = node?.next
-            return node?.data
-        }
-    }
-    
-    public func makeIterator()->LinkedListIterator {
-        return LinkedListIterator(start: head, end:lastNode)
-    }
-    
-    
-}
+
 
 // MARK: - MutableCollection Protocol
 extension ForwardLinkedList : MutableCollection
@@ -502,11 +468,39 @@ extension ForwardLinkedList: Equatable where Element: Equatable {
     }
 }
 
-
-
-
-
-
-
-
+// MARK: - Sequence Protocol
+extension ForwardLinkedList : Sequence
+{
+    public typealias Iterator = LinkedListIterator
+    
+    public class LinkedListIterator : IteratorProtocol
+    {
+        private var head : Node?
+        private var node : Node?
+        
+        fileprivate init(start : Node?, end: Node?) {
+            self.head = start
+            node = start
+        }
+        public func next() -> Element? {
+            if node == nil {
+                return nil
+            }
+            
+            if node === head {
+                head = nil
+                return node?.data
+            }
+            
+            node = node?.next
+            return node?.data
+        }
+    }
+    
+    public func makeIterator()->LinkedListIterator {
+        return LinkedListIterator(start: head, end:lastNode)
+    }
+    
+    
+}
 
