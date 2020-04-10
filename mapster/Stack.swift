@@ -8,8 +8,6 @@
 
 import Foundation
 
-extension ForwardLinkedList : StackContainerProtocol{
-}
 
 /// A stack (Last-In First-Out) datastructure.
 struct Stack<ContainerType> where ContainerType : StackContainerProtocol  {
@@ -18,17 +16,18 @@ struct Stack<ContainerType> where ContainerType : StackContainerProtocol  {
     fileprivate var container : ContainerType
     
     /// Initializes an empty stack
-    init( )
+    init(container : ContainerType = ContainerType())
     {
-        self.container = ContainerType()
+        self.container = container
     }
+    
     
     /// Initializes the stack with a sequence
     ///
     /// Element order is [bottom, ..., top], as if one were to iterate through the sequence in reverse.
-    init<S>(_ s: S) where Element == S.Element, S : Sequence
+    init<S>(container : ContainerType = ContainerType(), _ s: S) where Element == S.Element, S : Sequence
     {
-        self.init()
+        self.container = container
         
         for i in s {
             self.container.prepend(i)
@@ -38,9 +37,9 @@ struct Stack<ContainerType> where ContainerType : StackContainerProtocol  {
     /// Initializes the stack with variadic parameters
     ///
     /// Element order is (bottom, ..., top),  as if one were to iterate through the sequence in reverse.
-    init(_ values: Element...) {
+    init(container : ContainerType = ContainerType(), _ values: Element...) {
 
-        self.init()
+        self.container = container
         
         for i in values {
             self.container.prepend(i)
@@ -85,3 +84,7 @@ struct Stack<ContainerType> where ContainerType : StackContainerProtocol  {
     
 }
 
+extension ForwardLinkedList : StackContainerProtocol{
+}
+
+typealias StackLinkedList<T> = Stack<ForwardLinkedList<T>>

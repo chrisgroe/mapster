@@ -11,7 +11,9 @@ import Foundation
 protocol StackContainerProtocol {
     
     associatedtype Element
+    
     init()
+    
     func prepend(_ element : Element)
     func removeFirst() -> Element
     
