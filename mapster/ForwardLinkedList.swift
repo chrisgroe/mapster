@@ -4,8 +4,9 @@ import Foundation
 ///
 /// This class can be used like an Array. It implements all major protocols an Array implements.
 /// For more information, see [Linked List - Wikipedia](https://en.wikipedia.org/wiki/Linked_list)
-public class ForwardLinkedList<Element>
+public class ForwardLinkedList<T>
 {
+    public typealias Element = T
     public typealias Index = Int
     
     fileprivate class Node {

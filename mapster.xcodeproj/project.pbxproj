@@ -16,6 +16,7 @@
 		0895ECFF2440451200F9FFE7 /* ForwardLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */; };
 		0895ED012440531200F9FFE7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED002440531200F9FFE7 /* Stack.swift */; };
 		0895ED032440554500F9FFE7 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED022440554500F9FFE7 /* StackTests.swift */; };
+		0895ED052440C65D00F9FFE7 /* StackContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED042440C65D00F9FFE7 /* StackContainerProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardLinkedList.swift; sourceTree = "<group>"; };
 		0895ED002440531200F9FFE7 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		0895ED022440554500F9FFE7 /* StackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
+		0895ED042440C65D00F9FFE7 /* StackContainerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackContainerProtocol.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,6 +91,7 @@
 				087EF3BC243F61540030720F /* Map.swift */,
 				0895ECFA243F63C300F9FFE7 /* Tile.swift */,
 				0895ED002440531200F9FFE7 /* Stack.swift */,
+				0895ED042440C65D00F9FFE7 /* StackContainerProtocol.swift */,
 			);
 			path = mapster;
 			sourceTree = "<group>";
@@ -215,6 +218,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0895ECFF2440451200F9FFE7 /* ForwardLinkedList.swift in Sources */,
+				0895ED052440C65D00F9FFE7 /* StackContainerProtocol.swift in Sources */,
 				087EF3BD243F61540030720F /* Map.swift in Sources */,
 				0895ECFB243F63C300F9FFE7 /* Tile.swift in Sources */,
 				0895ED012440531200F9FFE7 /* Stack.swift in Sources */,

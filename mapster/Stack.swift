@@ -8,15 +8,19 @@
 
 import Foundation
 
+extension ForwardLinkedList : StackContainerProtocol{
+}
+
 /// A stack (Last-In First-Out) datastructure.
-public struct Stack<T> {
-    typealias Element = T
-    fileprivate var linkedList : ForwardLinkedList<Element>
+struct Stack<ContainerType> where ContainerType : StackContainerProtocol  {
+    typealias Element = ContainerType.Element
+    
+    fileprivate var container : ContainerType
     
     /// Initializes an empty stack
-    init()
+    init( )
     {
-        self.linkedList = ForwardLinkedList()
+        self.container = ContainerType()
     }
     
     /// Initializes the stack with a sequence
@@ -24,21 +28,30 @@ public struct Stack<T> {
     /// Element order is [bottom, ..., top], as if one were to iterate through the sequence in reverse.
     init<S>(_ s: S) where Element == S.Element, S : Sequence
     {
-        self.linkedList = ForwardLinkedList(s.reversed())
+        self.init()
+        
+        for i in s {
+            self.container.prepend(i)
+        }
     }
     
     /// Initializes the stack with variadic parameters
     ///
     /// Element order is (bottom, ..., top),  as if one were to iterate through the sequence in reverse.
     init(_ values: Element...) {
-        self.linkedList = ForwardLinkedList(values.reversed())
+
+        self.init()
+        
+        for i in values {
+            self.container.prepend(i)
+        }
     }
     
     /// Pushes an element to the top of the stack
     /// - Parameters:
     ///     - element: The element to be pushed.
     func push(_ element: Element) {
-        linkedList.prepend(element)
+        container.prepend(element)
     }
 
     /// Removes the top element from stack and returns it.
@@ -50,24 +63,24 @@ public struct Stack<T> {
             return nil
         }
         
-        return linkedList.removeFirst()
+        return container.removeFirst()
     }
     
     /// The top element of the stack.
     ///
     /// This is the last one pushed to the the stack or nil when the stack is empty.
     var front: Element? {
-        return linkedList.first
+        return container.first
     }
     
     /// The number of elements currently contained in the stack
     var count: Int {
-        return linkedList.count
+        return container.count
     }
     
     /// True when the stack is empty
     var isEmpty: Bool {
-        return linkedList.isEmpty
+        return container.isEmpty
     }
     
 }
