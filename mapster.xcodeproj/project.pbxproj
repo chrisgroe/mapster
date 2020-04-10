@@ -14,6 +14,8 @@
 		0895ECFB243F63C300F9FFE7 /* Tile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFA243F63C300F9FFE7 /* Tile.swift */; };
 		0895ECFD2440450B00F9FFE7 /* ForwardLinkedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFC2440450B00F9FFE7 /* ForwardLinkedListTests.swift */; };
 		0895ECFF2440451200F9FFE7 /* ForwardLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */; };
+		0895ED012440531200F9FFE7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED002440531200F9FFE7 /* Stack.swift */; };
+		0895ED032440554500F9FFE7 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED022440554500F9FFE7 /* StackTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +39,8 @@
 		0895ECFA243F63C300F9FFE7 /* Tile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tile.swift; sourceTree = "<group>"; };
 		0895ECFC2440450B00F9FFE7 /* ForwardLinkedListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardLinkedListTests.swift; sourceTree = "<group>"; };
 		0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardLinkedList.swift; sourceTree = "<group>"; };
+		0895ED002440531200F9FFE7 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
+		0895ED022440554500F9FFE7 /* StackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +88,7 @@
 				087EF3A6243F604B0030720F /* Info.plist */,
 				087EF3BC243F61540030720F /* Map.swift */,
 				0895ECFA243F63C300F9FFE7 /* Tile.swift */,
+				0895ED002440531200F9FFE7 /* Stack.swift */,
 			);
 			path = mapster;
 			sourceTree = "<group>";
@@ -94,6 +99,7 @@
 				0895ECFC2440450B00F9FFE7 /* ForwardLinkedListTests.swift */,
 				087EF3B0243F604B0030720F /* MapTests.swift */,
 				087EF3B2243F604B0030720F /* Info.plist */,
+				0895ED022440554500F9FFE7 /* StackTests.swift */,
 			);
 			path = mapsterTests;
 			sourceTree = "<group>";
@@ -211,6 +217,7 @@
 				0895ECFF2440451200F9FFE7 /* ForwardLinkedList.swift in Sources */,
 				087EF3BD243F61540030720F /* Map.swift in Sources */,
 				0895ECFB243F63C300F9FFE7 /* Tile.swift in Sources */,
+				0895ED012440531200F9FFE7 /* Stack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -220,6 +227,7 @@
 			files = (
 				0895ECFD2440450B00F9FFE7 /* ForwardLinkedListTests.swift in Sources */,
 				087EF3B1243F604B0030720F /* MapTests.swift in Sources */,
+				0895ED032440554500F9FFE7 /* StackTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
