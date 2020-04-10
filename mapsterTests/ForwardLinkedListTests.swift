@@ -12,59 +12,53 @@ import XCTest
 class ForwardLinkedListTests: XCTestCase {
 
     
-    func testInitBySequence() {
+    func test_Init_withSequence_shouldContainCorrectElements() {
         let ll = ForwardLinkedList<Int>([1,2,3,4])
-        
-        XCTAssertEqual(ll.count,4)
         XCTAssertEqual(Array<Int>(ll), [1,2,3,4])
     }
     
-    func testInitByRange() {
+    func test_Init_withRange_shouldContainIntElements() {
         let ll = ForwardLinkedList<Int>(1...4)
-        
-        XCTAssertEqual(ll.count,4)
         XCTAssertEqual(Array<Int>(ll), [1,2,3,4])
     }
     
-    func testInitRepeating() {
+    func test_Init_withRepeating_shouldContainRepeatingElements() {
            let ll = ForwardLinkedList<Int>(repeating: 123, count: 4)
-           
-           XCTAssertEqual(ll.count,4)
            XCTAssertEqual(Array<Int>(ll), [123,123,123,123])
        }
 
-    func testFirst0Elements() {
+    func test_first_with0Elements_shouldBeNil() {
         let ll = ForwardLinkedList<String>()
 
         XCTAssertNil(ll.first)
     }
     
-    func testLast0Elements() {
+    func test_last_with0Elements_shouldBeNil() {
         let ll = ForwardLinkedList<String>()
         
         XCTAssertNil(ll.last)
     }
     
-    func testFirst1Elements() {
+    func test_first_with1Element_shouldBeContainingElement() {
         let ll = ForwardLinkedList<Int>()
         ll.append(123)
         XCTAssertEqual(ll.first,123)
     }
     
-    func testLast1Elements() {
+    func test_last_with1Element_shouldBeContainingElement() {
         let ll = ForwardLinkedList<Int>()
         ll.append(123)
         XCTAssertEqual(ll.last,123)
     }
     
-    func testFirst2Elements() {
+    func test_first_with2Elements_shouldBeFirstElement() {
         let ll = ForwardLinkedList<Int>()
         ll.append(123)
         ll.append(321)
         XCTAssertEqual(ll.first,123)
     }
     
-    func testLast2Elements() {
+    func test_last_with2Elements_shouldBeLastElement() {
         let ll = ForwardLinkedList<Int>()
         ll.append(123)
         ll.append(321)
@@ -72,7 +66,7 @@ class ForwardLinkedListTests: XCTestCase {
     }
     
     
-    func testIterator0Elements() {
+    func test_makeIterator_with0Elements_shouldIteratorNextReturnNil() {
         let ll = ForwardLinkedList<String>()
         let it = ll.makeIterator()
         
@@ -83,155 +77,107 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertNil(value1)
     }
 
-    func testIterator1Elements() {
+    func test_makeIterator_with1Elements_shouldIteratorNextReturn1Element() {
         let ll = ForwardLinkedList<String>()
-        ll.append("1 - Test String - 1")
+        ll.append("a")
         let it = ll.makeIterator()
         
         let value0 = it.next()
-        XCTAssertEqual(value0, "1 - Test String - 1")
+        XCTAssertEqual(value0, "a")
         
         let value1 = it.next()
         XCTAssertNil(value1)
     }
     
-    func testIterator2Elements() {
+    func test_makeIterator_with2Elements_shouldIteratorNextReturn2Elements() {
         let ll = ForwardLinkedList<String>()
-        ll.append("1 - Test String - 1")
-        ll.append("2 - Test String - 2")
+        ll.append("a")
+        ll.append("b")
         let it = ll.makeIterator()
         
         let value0 = it.next()
-        XCTAssertEqual(value0,"1 - Test String - 1")
+        XCTAssertEqual(value0,"a")
         
         let value1 = it.next()
-        XCTAssertEqual(value1, "2 - Test String - 2")
+        XCTAssertEqual(value1, "b")
         
         let value2 = it.next()
         XCTAssertNil(value2)
     }
     
-    
-    func testGetNodeByIndexOutOfBonds() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(2) //0
-        ll.append(3)
-        ll.append(1) //2
-        XCTAssertNil(ll.gotoNode(at: 3))
-    }
-    
-    func testGetNodeByIndexEmpty() {
-        let ll = ForwardLinkedList<Int>()
-        XCTAssertNil(ll.gotoNode(at: 0))
-        XCTAssertNil(ll.gotoNode(at: 1))
-    }
-    
-    func testCount0Elements() {
+    func test_count_with0Elements_shouldReturn0() {
         let ll = ForwardLinkedList<Int>()
         XCTAssertEqual(ll.count, 0)
     }
     
-    func testCount3Elements() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(2)
-        ll.append(3)
-        ll.append(1)
+    func test_count_with3Elements_shouldReturn3() {
+        let ll = ForwardLinkedList(1,2,3)
         XCTAssertEqual(ll.count, 3)
     }
     
-    func testFirstIndexOf() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(2)
-        ll.append(3)
-        ll.append(-3)
-        ll.append(1)
-        
+    func test_firstIndexOf_withResultAtPos2_shouldReturn2() {
+        let ll = ForwardLinkedList<Int>(2,3,-3,1)
         XCTAssertEqual(ll.firstIndex(of: -3), 2)
     }
     
-    func testDistance() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(2)
-        ll.append(3)
-        ll.append(-3)
-        ll.append(1)
-        
+    func test_distance_with4ElementsInLinkedListFrom0To2_shouldReturn2() {
+        let ll = ForwardLinkedList(2,3,-3,1)
         XCTAssertEqual(ll.distance(from: 0, to: 2), 2)
     }
     
-    func testSubscriptMutating() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(2)
-        ll.append(3)
-        ll.append(-3)
-        ll.append(1)
+    func test_subscript_with4ElementsOnlyRead_shouldReturnCorrectElement() {
+        let ll = ForwardLinkedList(2,3,-3,1)
         XCTAssertEqual(ll[2], -3)
+    }
+    
+    func test_subscript_with4ElementsSetAndRead_shouldReturnCorrectElement() {
+        let ll = ForwardLinkedList(2,3,-3,1)
         ll[2] = 4
         XCTAssertEqual(ll[2], 4)
     }
     
-    func testSorted() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(2)
-        ll.append(3)
-        ll.append(1)
-        ll.append(-2)
-        ll.append(-10)
-        
+    func test_sorted_with5Elements_shouldReturnSortedCorrectly() {
+        let ll = ForwardLinkedList<Int>(2,3,1, -2,-10)
         let sortedArray = ll.sorted()
-        XCTAssertEqual(sortedArray[0], -10)
-        XCTAssertEqual(sortedArray[1], -2)
-        XCTAssertEqual(sortedArray[2], 1)
-        XCTAssertEqual(sortedArray[3], 2)
-        XCTAssertEqual(sortedArray[4], 3)
+        XCTAssertEqual(sortedArray, [-10,-2,1,2,3])
         
     }
     
-    func testInsertEmpty() {
+    func test_insert_withEmptyLinkedListAtPos0_should1ElementInListAndCorrectContent() {
         let ll = ForwardLinkedList<Int>()
         ll.insert(10, at: 0)
         XCTAssertEqual(ll.count, 1)
         XCTAssertEqual(ll[0], 10)
     }
     
-    func testInsertAtStart() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(11)
+    func test_insert_with1ElementInListAtPos0_should2ElementInListAndCorrectContent() {
+        let ll = ForwardLinkedList<Int>(11)
         ll.insert(10, at: 0)
         XCTAssertEqual(ll.count, 2)
         XCTAssertEqual(ll[0], 10)
         XCTAssertEqual(ll[1], 11)
     }
     
-    func testInsertAtMid() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(11) // 0
-        ll.append(12) // 1
-        ll.append(13) // 2
-        ll.insert(10, at: 1)
+    func test_insert_with3ElementInListAtPos1_should4ElementInListAndCorrectContent() {
+        let ll = ForwardLinkedList<Int>(11,13,14)
+        ll.insert(12, at: 1)
         XCTAssertEqual(ll.count, 4)
         XCTAssertEqual(ll[0], 11)
-        XCTAssertEqual(ll[1], 10)
-        XCTAssertEqual(ll[2], 12)
-        XCTAssertEqual(ll[3], 13)
+        XCTAssertEqual(ll[1], 12)
+        XCTAssertEqual(ll[2], 13)
+        XCTAssertEqual(ll[3], 14)
     }
     
-    func testInsertAtEnd() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(11)
-        ll.insert(10, at: 1)
+    func test_insert_with1ElementInListAtEnd_should2ElementInListAndCorrectContent() {
+        let ll = ForwardLinkedList(10)
+        ll.insert(11, at: 1)
         XCTAssertEqual(ll.count, 2)
-        XCTAssertEqual(ll[0], 11)
-        XCTAssertEqual(ll[1], 10)
+        XCTAssertEqual(ll[0], 10)
+        XCTAssertEqual(ll[1], 11)
     }
     
-    func testRemoveStart() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(2)
-        ll.append(3)
-        ll.append(1)
-        ll.append(-2)
-        ll.append(-10)
+    func test_remove_with5ElementsInListAtPos0_should4ElementsInListAndElementWasRemovedCorrectly() {
+        let ll = ForwardLinkedList<Int>(2,3,1,-2,-10)
         
         let removedElement = ll.remove(at:0)
         XCTAssertEqual(removedElement, 2)
@@ -242,14 +188,8 @@ class ForwardLinkedListTests: XCTestCase {
         
     }
     
-    func testRemoveMid() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(2)
-        ll.append(3)
-        ll.append(1)
-        ll.append(-2)
-        ll.append(-10)
-        
+    func test_remove_with5ElementsInListAtPos2_should4ElementsInListAndElementWasRemovedCorrectly() {
+        let ll = ForwardLinkedList<Int>(2,3,1,-2,-10)
         let removedElement = ll.remove(at:2)
         XCTAssertEqual(removedElement, 1)
         XCTAssertEqual(ll[0], 2)
@@ -259,14 +199,8 @@ class ForwardLinkedListTests: XCTestCase {
         
     }
     
-    func testRemoveEnd() {
-        let ll = ForwardLinkedList<Int>()
-        ll.append(2)
-        ll.append(3)
-        ll.append(1)
-        ll.append(-2)
-        ll.append(-10)
-
+    func test_remove_with5ElementsInListAtEnd_should4ElementsInListAndElementWasRemovedCorrectly() {
+        let ll = ForwardLinkedList<Int>(2,3,1,-2,-10)
         let removedElement = ll.remove(at:ll.endIndex-1)
         XCTAssertEqual(removedElement, -10)
         XCTAssertEqual(ll[0], 2)
@@ -275,7 +209,7 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(ll[3], -2)
     }
     
-    func testConcat2LinkedLists() {
+    func test_plus_with2LinkedList_shouldReturnLinkedList() {
         let ll1 = ForwardLinkedList<Int>(1...5)
         let ll2 = ForwardLinkedList<Int>(6...10)
         
@@ -285,8 +219,8 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), Array<Int>(1...10))
     }
     
-    func testConcatSequenceAndLinkedList() {
-        let ll1 = 1...5
+    func test_plus_withSequenceAndLinkedList_shouldReturnLinkedList() {
+        let ll1 = [1,2,3,4,5]
         let ll2 = ForwardLinkedList<Int>(6...10)
         
         let ll = ll1 + ll2
@@ -295,9 +229,9 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), Array<Int>(1...10))
     }
        
-    func testConcatLinkedListAndSequence() {
+    func test_plus_withLinkedListAndSequence_shouldReturnLinkedList() {
         let ll1 = ForwardLinkedList<Int>(1...5)
-        let ll2 = 6...10
+        let ll2 = [6,7,8,9,10]
         
         let ll = ll1 + ll2
         
@@ -306,7 +240,7 @@ class ForwardLinkedListTests: XCTestCase {
     }
 
     
-    func testPrepend3Elements() {
+    func test_prepend_withEmptyListAnd3TimesPrepend_shouldContain3ElementsInCorrectOrder() {
          let ll = ForwardLinkedList<Int>()
          ll.prepend(10)
          ll.prepend(20)
@@ -317,23 +251,24 @@ class ForwardLinkedListTests: XCTestCase {
 
     // MARK: Tests CustomStringConvertible
     
-    func testCustomStringConvertible0Elements() {
+    func test_description_withEmptyList_shouldReturnEmptyBrackets() {
         let ll = ForwardLinkedList<Int>()
         XCTAssertEqual(ll.description, "[]")
     }
     
-    func testCustomStringConvertible1Elements() {
+    func test_description_with1ElementInList_shouldReturnBracketsContainingElement() {
         let ll = ForwardLinkedList<Int>([0])
         XCTAssertEqual(ll.description, "[0]")
     }
-    func testCustomStringConvertible2Elements() {
+    func test_description_with2ElementInList_shouldReturnBracketsContainingElement() {
+
         let ll = ForwardLinkedList<Int>([0,1])
         XCTAssertEqual(ll.description, "[0, 1]")
     }
     
     // MARK: Tests RemoveFirst
-    func testRemoveFirst3Elements() {
-        let ll = ForwardLinkedList<Int>([1,2,3])
+    func test_removeFirst_with3ElementsInListAnd3DistinctRemovals_shouldListEmpty() {
+        let ll = ForwardLinkedList<Int>(1,2,3)
 
         XCTAssertEqual(ll.removeFirst(), 1)
         XCTAssertEqual(ll.removeFirst(), 2)
@@ -342,7 +277,7 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), [])
     }
     
-    func testRemoveFirstSec3of3() {
+    func test_removeFirst_with3ElementsInListAnd3Removals_shouldListEmpty() {
         let ll = ForwardLinkedList<Int>([1,2,3])
         ll.removeFirst(3)
         XCTAssertEqual(ll.count, 0)
@@ -351,8 +286,7 @@ class ForwardLinkedListTests: XCTestCase {
     }
     
     // MARK: Tests RemoveLast
-    
-    func testRemoveLast3Of3() {
+    func test_removeLast_with3ElementsInListAnd3DistinctRemovals_shouldListEmpty() {
         let ll = ForwardLinkedList<Int>([1,2,3])
 
         XCTAssertEqual(ll.removeLast(), 3)
@@ -362,7 +296,7 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), [])
     }
     
-    func testRemoveLastSec3Of3() {
+    func test_removeLast_with3ElementsInListAnd3Removals_shouldListEmpty() {
         let ll = ForwardLinkedList<Int>([1,2,3])
 
         ll.removeLast(3)
@@ -370,17 +304,42 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), [])
     }
     
+    func test_removeLast_with3ElementsInListAnd2Removals_shouldListWith1Element() {
+        let ll = ForwardLinkedList(1,2,3)
+
+        ll.removeLast(2)
+        XCTAssertEqual(ll.count, 1)
+        XCTAssertEqual(Array<Int>(ll), [1])
+    }
+    
+    
     // MARK: Tests RemoveSubrange
 
-    func testRemoveSubrangeFromRight1Of3() {
-        var ll = ForwardLinkedList<Int>([1,2,3])
+    func test_removeSubrange_with3ElementsInListAndRemoveSingleElementAtBegin_shouldListWith2ElementsWithCorrectContent()  {
+        var ll = ForwardLinkedList(1,2,3)
+
+        ll.removeSubrange(0...0)
+        XCTAssertEqual(ll.count, 2)
+        XCTAssertEqual(Array<Int>(ll), [2,3])
+    }
+    
+    func test_removeSubrange_with3ElementsInListAndRemoveSingleElementAtMid_shouldListWith2ElementsWithCorrectContent() {
+        var ll = ForwardLinkedList(1,2,3)
+
+        ll.removeSubrange(1...1)
+        XCTAssertEqual(ll.count, 2)
+        XCTAssertEqual(Array<Int>(ll), [1,3])
+    }
+    
+    func test_removeSubrange_with3ElementsInListAndRemoveSingleElementAtEnd_shouldListWith2ElementsWithCorrectContent() {
+        var ll = ForwardLinkedList(1,2,3)
 
         ll.removeSubrange(2...2)
         XCTAssertEqual(ll.count, 2)
         XCTAssertEqual(Array<Int>(ll), [1,2])
     }
     
-    func testRemoveSubrangeFromRight2Of3() {
+    func test_removeSubrange_with3ElementsInListAndRemoveTailing2Elements_shouldListWith1ElementsWithCorrectContent() {
         var ll = ForwardLinkedList<Int>([1,2,3])
 
         ll.removeSubrange(1...2)
@@ -388,14 +347,15 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), [1])
     }
     
-    func testRemoveSubrangeFromRight3Of3() {
+    func test_removeSubrange_with3ElementsInListAndRemoveAllElements_shouldEmptyList() {
         var ll = ForwardLinkedList<Int>([1,2,3])
 
         ll.removeSubrange(0...2)
         XCTAssertEqual(ll.count, 0)
         XCTAssertEqual(Array<Int>(ll), [])
     }
-    func testRemoveSubrangeFromLeft2Of3() {
+    
+    func test_removeSubrange_with3ElementsInListAndRemoveLeading2Elements_shouldListWith1ElementsWithCorrectContent() {
         var ll = ForwardLinkedList<Int>([1,2,3])
 
         ll.removeSubrange(0...1)
@@ -403,31 +363,17 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), [3])
     }
     
-    func testRemoveSubrangeFromLeft1Of3() {
-        var ll = ForwardLinkedList<Int>([1,2,3])
 
-        ll.removeSubrange(0...0)
-        XCTAssertEqual(ll.count, 2)
-        XCTAssertEqual(Array<Int>(ll), [2,3])
-    }
     
-    func testRemoveSubrangeMid1Of3() {
-        var ll = ForwardLinkedList<Int>([1,2,3])
-
-        ll.removeSubrange(1...1)
-        XCTAssertEqual(ll.count, 2)
-        XCTAssertEqual(Array<Int>(ll), [1,3])
-    }
-    
-    func testRemoveSubrangeMid2Of4() {
-        var ll = ForwardLinkedList<Int>([1,2,3,4])
+    func test_removeSubrange_with4ElementsInListAndRemove2MidElements_shouldListWith2ElementsWithCorrectContent() {
+        var ll = ForwardLinkedList(1,2,3,4)
 
         ll.removeSubrange(1...2)
         XCTAssertEqual(ll.count, 2)
         XCTAssertEqual(Array<Int>(ll), [1,4])
     }
     
-    func testRemoveSubrange1of1() {
+    func test_removeSubrange_with1ElementsInListAndRemove1Element_shouldEmptyList() {
         var ll = ForwardLinkedList<Int>([1])
 
         ll.removeSubrange(0...0)
@@ -435,26 +381,17 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), [])
     }
     
-    func testRemoveSubrange2of2() {
-        var ll = ForwardLinkedList<Int>([1, 2])
+    func test_removeSubrange_with2ElementsInListAndRemove2Elements_shouldEmptyList() {
+        var ll = ForwardLinkedList(1, 2)
 
         ll.removeSubrange(0...1)
         XCTAssertEqual(ll.count, 0)
         XCTAssertEqual(Array<Int>(ll), [])
     }
-    
-    
-    func testRemoveLastSec2Of3() {
-        let ll = ForwardLinkedList<Int>([1,2,3])
-
-        ll.removeLast(2)
-        XCTAssertEqual(ll.count, 1)
-        XCTAssertEqual(Array<Int>(ll), [1])
-    }
 
     // MARK: Reverse
     
-    func testReverseLinkedListEmpty() {
+    func test_reverse_withEmptyList_shouldEmptyList() {
         let ll = ForwardLinkedList<Int>()
         
         ll.reverse()
@@ -463,8 +400,8 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), [])
     }
     
-    func testReverseLinkedList1Element() {
-        let ll = ForwardLinkedList<Int>(123)
+    func test_reverse_withListContaining1Element_shouldReturnIdenticalList() {
+        let ll = ForwardLinkedList(123)
         
         ll.reverse()
         
@@ -472,8 +409,8 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), [123])
     }
 
-    func testReverseLinkedList2Elements() {
-        let ll = ForwardLinkedList<Int>(123,321)
+    func test_reverse_withListContaining2Elements_shouldReturnReversedList() {
+        let ll = ForwardLinkedList(123,321)
         
         ll.reverse()
         
@@ -481,8 +418,8 @@ class ForwardLinkedListTests: XCTestCase {
         XCTAssertEqual(Array<Int>(ll), [321, 123])
     }
     
-    func testReverseLinkedList3Element() {
-          let ll = ForwardLinkedList<Int>(0,1,2)
+    func test_reverse_withListContaining3Elements_shouldReturnReversedList() {
+          let ll = ForwardLinkedList(0,1,2)
           
           ll.reverse()
           
@@ -492,7 +429,7 @@ class ForwardLinkedListTests: XCTestCase {
       
     
     
-    func testReverseLinkedList() {
+    func test_reverse_withListContaining6Elements_shouldReturnReversedList() {
         let ll = ForwardLinkedList(1, 1, 2, 3, 5, 8)
         
         ll.reverse()
@@ -502,56 +439,20 @@ class ForwardLinkedListTests: XCTestCase {
     }
     
     // MARK: Equatable
-    func testEqual5Elements() {
-        var ll1 = ForwardLinkedList<Int>(1,2,3,4,5,6)
-        var ll2 = ForwardLinkedList<Int>(1,2,3,4,5,6)
+    func test_equal_with2IdenticalLists_shouldReturnTrue() {
+        let ll1 = ForwardLinkedList<Int>(1,2,3,4,5,6)
+        let ll2 = ForwardLinkedList<Int>(1,2,3,4,5,6)
         XCTAssertTrue(ll1 == ll2)
-        
-        ll2 = ForwardLinkedList<Int>(1,2,3,4,6,5)
-        XCTAssertFalse(ll1 == ll2)
-        
-        ll1 = ForwardLinkedList<Int>(2,1,3,4,5,6)
-        ll2 = ForwardLinkedList<Int>(1,2,3,4,5,6)
+    }
+    
+    func test_equal_with2DifferingLists_shouldReturnFalse() {
+        let ll1 = ForwardLinkedList<Int>(1,2,3,4,5,6)
+        let ll2 = ForwardLinkedList<Int>(1,2,3,4,6,5)
         XCTAssertFalse(ll1 == ll2)
     }
-    func testEqual_differentLength_returnFalse() {
+    func test_equal_withListsWithDifferingLength_shouldReturnFalse() {
         let ll1 = ForwardLinkedList<Int>(1,2,3,4,5,6)
         let ll2 = ForwardLinkedList<Int>(1,2,3,4,5)
         XCTAssertFalse(ll1 == ll2)
     }
-    
-    func testNotEqual5Elements() {
-        var ll1 = ForwardLinkedList<Int>(1,2,3,4,5,6)
-        var ll2 = ForwardLinkedList<Int>(1,2,3,4,5,6)
-        XCTAssertFalse(ll1 != ll2)
-        
-        ll2 = ForwardLinkedList<Int>(1,2,3,4,6,5)
-        XCTAssertTrue(ll1 != ll2)
-        
-        ll1 = ForwardLinkedList<Int>(2,1,3,4,5,6)
-        ll2 = ForwardLinkedList<Int>(1,2,3,4,5,6)
-        XCTAssertTrue(ll1 != ll2)
-    }
-    
-    // MARK: Performance
-    func testAppendPerformance100Elements() {
-        let ll = ForwardLinkedList<Int>()
-        measure {
-            for _ in 0..<100 {
-                ll.append(2)
-            }
-        }
-    }
-    
-    func testPrependPerformance1000Elements() {
-        let ll = ForwardLinkedList<Int>()
-        measure {
-            for _ in 0..<1000 {
-                ll.prepend(2)
-            }
-        }
-    }
-    
-
-       
 }

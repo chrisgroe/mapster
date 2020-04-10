@@ -101,7 +101,7 @@ public class ForwardLinkedList<Element>
         node!.next != nil
     }
     
-    func gotoNode(at index: Int) -> Node? {
+    private func gotoNode(at index: Int) -> Node? {
         if (index >= startIndex) && (index<endIndex)
         {
             // special case
