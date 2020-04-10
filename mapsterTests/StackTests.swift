@@ -34,18 +34,18 @@ class StackTests: XCTestCase {
     }
     
     
-    func test_enqueue_with1Call_shouldFrontCorrectElementAndCount1() {
+    func test_push_with1Call_shouldFrontCorrectElementAndCount1() {
         let stack = Stack<Int>()
-        stack.enqueue(10)
+        stack.push(10)
         
         XCTAssertEqual(stack.front, 10)
         XCTAssertEqual(stack.count, 1)
     }
     
-    func test_enqueue_with2Calls_shouldFrontCorrectElementAndCount2() {
+    func test_push_with2Calls_shouldFrontCorrectElementAndCount2() {
         let stack = Stack<Int>()
-        stack.enqueue(10)
-        stack.enqueue(11)
+        stack.push(10)
+        stack.push(11)
         
         XCTAssertEqual(stack.front, 11)
         XCTAssertEqual(stack.count, 2)
@@ -53,20 +53,20 @@ class StackTests: XCTestCase {
     
 
 
-    func test_dequeue_withEmptyStack_shouldReturnNil() {
+    func test_pop_withEmptyStack_shouldReturnNil() {
         let stack = Stack<Int>()
         
-        XCTAssertNil(stack.dequeue())
+        XCTAssertNil(stack.pop())
         XCTAssertEqual(stack.count, 0)
     }
     
-    func test_dequeue_withStack3ElementsAnd4Calls_shouldReturnElementsInCorrectOrderAndNilAfterThat() {
+    func test_pop_withStack3ElementsAnd4Calls_shouldReturnElementsInCorrectOrderAndNilAfterThat() {
         let stack = Stack(10,11,12)
         
-        XCTAssertEqual(stack.dequeue(), 12)
-        XCTAssertEqual(stack.dequeue(), 11)
-        XCTAssertEqual(stack.dequeue(), 10)
-        XCTAssertNil(stack.dequeue())
+        XCTAssertEqual(stack.pop(), 12)
+        XCTAssertEqual(stack.pop(), 11)
+        XCTAssertEqual(stack.pop(), 10)
+        XCTAssertNil(stack.pop())
         XCTAssertEqual(stack.count, 0)
     }
     

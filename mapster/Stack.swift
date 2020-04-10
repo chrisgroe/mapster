@@ -1,5 +1,5 @@
 //
-//  Queue.swift
+//  Stack.swift
 //  mapster
 //
 //  Created by Christian Gröling on 10.04.20.
@@ -35,11 +35,11 @@ public struct Stack<T> {
         self.linkedList = ForwardLinkedList(values.reversed())
     }
     
-    func enqueue(_ element: Element) {
+    func push(_ element: Element) {
         linkedList.prepend(element)
     }
     
-    func dequeue() -> T? {
+    func pop() -> T? {
         if isEmpty {
             return nil
         }
