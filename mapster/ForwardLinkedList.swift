@@ -4,7 +4,7 @@ import Foundation
 ///
 /// This class can be used like an Array. It implements all major protocols an Array implements.
 /// For more information, see [Linked List - Wikipedia](https://en.wikipedia.org/wiki/Linked_list)
-public class LinkedList<Element>
+public class ForwardLinkedList<Element>
 {
     public typealias Index = Int
     
@@ -284,7 +284,7 @@ public class LinkedList<Element>
 }
 
 // MARK: - Sequence Protocol
-extension LinkedList : Sequence
+extension ForwardLinkedList : Sequence
 {
     public typealias Iterator = LinkedListIterator
     
@@ -320,7 +320,7 @@ extension LinkedList : Sequence
 }
 
 // MARK: - MutableCollection Protocol
-extension LinkedList : MutableCollection
+extension ForwardLinkedList : MutableCollection
 {
     public func index(after i: Int) -> Int {
         i+1
@@ -339,10 +339,10 @@ extension LinkedList : MutableCollection
 }
 
 // MARK: Operators
-extension LinkedList {
+extension ForwardLinkedList {
     
-    public static func + (lhs: LinkedList<Element>, rhs: LinkedList<Element>) -> LinkedList<Element>  {
-        let new_ll = LinkedList<Element>(lhs) // create new linked list based on lhs
+    public static func + (lhs: ForwardLinkedList<Element>, rhs: ForwardLinkedList<Element>) -> ForwardLinkedList<Element>  {
+        let new_ll = ForwardLinkedList<Element>(lhs) // create new linked list based on lhs
         
         var ref : Node? = new_ll.lastNode
         
@@ -352,9 +352,9 @@ extension LinkedList {
         return new_ll
     }
     
-    public static func + <Other>(lhs: Other, rhs: LinkedList<Element>) -> LinkedList<Element> where Other : Sequence, Element == Other.Element
+    public static func + <Other>(lhs: Other, rhs: ForwardLinkedList<Element>) -> ForwardLinkedList<Element> where Other : Sequence, Element == Other.Element
     {
-        let new_ll = LinkedList<Element>(lhs) // create new linked list based on lhs
+        let new_ll = ForwardLinkedList<Element>(lhs) // create new linked list based on lhs
         
         var ref : Node? = new_ll.lastNode
         
@@ -365,9 +365,9 @@ extension LinkedList {
         
     }
     
-    public static func + <Other>(lhs: LinkedList<Element>, rhs:Other ) -> LinkedList<Element> where Other : Sequence, Element == Other.Element
+    public static func + <Other>(lhs: ForwardLinkedList<Element>, rhs:Other ) -> ForwardLinkedList<Element> where Other : Sequence, Element == Other.Element
     {
-        let new_ll = LinkedList<Element>(lhs) // create new linked list based on lhs
+        let new_ll = ForwardLinkedList<Element>(lhs) // create new linked list based on lhs
         var ref : Node? = new_ll.lastNode
         
         for i in rhs {
@@ -380,7 +380,7 @@ extension LinkedList {
 
 
 // MARK: - CustomStringConvertible Protocol
-extension LinkedList: CustomStringConvertible where Element: CustomStringConvertible {
+extension ForwardLinkedList: CustomStringConvertible where Element: CustomStringConvertible {
     
     public var description: String {
         
@@ -400,7 +400,7 @@ extension LinkedList: CustomStringConvertible where Element: CustomStringConvert
 }
 
 // MARK: - CustomStringConvertible Protocol
-extension LinkedList : RangeReplaceableCollection {
+extension ForwardLinkedList : RangeReplaceableCollection {
     public func removeFirst() -> Element {
         assert(count != 0)
         let oldHead = head
@@ -488,8 +488,8 @@ extension LinkedList : RangeReplaceableCollection {
 
 
 //MARK: - Equatable conformance
-extension LinkedList: Equatable where Element: Equatable {
-    public static func ==(lhs: LinkedList<Element>, rhs: LinkedList<Element>) -> Bool {
+extension ForwardLinkedList: Equatable where Element: Equatable {
+    public static func ==(lhs: ForwardLinkedList<Element>, rhs: ForwardLinkedList<Element>) -> Bool {
         guard lhs.count == rhs.count else {
             return false
         }

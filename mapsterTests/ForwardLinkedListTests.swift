@@ -9,15 +9,8 @@
 import XCTest
 @testable import mapster
 
-class ForwardLinkedList: XCTestCase {
+class ForwardLinkedListTests: XCTestCase {
 
-    override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
     
     func testInitBySequence() {
         let ll = ForwardLinkedList<Int>([1,2,3,4])
