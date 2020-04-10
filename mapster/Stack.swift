@@ -84,7 +84,7 @@ struct Stack<ContainerType> where ContainerType : StackContainerProtocol  {
     
 }
 
-extension ForwardLinkedList : StackContainerProtocol{
+extension ForwardLinkedList : StackContainerProtocol {
 }
 
 typealias StackLinkedList<T> = Stack<ForwardLinkedList<T>>

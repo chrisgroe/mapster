@@ -113,12 +113,12 @@ public class ForwardLinkedList<T>
         
         while (next != nil) {
             if index==currIndex {
-                return next
+                break
             }
             next = next?.next
             currIndex+=1
         }
-        return nil
+        return next
     } 
     
     /// Adds a new element at the start of the LinkedList.
