@@ -29,7 +29,7 @@ class MapTests: XCTestCase {
         }
     }
     
-    func testInitXlen0AndYLen6IsNil () {
+    func test_init_withXlen0AndYLen6_shouldReturnNil () {
         let map = Map(0, 6, {x,y in
             MockTile(x:x,y:y)
         })
@@ -37,7 +37,7 @@ class MapTests: XCTestCase {
         XCTAssertNil(map)
     }
     
-    func testInitXlen6AndYLen0IsNil() {
+    func test_init_withXlen6AndYLen0_shouldReturnNil() {
         let map = Map(6, 0, {x,y in
             MockTile(x:x,y:y)
         })
@@ -45,7 +45,7 @@ class MapTests: XCTestCase {
         XCTAssertNil(map)
     }
     
-    func testInitXlenm6AndYLen6IsNil() {
+    func test_init_withXlenMinus6AndYLen6_shouldReturnNil() {
         let map = Map(-6, 6, {x,y in
             MockTile(x:x,y:y)
         })
@@ -53,7 +53,7 @@ class MapTests: XCTestCase {
         XCTAssertNil(map)
     }
 
-    func testInitXlen5AndYLen6Isxlen5andylen6 () {
+    func test_init_withXlen5AndYLen6_shouldReturnObjectWithSize5x6 () {
         let map = Map(5, 6, {x,y in
             MockTile(x:x,y:y)
         })
@@ -63,7 +63,7 @@ class MapTests: XCTestCase {
     }
 
     
-    func testSubscriptOfMap5p6InBonds () {
+    func test_subscript_withMap2x2AndValidAccess_shouldReturnValue () {
         let map = Map(2, 2, {x,y in
             MockTile(x:x,y:y)
         })
@@ -74,7 +74,7 @@ class MapTests: XCTestCase {
         XCTAssertEqual(map?[1,1], MockTile(x:1,y:1))
     }
 
-    func testSubscriptOfMap5p6OutOfBonds () {
+    func test_subscript_withMap2x2AndOutOfBoundAccess_shouldReturnNil () {
         let map = Map(2, 2, {x,y in
             MockTile(x:x,y:y)
         })
@@ -87,7 +87,7 @@ class MapTests: XCTestCase {
         XCTAssertNil(map?[2,2])
     }
     
-    func testInitWithString () {
+    func test_init_withString_shouldReturnCorrectMap () {
 
         let mapstr = """
         ..
