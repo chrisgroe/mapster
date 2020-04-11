@@ -100,6 +100,11 @@ class MapTests: XCTestCase {
         XCTAssertEqual(map?.xlen, 2)
         XCTAssertEqual(map?.ylen, 2)
         
+        // y
+        //x =01
+        // =
+        // 0 ..
+        // 1 .X
         XCTAssertEqual(map?[0,0], MockTile(x:0,y:0,ch: "."))
         XCTAssertEqual(map?[1,0], MockTile(x:1,y:0,ch: "."))
         XCTAssertEqual(map?[0,1], MockTile(x:0,y:1,ch: "."))
