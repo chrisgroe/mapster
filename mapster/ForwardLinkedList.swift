@@ -1,6 +1,6 @@
 import Foundation
 
-/// Generic singly linked list implementation
+/// Generic forward singly linked list implementation
 ///
 /// This class can be used like an Array. It implements all major protocols an Array implements.
 /// For more information, see [Linked List - Wikipedia](https://en.wikipedia.org/wiki/Linked_list)
