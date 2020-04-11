@@ -11,6 +11,7 @@ import XCTest
 @testable import mapster
 
 class StackTests: XCTestCase {
+    
     final class MockStackContainer : StackContainerProtocol {
         typealias Element = Int
         
