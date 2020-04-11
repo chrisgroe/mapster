@@ -73,4 +73,14 @@ public class Map<T>
         
         return map[x][y]
     }
+    
+    func getNeighbours(_ x : Int, _ y: Int) -> [(x: Int, y:Int)] {
+        return []
+    }
+    
+    func floodVistor(_ x: Int, _y: Int) {
+        var stack = Stack<ForwardLinkedList<(x: Int, y:Int)>>()
+        
+        
+    }
 }

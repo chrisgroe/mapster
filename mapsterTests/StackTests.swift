@@ -57,7 +57,7 @@ class StackTests: XCTestCase {
         mock.removeFirstList = [12]
         mock.count = 3
         
-        let stack = Stack(container: mock, 10,11,12)
+        let stack = StackGeneric(container: mock, 10,11,12)
         
 
         XCTAssertEqual(stack.front, 12)
@@ -66,7 +66,7 @@ class StackTests: XCTestCase {
     }
     
     func test_init_withSequenceContaining3Elements_shouldFrontCorrectElementAndCount3() {
-        let stack = Stack<ForwardLinkedList<Int>>([10,11,12])
+        let stack = StackGeneric<ForwardLinkedList<Int>>([10,11,12])
 
         XCTAssertEqual(stack.front, 12)
         XCTAssertEqual(stack.count, 3)
@@ -80,7 +80,7 @@ class StackTests: XCTestCase {
         mock.removeFirstList = [10]
         mock.count = 1
         
-        let stack = Stack(container: mock)
+        let stack = StackGeneric(container: mock)
         stack.push(10)
         
         XCTAssertEqual(stack.front, 10)
@@ -94,7 +94,7 @@ class StackTests: XCTestCase {
         mock.removeFirstList = [11]
         mock.count = 2
         
-        let stack = Stack(container: mock)
+        let stack = StackGeneric(container: mock)
         stack.push(10)
         stack.push(11)
         
@@ -111,7 +111,7 @@ class StackTests: XCTestCase {
         mock.removeFirstList = []
         mock.count = 0
         
-        let stack = Stack(container: mock)
+        let stack = StackGeneric(container: mock)
         
         XCTAssertNil(stack.pop())
         XCTAssertEqual(stack.count, 0)
@@ -123,7 +123,7 @@ class StackTests: XCTestCase {
         mock.count = 3
         mock.isEmpty = false
         
-        let stack = Stack(container: mock, 10,11,12)
+        let stack = StackGeneric(container: mock, 10,11,12)
         
         XCTAssertEqual(stack.pop(), 10)
         XCTAssertEqual(stack.pop(), 11)
@@ -137,7 +137,7 @@ class StackTests: XCTestCase {
         mock.count = 0
         mock.isEmpty = true
         
-        let stack = Stack(container: mock)
+        let stack = StackGeneric(container: mock)
         
         XCTAssertNil(stack.pop())
     }

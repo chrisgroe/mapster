@@ -9,9 +9,11 @@
 import Foundation
 
 
+
 /// A stack (Last-In First-Out) datastructure.
-struct Stack<ContainerType> where ContainerType : StackContainerProtocol  {
-    typealias Element = ContainerType.Element
+struct StackGeneric<T> where T : StackContainerProtocol  {
+    typealias Element = T.Element
+    typealias ContainerType = T
     
     fileprivate var container : ContainerType
     
@@ -38,7 +40,7 @@ struct Stack<ContainerType> where ContainerType : StackContainerProtocol  {
     ///
     /// Element order is (bottom, ..., top),  as if one were to iterate through the sequence in reverse.
     init(container : ContainerType = ContainerType(), _ values: Element...) {
-
+        
         self.container = container
         
         for i in values {
@@ -52,7 +54,7 @@ struct Stack<ContainerType> where ContainerType : StackContainerProtocol  {
     func push(_ element: Element) {
         container.prepend(element)
     }
-
+    
     /// Removes the top element from stack and returns it.
     ///
     /// This method reduces the size of the stack by 1.
@@ -84,7 +86,5 @@ struct Stack<ContainerType> where ContainerType : StackContainerProtocol  {
     
 }
 
-extension ForwardLinkedList : StackContainerProtocol {
-}
-
-typealias StackLinkedList<T> = Stack<ForwardLinkedList<T>>
+extension ForwardLinkedList : StackContainerProtocol { }
+typealias Stack<T> = StackGeneric<ForwardLinkedList<T>>
