@@ -97,12 +97,12 @@ public class ForwardLinkedList<T>
     }
     
     private func hasNext(_ node : Node?) -> Bool {
-        node!.next != nil
+        node?.next != nil
     }
     
     private func gotoNode(at index: Int) -> Node? {
         assert((index >= startIndex) && (index<endIndex))
-    
+        
         // special case
         if (index == 0) {
             return head
@@ -169,13 +169,13 @@ public class ForwardLinkedList<T>
     private func removeNextNode(at node: Node) -> Element? {
         let next = node.next
         assert(next != nil)
-
+        
         endIndex -= 1
         let nextnext = next?.next
         
         node.next = nextnext
         
-        return next!.data
+        return next?.data
         
     }
     
@@ -201,7 +201,7 @@ public class ForwardLinkedList<T>
             // special case ... move head
             let oldhead = head
             head = new
-            head!.next = oldhead
+            head?.next = oldhead
             endIndex += 1
             return
         }
@@ -236,8 +236,7 @@ public class ForwardLinkedList<T>
     /// - Returns: The element at the specified index.
     @discardableResult public func remove(at index:Int) -> Element {
         assert(count>0) // collection not empty
-        assert(index>=startIndex)
-        assert(index<endIndex)
+        assert(index>=startIndex && index<endIndex)
         
         
         guard index != 0 else {
@@ -291,7 +290,7 @@ extension ForwardLinkedList : MutableCollection
         
         set {
             let node = gotoNode(at: position)
-            node!.data = newValue
+            node?.data = newValue
         }
         get {
             gotoNode(at: position)!.data
@@ -346,12 +345,12 @@ extension ForwardLinkedList: CustomStringConvertible where Element: CustomString
     public var description: String {
         
         var text = "["
-        var node = head
+        var nodeRef = head
         
-        while node != nil {
-            text += "\(node!.data)"
-            node = node!.next
-            if node != nil {
+        while let node = nodeRef {
+            text += "\(node.data)"
+            nodeRef = node.next
+            if nodeRef != nil {
                 text += ", "
             }
         }
