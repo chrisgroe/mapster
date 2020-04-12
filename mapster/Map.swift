@@ -8,8 +8,8 @@
 
 import Foundation
 
-public class Map<T>
-{
+public class Map<T> : Navigatable
+{    
     var map : Array<Array<T>>
     let xlen : Int
     let ylen : Int
@@ -74,13 +74,27 @@ public class Map<T>
         return map[x][y]
     }
     
-    func getNeighbours(_ x : Int, _ y: Int) -> [(x: Int, y:Int)] {
-        return []
+    func getNeighbours(coords: Coords) -> [Coords] {
+        
+        //           4 (y-1)
+        //           |
+        // (x-1) 3 - X - 1 (x+1)
+        //           |
+        //           2 (y+1)
+        
+        
+        let neighb = [
+            (x: Int(coords.x)+1, y: Int(coords.y)),
+            (x: Int(coords.x)  , y: Int(coords.y)+1),
+            (x: Int(coords.x)-1, y: Int(coords.y)),
+            (x: Int(coords.x)  , y: Int(coords.y)-1),
+        ]
+        return neighb.filter{
+            $0.x >= 0 && $0.x < xlen &&
+            $0.y >= 0 && $0.y < ylen
+        }.map{
+            Coords(x: $0.x, y: $0.y)
+        }
     }
     
-    func floodVistor(_ x: Int, _y: Int) {
-        var stack = Stack<ForwardLinkedList<(x: Int, y:Int)>>()
-        
-        
-    }
 }

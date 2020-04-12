@@ -110,4 +110,63 @@ class MapTests: XCTestCase {
         XCTAssertEqual(map?[0,1], MockTile(x:0,y:1,ch: "."))
         XCTAssertEqual(map?[1,1], MockTile(x:1,y:1,ch: "X"))
     }
+    
+    func test_getNeighbours_with1x1Map_shouldReturnEmptyList () {
+        let map = Map(1, 1, {x,y in
+            MockTile(x:x,y:y)
+        })
+        
+        let res = map?.getNeighbours(coords: Coords(x:0,y:0))
+        
+        XCTAssertEqual(res, [])
+    }
+    func test_getNeighbours_with1x1MapOutOfBoundAccess_shouldReturnEmptyList () {
+        let map = Map(1, 1, {x,y in
+            MockTile(x:x,y:y)
+        })
+        
+        let res = map?.getNeighbours(coords: Coords(x:1,y:1))
+        
+        XCTAssertEqual(res, [])
+    }
+    
+    func test_getNeighbours_with2x2Map () {
+        let map = Map(2, 2, {x,y in
+            MockTile(x:x,y:y)
+        })
+        
+        let res00 = map?.getNeighbours(coords: Coords(x:0,y:0))
+        let res10 = map?.getNeighbours(coords: Coords(x:1,y:0))
+        let res01 = map?.getNeighbours(coords: Coords(x:0,y:1))
+        let res11 = map?.getNeighbours(coords: Coords(x:1,y:1))
+        
+        //           4 (y-1)
+        //           |
+        // (x-1) 3 - X - 1 (x+1)
+        //           |
+        //           2 (y+1)
+        
+        XCTAssertEqual(res00, [Coords(x:1,y:0), Coords(x:0,y:1)])
+        XCTAssertEqual(res10, [Coords(x:1,y:1), Coords(x:0,y:0)])
+        XCTAssertEqual(res01, [Coords(x:1,y:1), Coords(x:0,y:0)])
+        XCTAssertEqual(res11, [Coords(x:0,y:1), Coords(x:1,y:0)])
+    }
+    
+    func test_getNeighbours_with3x3MapMid () {
+        let map = Map(3, 3, {x,y in
+            MockTile(x:x,y:y)
+        })
+        
+        let res11 = map?.getNeighbours(coords: Coords(x:1,y:1))
+        
+        //           4 (y-1)
+        //           |
+        // (x-1) 3 - X - 1 (x+1)
+        //           |
+        //           2 (y+1)
+        
+        XCTAssertEqual(res11, [Coords(x:2,y:1), Coords(x:1,y:2), Coords(x:0,y:1), Coords(x:1,y:0)])
+    }
+    
+    
 }

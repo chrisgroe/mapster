@@ -8,27 +8,49 @@
 
 import Foundation
 
+
 protocol FloodVisitorQueueProtocol {
-    
-    associatedtype Element
-    func push(_ element: Element)
-    func pop() ->Element?
+    mutating func push(_ element: Coords)
+    mutating func pop() -> Coords?
 }
 
-struct FloodVisitorGeneric<T> where T : FloodVisitorQueueProtocol {
-    
-    typealias QueueType  = T
-    let queue : QueueType
-    
-    init (queue : QueueType)  {
-        self.queue = queue
+protocol Navigatable {
+    func getNeighbours(coords : Coords) -> [Coords]
+}
 
+
+extension Stack  : FloodVisitorQueueProtocol where Element == Coords {
+}
+
+struct FloodVisitor{
+    
+
+    var queue : FloodVisitorQueueProtocol
+    
+    init (queue : FloodVisitorQueueProtocol = Stack<Coords>())  {
+        self.queue = queue
     }
     
-    func visit(visitor : (T)->Bool) {
+    mutating func visit( startPos : Coords, navigation : Navigatable, visitor: (_ coords : Coords) ->() ) {
+        var visited = Set<Coords>()
+        
+        queue.push(startPos)
+        
+        while let pos = queue.pop() {
+            visitor(pos)
+            visited.insert(pos)
+
+            // get connections
+            let neighbours = navigation.getNeighbours(coords: pos)
+            
+            // enqueue connections if they are navigatable
+            for neighbour in neighbours {
+                if visited.contains(neighbour) == false {
+                    queue.push(neighbour)
+                }
+                
+            }
+        }
         
     }
 }
-
-extension Stack : FloodVisitorQueueProtocol  {}
-typealias FloodVisitor<T> = FloodVisitorGeneric<Stack<T>>

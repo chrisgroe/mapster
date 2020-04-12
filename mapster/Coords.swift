@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Tile : Equatable {
+public struct Coords : Equatable, Hashable, CustomDebugStringConvertible {
 
     let coords : UInt32 // trick to save memory
     
@@ -23,4 +23,21 @@ public struct Tile : Equatable {
     init(x : UInt16, y: UInt16) {
         coords = (UInt32(x) & 0xFFFF) + ((UInt32(y)&0xFFFF)<<16)
     }
+    init(x : Int, y: Int) {
+        coords = (UInt32(x) & 0xFFFF) + ((UInt32(y)&0xFFFF)<<16)
+    }
+    
+    public static func == (lhs: Coords, rhs: Coords) -> Bool {
+        return lhs.coords == rhs.coords
+    }
+
+    public func hash(into hasher: inout Hasher) {
+        hasher.combine(coords)
+    }
+    
+    public var debugDescription: String {
+        
+        return "x:\(x) y:\(y)"
+    }
+
 }
