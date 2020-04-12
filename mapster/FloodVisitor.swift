@@ -10,16 +10,16 @@ import Foundation
 
 
 protocol FloodVisitorQueueProtocol {
-    mutating func push(_ element: Coords)
-    mutating func pop() -> Coords?
+    mutating func push(_ element: GridPos)
+    mutating func pop() -> GridPos?
 }
 
 protocol Navigatable {
-    func getNeighbours(coords : Coords) -> [Coords]
+    func getNeighbours(coords : GridPos) -> [GridPos]
 }
 
 
-extension Stack  : FloodVisitorQueueProtocol where Element == Coords {
+extension Stack  : FloodVisitorQueueProtocol where Element == GridPos {
 }
 
 struct FloodVisitor{
@@ -27,18 +27,19 @@ struct FloodVisitor{
 
     var queue : FloodVisitorQueueProtocol
     
-    init (queue : FloodVisitorQueueProtocol = Stack<Coords>())  {
+    init (queue : FloodVisitorQueueProtocol = Stack<GridPos>())  {
         self.queue = queue
     }
     
-    mutating func visit( startPos : Coords, navigation : Navigatable, visitor: (_ coords : Coords) ->() ) {
-        var visited = Set<Coords>()
+    mutating func visit( startPos : GridPos, navigation : Navigatable, visitor: (_ coords : GridPos) ->() ) {
+        var visited = Set<GridPos>() // store information which nodes were visited
         
         queue.push(startPos)
+        visited.insert(startPos)
         
         while let pos = queue.pop() {
             visitor(pos)
-            visited.insert(pos)
+            
 
             // get connections
             let neighbours = navigation.getNeighbours(coords: pos)
@@ -47,6 +48,7 @@ struct FloodVisitor{
             for neighbour in neighbours {
                 if visited.contains(neighbour) == false {
                     queue.push(neighbour)
+                    visited.insert(pos)
                 }
                 
             }

@@ -13,14 +13,14 @@ import XCTest
 class FloodVisitorTests: XCTestCase {
     class MockVisitorQueue : FloodVisitorQueueProtocol {
         
-        var pushList : [Coords] = []
-        var popList : [Coords] = []
+        var pushList : [GridPos] = []
+        var popList : [GridPos] = []
         
-        func push(_ element: Coords) {
+        func push(_ element: GridPos) {
             pushList.append(element)
         }
         
-        func pop() -> Coords? {
+        func pop() -> GridPos? {
             guard popList.count != 0 else {
                 return nil
             }
@@ -29,9 +29,9 @@ class FloodVisitorTests: XCTestCase {
     }
     
     class MockNavigatable : Navigatable {
-        var testVector : [[Coords]] =  []
+        var testVector : [[GridPos]] =  []
         
-        func getNeighbours(coords: Coords) -> [Coords] {
+        func getNeighbours(coords: GridPos) -> [GridPos] {
             guard testVector.count != 0 else {
                 return []
             }
@@ -44,106 +44,106 @@ class FloodVisitorTests: XCTestCase {
     func test_visit_withSingleElement() {
         
         let mockQueue = MockVisitorQueue()
-        mockQueue.popList = [Coords(x:0, y:0)]
+        mockQueue.popList = [GridPos(x:0, y:0)]
         
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [] // no neighbours
         
         var floodVisitor = FloodVisitor(queue: mockQueue)
         
-        var visited : [Coords] = []
-        func visitor(_ coords : Coords) {
+        var visited : [GridPos] = []
+        func visitor(_ coords : GridPos) {
             visited.append(coords)
         }
         
-        floodVisitor.visit(startPos: Coords(x:0,y:0), navigation: mockNavigatable, visitor:visitor)
+        floodVisitor.visit(startPos: GridPos(x:0,y:0), navigation: mockNavigatable, visitor:visitor)
         
-        XCTAssertEqual(visited, [Coords(x:0, y:0)])
-        XCTAssertEqual(mockQueue.pushList, [Coords(x:0, y:0)])
+        XCTAssertEqual(visited, [GridPos(x:0, y:0)])
+        XCTAssertEqual(mockQueue.pushList, [GridPos(x:0, y:0)])
     }
     
     func test_visit_withLoop() {
         
         let mockQueue = MockVisitorQueue()
-        mockQueue.popList = [Coords(x:0, y:0)]
+        mockQueue.popList = [GridPos(x:0, y:0)]
         
         let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[Coords(x:0, y:0)]]
+        mockNavigatable.testVector = [[GridPos(x:0, y:0)]]
         
         var floodVisitor = FloodVisitor(queue: mockQueue)
         
-        var visited : [Coords] = []
-        func visitor(_ coords : Coords) {
+        var visited : [GridPos] = []
+        func visitor(_ coords : GridPos) {
             visited.append(coords)
         }
         
-        floodVisitor.visit(startPos: Coords(x:0,y:0), navigation: mockNavigatable, visitor:visitor)
+        floodVisitor.visit(startPos: GridPos(x:0,y:0), navigation: mockNavigatable, visitor:visitor)
         
-        XCTAssertEqual(visited, [Coords(x:0, y:0)])
-        XCTAssertEqual(mockQueue.pushList, [Coords(x:0, y:0)])
+        XCTAssertEqual(visited, [GridPos(x:0, y:0)])
+        XCTAssertEqual(mockQueue.pushList, [GridPos(x:0, y:0)])
     }
     
     func test_visit_with1NeighbourAndPopListIsEmpty() {
          
          let mockQueue = MockVisitorQueue()
-         mockQueue.popList = [Coords(x:0, y:0)] // result of pop
+         mockQueue.popList = [GridPos(x:0, y:0)] // result of pop
          
          let mockNavigatable = MockNavigatable()
-         mockNavigatable.testVector = [[Coords(x:1, y:0)]] // result of neighbor query
+         mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
          
          var floodVisitor = FloodVisitor(queue: mockQueue)
          
-         var visited : [Coords] = []
-         func visitor(_ coords : Coords) {
+         var visited : [GridPos] = []
+         func visitor(_ coords : GridPos) {
              visited.append(coords)
          }
          
-         floodVisitor.visit(startPos: Coords(x:0,y:0), navigation: mockNavigatable, visitor:visitor)
+         floodVisitor.visit(startPos: GridPos(x:0,y:0), navigation: mockNavigatable, visitor:visitor)
          
-         XCTAssertEqual(visited, [Coords(x:0, y:0)]) // neighbor not on pop list
-         XCTAssertEqual(mockQueue.pushList, [Coords(x:0, y:0), Coords(x:1, y:0)])
+         XCTAssertEqual(visited, [GridPos(x:0, y:0)]) // neighbor not on pop list
+         XCTAssertEqual(mockQueue.pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
      }
     
     func test_visit_with1NeighbourAndPopReturnsCorrectNeighbour() {
         
         let mockQueue = MockVisitorQueue()
-        mockQueue.popList = [Coords(x:0, y:0),Coords(x:1, y:0)] // result of pop
+        mockQueue.popList = [GridPos(x:0, y:0),GridPos(x:1, y:0)] // result of pop
         
         let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[Coords(x:1, y:0)]] // result of neighbor query
+        mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
         
         var floodVisitor = FloodVisitor(queue: mockQueue)
         
-        var visited : [Coords] = []
-        func visitor(_ coords : Coords) {
+        var visited : [GridPos] = []
+        func visitor(_ coords : GridPos) {
             visited.append(coords)
         }
         
-        floodVisitor.visit(startPos: Coords(x:0,y:0), navigation: mockNavigatable, visitor:visitor)
+        floodVisitor.visit(startPos: GridPos(x:0,y:0), navigation: mockNavigatable, visitor:visitor)
         
-        XCTAssertEqual(visited, [Coords(x:0, y:0), Coords(x:1, y:0)])
-        XCTAssertEqual(mockQueue.pushList, [Coords(x:0, y:0), Coords(x:1, y:0)])
+        XCTAssertEqual(visited, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
+        XCTAssertEqual(mockQueue.pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
     }
     
     func test_visit_with1NeighbourAndPopReturnsCorrectNeighbourAndLoop() {
         
         let mockQueue = MockVisitorQueue()
-        mockQueue.popList = [Coords(x:0, y:0),Coords(x:1, y:0)] // result of pop
+        mockQueue.popList = [GridPos(x:0, y:0),GridPos(x:1, y:0)] // result of pop
         
         let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[Coords(x:1, y:0),Coords(x:0, y:0)]] // result of neighbor query
+        mockNavigatable.testVector = [[GridPos(x:1, y:0),GridPos(x:0, y:0)]] // result of neighbor query
         
         var floodVisitor = FloodVisitor(queue: mockQueue)
         
-        var visited : [Coords] = []
-        func visitor(_ coords : Coords) {
+        var visited : [GridPos] = []
+        func visitor(_ coords : GridPos) {
             visited.append(coords)
         }
         
-        floodVisitor.visit(startPos: Coords(x:0,y:0), navigation: mockNavigatable, visitor:visitor)
+        floodVisitor.visit(startPos: GridPos(x:0,y:0), navigation: mockNavigatable, visitor:visitor)
         
-        XCTAssertEqual(visited, [Coords(x:0, y:0), Coords(x:1, y:0)])
-        XCTAssertEqual(mockQueue.pushList, [Coords(x:0, y:0), Coords(x:1, y:0)]) // Following element 0,0 is excluded!
+        XCTAssertEqual(visited, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
+        XCTAssertEqual(mockQueue.pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)]) // Following element 0,0 is excluded!
     }
     
     

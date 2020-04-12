@@ -116,7 +116,7 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res = map?.getNeighbours(coords: Coords(x:0,y:0))
+        let res = map?.getNeighbours(coords: GridPos(x:0,y:0))
         
         XCTAssertEqual(res, [])
     }
@@ -125,7 +125,7 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res = map?.getNeighbours(coords: Coords(x:1,y:1))
+        let res = map?.getNeighbours(coords: GridPos(x:1,y:1))
         
         XCTAssertEqual(res, [])
     }
@@ -135,10 +135,10 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res00 = map?.getNeighbours(coords: Coords(x:0,y:0))
-        let res10 = map?.getNeighbours(coords: Coords(x:1,y:0))
-        let res01 = map?.getNeighbours(coords: Coords(x:0,y:1))
-        let res11 = map?.getNeighbours(coords: Coords(x:1,y:1))
+        let res00 = map?.getNeighbours(coords: GridPos(x:0,y:0))
+        let res10 = map?.getNeighbours(coords: GridPos(x:1,y:0))
+        let res01 = map?.getNeighbours(coords: GridPos(x:0,y:1))
+        let res11 = map?.getNeighbours(coords: GridPos(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -146,10 +146,10 @@ class MapTests: XCTestCase {
         //           |
         //           2 (y+1)
         
-        XCTAssertEqual(res00, [Coords(x:1,y:0), Coords(x:0,y:1)])
-        XCTAssertEqual(res10, [Coords(x:1,y:1), Coords(x:0,y:0)])
-        XCTAssertEqual(res01, [Coords(x:1,y:1), Coords(x:0,y:0)])
-        XCTAssertEqual(res11, [Coords(x:0,y:1), Coords(x:1,y:0)])
+        XCTAssertEqual(res00, [GridPos(x:1,y:0), GridPos(x:0,y:1)])
+        XCTAssertEqual(res10, [GridPos(x:1,y:1), GridPos(x:0,y:0)])
+        XCTAssertEqual(res01, [GridPos(x:1,y:1), GridPos(x:0,y:0)])
+        XCTAssertEqual(res11, [GridPos(x:0,y:1), GridPos(x:1,y:0)])
     }
     
     func test_getNeighbours_with3x3MapMid () {
@@ -157,7 +157,7 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res11 = map?.getNeighbours(coords: Coords(x:1,y:1))
+        let res11 = map?.getNeighbours(coords: GridPos(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -165,7 +165,7 @@ class MapTests: XCTestCase {
         //           |
         //           2 (y+1)
         
-        XCTAssertEqual(res11, [Coords(x:2,y:1), Coords(x:1,y:2), Coords(x:0,y:1), Coords(x:1,y:0)])
+        XCTAssertEqual(res11, [GridPos(x:2,y:1), GridPos(x:1,y:2), GridPos(x:0,y:1), GridPos(x:1,y:0)])
     }
     
     

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public struct Coords : Equatable, Hashable, CustomDebugStringConvertible {
+public struct GridPos : Equatable, Hashable, CustomDebugStringConvertible {
 
     let coords : UInt32 // trick to save memory
     
@@ -27,7 +27,7 @@ public struct Coords : Equatable, Hashable, CustomDebugStringConvertible {
         coords = (UInt32(x) & 0xFFFF) + ((UInt32(y)&0xFFFF)<<16)
     }
     
-    public static func == (lhs: Coords, rhs: Coords) -> Bool {
+    public static func == (lhs: GridPos, rhs: GridPos) -> Bool {
         return lhs.coords == rhs.coords
     }
 

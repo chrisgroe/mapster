@@ -9,7 +9,7 @@
 import Foundation
 
 public class Map<T> : Navigatable
-{    
+{
     var map : Array<Array<T>>
     let xlen : Int
     let ylen : Int
@@ -74,7 +74,7 @@ public class Map<T> : Navigatable
         return map[x][y]
     }
     
-    func getNeighbours(coords: Coords) -> [Coords] {
+    func getNeighbours(coords: GridPos) -> [GridPos] {
         
         //           4 (y-1)
         //           |
@@ -93,7 +93,7 @@ public class Map<T> : Navigatable
             $0.x >= 0 && $0.x < xlen &&
             $0.y >= 0 && $0.y < ylen
         }.map{
-            Coords(x: $0.x, y: $0.y)
+            GridPos(x: $0.x, y: $0.y)
         }
     }
     
