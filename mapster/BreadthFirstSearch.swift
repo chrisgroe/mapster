@@ -9,12 +9,12 @@
 import Foundation
 
 
-protocol Queue {
+protocol Queue : class {
     
     associatedtype Element
     init()
-    mutating func push(_ element: Element)
-    mutating func pop() -> Element?
+    func push(_ element: Element)
+    func pop() -> Element?
 }
 
 
@@ -23,17 +23,28 @@ protocol Navigatable {
     func getNeighbours(coords : Element) -> [Element]
 }
 
+protocol BreadthFirstSearchTraits {
+    associatedtype Element : Hashable
+    associatedtype N : Navigatable where N.Element == Element
+    associatedtype Q : Queue where Q.Element == Element
+}
 
-struct BreadthFirstSearch<T, N : Navigatable,  Q : Queue> where Q.Element == T, N.Element == T, T : Hashable{
+
+struct BreadthFirstSearch<T : BreadthFirstSearchTraits>
+{
+    typealias Element = T.Element
+    typealias N = T.N
+    typealias Q = T.Q
+    
     var queue : Q
     init (queue : Q = Q())  {
         self.queue = queue
     }
     
-    mutating func search( startPos : T, navigation : N,  visitor: (_ coords : T) ->() )
+    func search( startPos : Element, navigation : N,  visitor: (_ coords : Element) ->() )
     {
         
-        var visited = Set<T>() // store information which nodes were visited
+        var visited = Set<Element>() // store information which nodes were visited
  
         queue.push(startPos)
         visited.insert(startPos)
