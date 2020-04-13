@@ -20,7 +20,7 @@
 		0895ECFF2440451200F9FFE7 /* ForwardLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */; };
 		0895ED012440531200F9FFE7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED002440531200F9FFE7 /* Stack.swift */; };
 		0895ED032440554500F9FFE7 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED022440554500F9FFE7 /* StackTests.swift */; };
-		0895ED052440C65D00F9FFE7 /* StackContainerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED042440C65D00F9FFE7 /* StackContainerProtocol.swift */; };
+		0895ED052440C65D00F9FFE7 /* StackContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED042440C65D00F9FFE7 /* StackContainer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,7 +50,7 @@
 		0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardLinkedList.swift; sourceTree = "<group>"; };
 		0895ED002440531200F9FFE7 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		0895ED022440554500F9FFE7 /* StackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
-		0895ED042440C65D00F9FFE7 /* StackContainerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackContainerProtocol.swift; sourceTree = "<group>"; };
+		0895ED042440C65D00F9FFE7 /* StackContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,7 +75,7 @@
 		0837F6BC2444AB8A0075AA66 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0895ED042440C65D00F9FFE7 /* StackContainerProtocol.swift */,
+				0895ED042440C65D00F9FFE7 /* StackContainer.swift */,
 				0837F6BD2444ABA30075AA66 /* Navigateable.swift */,
 				0837F6BF2444ABC20075AA66 /* Queue.swift */,
 			);
@@ -238,7 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0895ECFF2440451200F9FFE7 /* ForwardLinkedList.swift in Sources */,
-				0895ED052440C65D00F9FFE7 /* StackContainerProtocol.swift in Sources */,
+				0895ED052440C65D00F9FFE7 /* StackContainer.swift in Sources */,
 				0837F6BE2444ABA30075AA66 /* Navigateable.swift in Sources */,
 				0837F6C02444ABC20075AA66 /* Queue.swift in Sources */,
 				087EF3BD243F61540030720F /* Map.swift in Sources */,

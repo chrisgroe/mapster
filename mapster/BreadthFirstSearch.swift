@@ -8,14 +8,11 @@
 
 import Foundation
 
-
-
 protocol BreadthFirstSearchTraits {
     associatedtype Element : Hashable
     associatedtype Nav : Navigatable where Nav.Element == Element
     associatedtype Q : Queue where Q.Element == Element
 }
-
 
 struct BreadthFirstSearch<T : BreadthFirstSearchTraits>
 {

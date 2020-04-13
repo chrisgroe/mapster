@@ -12,7 +12,7 @@ import XCTest
 
 class StackTests: XCTestCase {
     
-    final class MockStackContainer : StackContainerProtocol {
+    final class MockStackContainer : StackContainer {
         typealias Element = Int
         
         init() {

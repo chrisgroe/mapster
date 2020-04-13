@@ -9,7 +9,7 @@
 import Foundation
 
 /// A stack (Last-In First-Out) datastructure.
-struct StackGeneric<T> where T : StackContainerProtocol  {
+struct StackGeneric<T> where T : StackContainer {
     typealias Element = T.Element
     typealias ContainerType = T
     
@@ -84,5 +84,5 @@ struct StackGeneric<T> where T : StackContainerProtocol  {
     
 }
 
-extension ForwardLinkedList : StackContainerProtocol { }
+extension ForwardLinkedList : StackContainer { }
 typealias Stack<T> = StackGeneric<ForwardLinkedList<T>>
