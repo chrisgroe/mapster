@@ -31,7 +31,7 @@ struct BreadthFirstSearch{
         self.factory = factory
     }
     
-    mutating func visit( startPos : GridPos, navigation : Navigatable,  visitor: (_ coords : GridPos) ->() )
+    func visit( startPos : GridPos, navigation : Navigatable,  visitor: (_ coords : GridPos) ->() )
     {
         
         var visited = Set<GridPos>() // store information which nodes were visited
