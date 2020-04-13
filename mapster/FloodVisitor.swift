@@ -9,9 +9,13 @@
 import Foundation
 
 
-protocol FloodVisitorQueueProtocol {
+protocol Queue {
     mutating func push(_ element: GridPos)
     mutating func pop() -> GridPos?
+}
+
+protocol QueueFactory {
+    func create() -> Queue
 }
 
 protocol Navigatable {
@@ -19,20 +23,17 @@ protocol Navigatable {
 }
 
 
-extension Stack  : FloodVisitorQueueProtocol where Element == GridPos {
-}
-
 struct FloodVisitor{
     
-
-    var queue : FloodVisitorQueueProtocol
     
-    init (queue : FloodVisitorQueueProtocol = Stack<GridPos>())  {
-        self.queue = queue
+    init ()  {
     }
     
-    mutating func visit( startPos : GridPos, navigation : Navigatable, visitor: (_ coords : GridPos) ->() ) {
+    mutating func visit( startPos : GridPos, navigation : Navigatable, factory: QueueFactory, visitor: (_ coords : GridPos) ->() )
+    {
+        
         var visited = Set<GridPos>() // store information which nodes were visited
+        var queue = factory.create()
         
         queue.push(startPos)
         visited.insert(startPos)
@@ -40,7 +41,7 @@ struct FloodVisitor{
         while let pos = queue.pop() {
             visitor(pos)
             
-
+            
             // get connections
             let neighbours = navigation.getNeighbours(coords: pos)
             
