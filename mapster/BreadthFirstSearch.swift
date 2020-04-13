@@ -23,7 +23,7 @@ protocol Navigatable {
 }
 
 
-struct FloodVisitor{
+struct BreadthFirstSearch{
     
     let factory: QueueFactory
     

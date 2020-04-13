@@ -14,13 +14,13 @@ class BreadthFirstSearchTests: XCTestCase {
     
     struct MockQueue : Queue {
         
-        var delegatePush : (_ element: GridPos) ->()
+        var pushDelegate : (_ element: GridPos) ->()
         
         var pushList : [GridPos] = []
         var popList : [GridPos] = []
         
         mutating func push(_ element: GridPos) {
-            delegatePush(element)
+            pushDelegate(element)
         }
         
         mutating func pop() -> GridPos? {
@@ -48,14 +48,12 @@ class BreadthFirstSearchTests: XCTestCase {
             }
             return testVector.removeFirst()
         }
-        
-        
     }
     
     func test_visit_withSingleElement() {
         
         var pushList = [GridPos]()
-        var mockQueue = MockQueue(delegatePush: { x in
+        var mockQueue = MockQueue(pushDelegate: { x in
             pushList.append(x)
         })
         mockQueue.popList = [GridPos(x:0, y:0)]
@@ -85,7 +83,7 @@ class BreadthFirstSearchTests: XCTestCase {
     func test_visit_withLoop() {
         
         var pushList = [GridPos]()
-        var mockQueue = MockQueue(delegatePush: { x in
+        var mockQueue = MockQueue(pushDelegate: { x in
             pushList.append(x)
         })
         
@@ -115,7 +113,7 @@ class BreadthFirstSearchTests: XCTestCase {
     func test_visit_with1NeighbourAndPopListIsEmpty() {
         
         var pushList = [GridPos]()
-        var mockQueue = MockQueue(delegatePush: { x in
+        var mockQueue = MockQueue(pushDelegate: { x in
             pushList.append(x)
         })
         mockQueue.popList = [GridPos(x:0, y:0)] // result of pop
@@ -144,7 +142,7 @@ class BreadthFirstSearchTests: XCTestCase {
     func test_visit_with1NeighbourAndPopReturnsCorrectNeighbour() {
         
         var pushList = [GridPos]()
-        var mockQueue = MockQueue(delegatePush: { x in
+        var mockQueue = MockQueue(pushDelegate: { x in
             pushList.append(x)
         })
         mockQueue.popList = [GridPos(x:0, y:0),GridPos(x:1, y:0)] // result of pop
@@ -173,7 +171,7 @@ class BreadthFirstSearchTests: XCTestCase {
     func test_visit_with1NeighbourAndPopReturnsCorrectNeighbourAndLoop() {
         
         var pushList = [GridPos]()
-        var mockQueue = MockQueue(delegatePush: { x in
+        var mockQueue = MockQueue(pushDelegate: { x in
             pushList.append(x)
         })
         mockQueue.popList = [GridPos(x:0, y:0),GridPos(x:1, y:0)] // result of pop

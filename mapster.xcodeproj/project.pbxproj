@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0837F6B72441F77E0075AA66 /* FloodVisitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6B62441F77E0075AA66 /* FloodVisitor.swift */; };
-		0837F6B92442326C0075AA66 /* FloodVisitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6B82442326C0075AA66 /* FloodVisitorTests.swift */; };
+		0837F6B72441F77E0075AA66 /* BreadthFirstSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */; };
+		0837F6B92442326C0075AA66 /* BreadthFirstSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */; };
 		087EF3AC243F604B0030720F /* mapster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087EF3A2243F604B0030720F /* mapster.framework */; };
 		087EF3B1243F604B0030720F /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3B0243F604B0030720F /* MapTests.swift */; };
 		087EF3B3243F604B0030720F /* mapster.h in Headers */ = {isa = PBXBuildFile; fileRef = 087EF3A5243F604B0030720F /* mapster.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -32,8 +32,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0837F6B62441F77E0075AA66 /* FloodVisitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodVisitor.swift; sourceTree = "<group>"; };
-		0837F6B82442326C0075AA66 /* FloodVisitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodVisitorTests.swift; sourceTree = "<group>"; };
+		0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadthFirstSearch.swift; sourceTree = "<group>"; };
+		0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadthFirstSearchTests.swift; sourceTree = "<group>"; };
 		087EF3A2243F604B0030720F /* mapster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mapster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		087EF3A5243F604B0030720F /* mapster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mapster.h; sourceTree = "<group>"; };
 		087EF3A6243F604B0030720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -96,7 +96,7 @@
 				0895ECFA243F63C300F9FFE7 /* GridPos.swift */,
 				0895ED002440531200F9FFE7 /* Stack.swift */,
 				0895ED042440C65D00F9FFE7 /* StackContainerProtocol.swift */,
-				0837F6B62441F77E0075AA66 /* FloodVisitor.swift */,
+				0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */,
 			);
 			path = mapster;
 			sourceTree = "<group>";
@@ -108,7 +108,7 @@
 				087EF3B0243F604B0030720F /* MapTests.swift */,
 				087EF3B2243F604B0030720F /* Info.plist */,
 				0895ED022440554500F9FFE7 /* StackTests.swift */,
-				0837F6B82442326C0075AA66 /* FloodVisitorTests.swift */,
+				0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */,
 			);
 			path = mapsterTests;
 			sourceTree = "<group>";
@@ -228,7 +228,7 @@
 				087EF3BD243F61540030720F /* Map.swift in Sources */,
 				0895ECFB243F63C300F9FFE7 /* GridPos.swift in Sources */,
 				0895ED012440531200F9FFE7 /* Stack.swift in Sources */,
-				0837F6B72441F77E0075AA66 /* FloodVisitor.swift in Sources */,
+				0837F6B72441F77E0075AA66 /* BreadthFirstSearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -237,7 +237,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0895ECFD2440450B00F9FFE7 /* ForwardLinkedListTests.swift in Sources */,
-				0837F6B92442326C0075AA66 /* FloodVisitorTests.swift in Sources */,
+				0837F6B92442326C0075AA66 /* BreadthFirstSearchTests.swift in Sources */,
 				087EF3B1243F604B0030720F /* MapTests.swift in Sources */,
 				0895ED032440554500F9FFE7 /* StackTests.swift in Sources */,
 			);
