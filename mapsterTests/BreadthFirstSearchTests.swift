@@ -12,6 +12,9 @@ import XCTest
 
 class BreadthFirstSearchTests: XCTestCase {
     
+    struct Node {
+    }
+    
     struct MockQueue : Queue {
         var popList : [GridPos] = []
         var pushDelegate : (_ element: GridPos) ->() = {x in
@@ -46,7 +49,7 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [] // no neighbours
         
-        var bfs = BreadthFirstSearch<MockQueue>()
+        var bfs = BreadthFirstSearch<GridPos, MockNavigatable, MockQueue>()
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -75,7 +78,7 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [] // no neighbours
         
-        var bfs = BreadthFirstSearch(queue: mockQueue)
+        var bfs = BreadthFirstSearch<GridPos, MockNavigatable, MockQueue>(queue: mockQueue)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -107,7 +110,7 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:0, y:0)]]
         
-        var bfs = BreadthFirstSearch(queue: mockQueue)
+        var bfs = BreadthFirstSearch<GridPos, MockNavigatable, MockQueue>(queue: mockQueue)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -137,7 +140,7 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
         
-        var bfs = BreadthFirstSearch(queue: mockQueue)
+        var bfs = BreadthFirstSearch<GridPos, MockNavigatable, MockQueue>(queue: mockQueue)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -166,7 +169,7 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
         
-        var bfs = BreadthFirstSearch(queue: mockQueue)
+        var bfs = BreadthFirstSearch<GridPos, MockNavigatable, MockQueue>(queue: mockQueue)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -195,7 +198,7 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0), GridPos(x:0, y:0)]] // result of neighbor query
         
-        var bfs = BreadthFirstSearch(queue: mockQueue)
+        var bfs = BreadthFirstSearch<GridPos, MockNavigatable, MockQueue>(queue: mockQueue)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {

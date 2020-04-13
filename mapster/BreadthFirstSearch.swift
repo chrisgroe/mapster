@@ -19,20 +19,21 @@ protocol Queue {
 
 
 protocol Navigatable {
-    func getNeighbours(coords : GridPos) -> [GridPos]
+    associatedtype Element
+    func getNeighbours(coords : Element) -> [Element]
 }
 
 
-struct BreadthFirstSearch<Q : Queue> where Q.Element == GridPos{
+struct BreadthFirstSearch<T, N : Navigatable,  Q : Queue> where Q.Element == T, N.Element == T, T : Hashable{
     var queue : Q
     init (queue : Q = Q())  {
         self.queue = queue
     }
     
-    mutating func search( startPos : GridPos, navigation : Navigatable,  visitor: (_ coords : GridPos) ->() )
+    mutating func search( startPos : T, navigation : N,  visitor: (_ coords : T) ->() )
     {
         
-        var visited = Set<GridPos>() // store information which nodes were visited
+        var visited = Set<T>() // store information which nodes were visited
  
         queue.push(startPos)
         visited.insert(startPos)
