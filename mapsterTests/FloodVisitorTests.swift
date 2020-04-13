@@ -65,7 +65,7 @@ class FloodVisitorTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [] // no neighbours
         
-        var floodVisitor = FloodVisitor()
+        var floodVisitor = FloodVisitor(factory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -75,7 +75,6 @@ class FloodVisitorTests: XCTestCase {
         floodVisitor.visit(
             startPos: GridPos(x:0,y:0),
             navigation: mockNavigatable,
-            factory: mockQueueFactory,
             visitor:visitor
         )
         
@@ -96,7 +95,7 @@ class FloodVisitorTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:0, y:0)]]
         
-        var floodVisitor = FloodVisitor()
+        var floodVisitor = FloodVisitor(factory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -106,7 +105,6 @@ class FloodVisitorTests: XCTestCase {
         floodVisitor.visit(
             startPos: GridPos(x:0,y:0),
             navigation: mockNavigatable,
-            factory: mockQueueFactory,
             visitor:visitor
         )
         
@@ -126,7 +124,7 @@ class FloodVisitorTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
         
-        var floodVisitor = FloodVisitor()
+        var floodVisitor = FloodVisitor(factory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -136,7 +134,6 @@ class FloodVisitorTests: XCTestCase {
         floodVisitor.visit(
             startPos: GridPos(x:0,y:0),
             navigation: mockNavigatable,
-            factory: mockQueueFactory,
             visitor:visitor
         )
         
@@ -156,7 +153,7 @@ class FloodVisitorTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
         
-        var floodVisitor = FloodVisitor()
+        var floodVisitor = FloodVisitor(factory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -166,7 +163,6 @@ class FloodVisitorTests: XCTestCase {
         floodVisitor.visit(
             startPos: GridPos(x:0,y:0),
             navigation: mockNavigatable,
-            factory: mockQueueFactory,
             visitor:visitor
         )
         
@@ -186,7 +182,7 @@ class FloodVisitorTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0),GridPos(x:0, y:0)]] // result of neighbor query
         
-        var floodVisitor = FloodVisitor()
+        var floodVisitor = FloodVisitor(factory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -196,7 +192,6 @@ class FloodVisitorTests: XCTestCase {
         floodVisitor.visit(
             startPos: GridPos(x:0,y:0),
             navigation: mockNavigatable,
-            factory: mockQueueFactory,
             visitor:visitor
         )
         

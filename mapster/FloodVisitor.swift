@@ -25,11 +25,13 @@ protocol Navigatable {
 
 struct FloodVisitor{
     
+    let factory: QueueFactory
     
-    init ()  {
+    init (factory: QueueFactory)  {
+        self.factory = factory
     }
     
-    mutating func visit( startPos : GridPos, navigation : Navigatable, factory: QueueFactory, visitor: (_ coords : GridPos) ->() )
+    mutating func visit( startPos : GridPos, navigation : Navigatable,  visitor: (_ coords : GridPos) ->() )
     {
         
         var visited = Set<GridPos>() // store information which nodes were visited
