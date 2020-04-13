@@ -28,9 +28,8 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTraits>
     
     func search( start : Element, navigation : Nav,  visitor: (_ coords : Element) ->() )
     {
-        
         var visited = Set<Element>() // store information which nodes were visited
-        let queue = queueFactory.create()
+        var queue = queueFactory.create()
         
         queue.push(start)
         visited.insert(start)

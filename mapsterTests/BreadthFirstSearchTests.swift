@@ -15,7 +15,7 @@ class BreadthFirstSearchTests: XCTestCase {
     struct Node {
     }
     
-    class MockQueue : Queue {
+    struct MockQueue : Queue {
         var popList : [GridPos] = []
         var pushDelegate : (_ element: GridPos) ->() = {x in
             return
@@ -30,7 +30,7 @@ class BreadthFirstSearchTests: XCTestCase {
             pushDelegate(element)
         }
         
-        func pop() -> GridPos? {
+        mutating func pop() -> GridPos? {
             guard popList.count != 0 else {
                 return nil
             }
@@ -106,8 +106,6 @@ class BreadthFirstSearchTests: XCTestCase {
                 pushList.append(x)
         })
         
-        mockQueue.popList = [GridPos(x:0, y:0)]
-        
         
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:0, y:0)]]
@@ -139,8 +137,7 @@ class BreadthFirstSearchTests: XCTestCase {
             pushDelegate: { x in
                 pushList.append(x)
         })
-        mockQueue.popList = [GridPos(x:0, y:0)] // result of pop
-        
+ 
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
         

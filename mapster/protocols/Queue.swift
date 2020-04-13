@@ -9,10 +9,10 @@
 import Foundation
 
 
-protocol Queue : class {
+protocol Queue  {
     associatedtype Element
-    func push(_ element: Element)
-    func pop() -> Element?
+    mutating func push(_ element: Element)
+    mutating func pop() -> Element?
 }
 
 protocol QueueFactory {
