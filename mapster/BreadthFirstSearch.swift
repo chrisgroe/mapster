@@ -10,39 +10,37 @@ import Foundation
 
 
 protocol Queue {
-    mutating func push(_ element: GridPos)
-    mutating func pop() -> GridPos?
+    
+    associatedtype Element
+    init()
+    mutating func push(_ element: Element)
+    mutating func pop() -> Element?
 }
 
-protocol QueueFactory {
-    func create() -> Queue
-}
 
 protocol Navigatable {
     func getNeighbours(coords : GridPos) -> [GridPos]
 }
 
 
-struct BreadthFirstSearch{
-    
-    let factory: QueueFactory
-    
-    init (factory: QueueFactory)  {
-        self.factory = factory
+struct BreadthFirstSearch<Q : Queue> where Q.Element == GridPos{
+    var queue : Q
+    init (queue : Q = Q())  {
+        self.queue = queue
     }
     
-    func search( startPos : GridPos, navigation : Navigatable,  visitor: (_ coords : GridPos) ->() )
+    mutating func search( startPos : GridPos, navigation : Navigatable,  visitor: (_ coords : GridPos) ->() )
     {
         
         var visited = Set<GridPos>() // store information which nodes were visited
-        var queue = factory.create()
-        
+ 
         queue.push(startPos)
         visited.insert(startPos)
         
         while let pos = queue.pop() {
-            visitor(pos)
             
+            // visit the node
+            visitor(pos)
             
             // get connections
             let neighbours = navigation.getNeighbours(coords: pos)
