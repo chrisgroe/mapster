@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 /// A stack (Last-In First-Out) datastructure.
 struct StackGeneric<T> where T : StackContainerProtocol  {
     typealias Element = T.Element

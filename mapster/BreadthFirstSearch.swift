@@ -9,19 +9,6 @@
 import Foundation
 
 
-protocol Queue : class {
-    
-    associatedtype Element
-    init()
-    func push(_ element: Element)
-    func pop() -> Element?
-}
-
-
-protocol Navigatable {
-    associatedtype Element
-    func getNeighbours(coords : Element) -> [Element]
-}
 
 protocol BreadthFirstSearchTraits {
     associatedtype Element : Hashable
