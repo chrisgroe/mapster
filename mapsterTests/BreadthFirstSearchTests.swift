@@ -12,18 +12,13 @@ import XCTest
 
 class BreadthFirstSearchTests: XCTestCase {
     
-    struct Node {
+    struct MockNode {
     }
     
     struct MockQueue : Queue {
-        var popList : [GridPos] = []
+        var popArray : [GridPos] = []
         var pushDelegate : (_ element: GridPos) ->() = {x in
             return
-        }
-        
-        init(popList : [GridPos], pushDelegate : @escaping  (_ element: GridPos) ->()) {
-            self.popList = popList
-            self.pushDelegate = pushDelegate
         }
         
         func push(_ element: GridPos) {
@@ -31,10 +26,10 @@ class BreadthFirstSearchTests: XCTestCase {
         }
         
         mutating func pop() -> GridPos? {
-            guard popList.count != 0 else {
+            guard popArray.count != 0 else {
                 return nil
             }
-            return popList.removeFirst()
+            return popArray.removeFirst()
         }
     }
     
@@ -65,11 +60,11 @@ class BreadthFirstSearchTests: XCTestCase {
         typealias QFactory = MockQueueFactory
     }
     
-    func test_search_withSingleElement() {
+    func test_search_withSingleNodeWithoutNeighbours() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
-            popList: [GridPos(x:0, y:0)],
+            popArray: [GridPos(x:0, y:0)],
             pushDelegate: { x in
                 pushList.append(x)
         })
@@ -97,11 +92,11 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0)])
     }
     
-    func test_search_withLoop() {
+    func test_search_withSingleNodeWithLoopNeighbour() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
-            popList: [GridPos(x:0, y:0)],
+            popArray: [GridPos(x:0, y:0)],
             pushDelegate: { x in
                 pushList.append(x)
         })
@@ -133,7 +128,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
-            popList: [GridPos(x:0, y:0)],
+            popArray: [GridPos(x:0, y:0)],
             pushDelegate: { x in
                 pushList.append(x)
         })
@@ -160,11 +155,11 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
     }
     
-    func test_search_with1NeighbourAndPopReturnsCorrectNeighbour() {
+    func test_search_with1NeighbourAndPopReturns1Neighbour() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
-            popList: [GridPos(x:0, y:0),GridPos(x:1, y:0)] ,
+            popArray: [GridPos(x:0, y:0),GridPos(x:1, y:0)] ,
             pushDelegate: { x in
                 pushList.append(x)
         })
@@ -191,11 +186,11 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
     }
     
-    func test_search_with1NeighbourAndPopReturnsCorrectNeighbourAndLoop() {
+    func test_search_with1NeighbourAndPopReturns1NeighbourAndSelf() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
-            popList: [GridPos(x:0, y:0), GridPos(x:1, y:0)] ,
+            popArray: [GridPos(x:0, y:0), GridPos(x:1, y:0)] ,
             pushDelegate: { x in
                 pushList.append(x)
         })
