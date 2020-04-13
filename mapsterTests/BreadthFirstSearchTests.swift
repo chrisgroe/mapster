@@ -55,7 +55,7 @@ class BreadthFirstSearchTests: XCTestCase {
     
     struct MockBreadthFirstSearchTraits : BreadthFirstSearchTraits {
         typealias Element = GridPos
-        typealias N = MockNavigatable
+        typealias Nav = MockNavigatable
         typealias Q = MockQueue
     }
     

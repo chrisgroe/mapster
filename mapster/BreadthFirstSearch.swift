@@ -25,7 +25,7 @@ protocol Navigatable {
 
 protocol BreadthFirstSearchTraits {
     associatedtype Element : Hashable
-    associatedtype N : Navigatable where N.Element == Element
+    associatedtype Nav : Navigatable where Nav.Element == Element
     associatedtype Q : Queue where Q.Element == Element
 }
 
@@ -33,7 +33,7 @@ protocol BreadthFirstSearchTraits {
 struct BreadthFirstSearch<T : BreadthFirstSearchTraits>
 {
     typealias Element = T.Element
-    typealias N = T.N
+    typealias Nav = T.Nav
     typealias Q = T.Q
     
     var queue : Q
@@ -41,7 +41,7 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTraits>
         self.queue = queue
     }
     
-    func search( startPos : Element, navigation : N,  visitor: (_ coords : Element) ->() )
+    func search( startPos : Element, navigation : Nav,  visitor: (_ coords : Element) ->() )
     {
         
         var visited = Set<Element>() // store information which nodes were visited
