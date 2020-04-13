@@ -21,9 +21,6 @@ class BreadthFirstSearchTests: XCTestCase {
             return
         }
         
-        required init() {
-        }
-        
         init(popList : [GridPos], pushDelegate : @escaping  (_ element: GridPos) ->()) {
             self.popList = popList
             self.pushDelegate = pushDelegate
@@ -53,30 +50,19 @@ class BreadthFirstSearchTests: XCTestCase {
         }
     }
     
+    struct MockQueueFactory : QueueFactory {
+        typealias QueueType = MockQueue
+        
+        let mockQueue : MockQueue
+        func create() -> QueueType {
+            return mockQueue
+        }
+    }
+    
     struct MockBreadthFirstSearchTraits : BreadthFirstSearchTraits {
         typealias Element = GridPos
         typealias Nav = MockNavigatable
-        typealias Q = MockQueue
-    }
-    
-    func test_search_noInjection() {
-        let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [] // no neighbours
-        
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>()
-        
-        var visited : [GridPos] = []
-        func visitor(_ coords : GridPos) {
-            visited.append(coords)
-        }
-        
-        bfs.search(
-            start: GridPos(x:0,y:0),
-            navigation: mockNavigatable,
-            visitor:visitor
-        )
-        
-        XCTAssertEqual(visited, [])
+        typealias QFactory = MockQueueFactory
     }
     
     func test_search_withSingleElement() {
@@ -92,7 +78,9 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [] // no neighbours
         
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queue: mockQueue)
+        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
+        
+        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory:mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -124,7 +112,9 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:0, y:0)]]
         
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queue: mockQueue)
+        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
+        
+        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -154,7 +144,9 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
         
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queue: mockQueue)
+        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
+        
+        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -183,7 +175,9 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
         
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queue: mockQueue)
+        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
+        
+        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
@@ -212,7 +206,8 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0), GridPos(x:0, y:0)]] // result of neighbor query
         
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queue: mockQueue)
+        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
+        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {

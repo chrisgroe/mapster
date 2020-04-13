@@ -11,25 +11,27 @@ import Foundation
 protocol BreadthFirstSearchTraits {
     associatedtype Element : Hashable
     associatedtype Nav : Navigatable where Nav.Element == Element
-    associatedtype Q : Queue where Q.Element == Element
+    associatedtype QFactory : QueueFactory where QFactory.QueueType.Element == Element
 }
 
 struct BreadthFirstSearch<T : BreadthFirstSearchTraits>
 {
     typealias Element = T.Element
     typealias Nav = T.Nav
-    typealias Q = T.Q
+    typealias QFactory = T.QFactory
     
-    var queue : Q
-    init (queue : Q = Q())  {
-        self.queue = queue
+    var queueFactory : QFactory
+    
+    init (queueFactory : QFactory)  {
+        self.queueFactory = queueFactory
     }
     
     func search( start : Element, navigation : Nav,  visitor: (_ coords : Element) ->() )
     {
         
         var visited = Set<Element>() // store information which nodes were visited
- 
+        let queue = queueFactory.create()
+        
         queue.push(start)
         visited.insert(start)
         

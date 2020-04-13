@@ -8,10 +8,15 @@
 
 import Foundation
 
+
 protocol Queue : class {
     associatedtype Element
-    init()
     func push(_ element: Element)
     func pop() -> Element?
+}
+
+protocol QueueFactory {
+    associatedtype QueueType  : Queue
+    func create() -> QueueType
 }
 
