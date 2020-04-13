@@ -71,7 +71,7 @@ class BreadthFirstSearchTests: XCTestCase {
         }
         
         bfs.search(
-            startPos: GridPos(x:0,y:0),
+            start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
         )
@@ -100,7 +100,7 @@ class BreadthFirstSearchTests: XCTestCase {
         }
         
         bfs.search(
-            startPos: GridPos(x:0,y:0),
+            start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
         )
@@ -132,7 +132,7 @@ class BreadthFirstSearchTests: XCTestCase {
         }
         
         bfs.search(
-            startPos: GridPos(x:0,y:0),
+            start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
         )
@@ -162,7 +162,7 @@ class BreadthFirstSearchTests: XCTestCase {
         }
         
         bfs.search(
-            startPos: GridPos(x:0,y:0),
+            start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
         )
@@ -191,7 +191,7 @@ class BreadthFirstSearchTests: XCTestCase {
         }
         
         bfs.search(
-            startPos: GridPos(x:0,y:0),
+            start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
         )
@@ -220,7 +220,7 @@ class BreadthFirstSearchTests: XCTestCase {
         }
         
         bfs.search(
-            startPos: GridPos(x:0,y:0),
+            start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
         )
