@@ -1,5 +1,5 @@
 //
-//  FloodVisitorTests.swift
+//  bfsTests.swift
 //  mapsterTests
 //
 //  Created by Christian Gröling on 11.04.20.
@@ -46,7 +46,7 @@ class BreadthFirstSearchTests: XCTestCase {
         }
     }
     
-    func test_visit_withSingleElement() {
+    func test_search_withSingleElement() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
@@ -60,14 +60,14 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [] // no neighbours
         
-        let floodVisitor = BreadthFirstSearch(factory: mockQueueFactory)
+        let bfs = BreadthFirstSearch(factory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
             visited.append(coords)
         }
         
-        floodVisitor.visit(
+        bfs.search(
             startPos: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
@@ -77,7 +77,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0)])
     }
     
-    func test_visit_withLoop() {
+    func test_search_withLoop() {
         
         var pushList = [GridPos]()
         var mockQueue = MockQueue(
@@ -92,14 +92,14 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:0, y:0)]]
         
-        let floodVisitor = BreadthFirstSearch(factory: mockQueueFactory)
+        let bfs = BreadthFirstSearch(factory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
             visited.append(coords)
         }
         
-        floodVisitor.visit(
+        bfs.search(
             startPos: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
@@ -109,7 +109,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0)])
     }
     
-    func test_visit_with1NeighbourAndPopListIsEmpty() {
+    func test_search_with1NeighbourAndPopListIsEmpty() {
         
         var pushList = [GridPos]()
         var mockQueue = MockQueue(
@@ -123,14 +123,14 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
         
-        let floodVisitor = BreadthFirstSearch(factory: mockQueueFactory)
+        let bfs = BreadthFirstSearch(factory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
             visited.append(coords)
         }
         
-        floodVisitor.visit(
+        bfs.search(
             startPos: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
@@ -140,7 +140,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
     }
     
-    func test_visit_with1NeighbourAndPopReturnsCorrectNeighbour() {
+    func test_search_with1NeighbourAndPopReturnsCorrectNeighbour() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
@@ -154,14 +154,14 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
         
-        let floodVisitor = BreadthFirstSearch(factory: mockQueueFactory)
+        let bfs = BreadthFirstSearch(factory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
             visited.append(coords)
         }
         
-        floodVisitor.visit(
+        bfs.search(
             startPos: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
@@ -171,7 +171,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
     }
     
-    func test_visit_with1NeighbourAndPopReturnsCorrectNeighbourAndLoop() {
+    func test_search_with1NeighbourAndPopReturnsCorrectNeighbourAndLoop() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
@@ -185,14 +185,14 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavigatable = MockNavigatable()
         mockNavigatable.testVector = [[GridPos(x:1, y:0), GridPos(x:0, y:0)]] // result of neighbor query
         
-        let floodVisitor = BreadthFirstSearch(factory: mockQueueFactory)
+        let bfs = BreadthFirstSearch(factory: mockQueueFactory)
         
         var visited : [GridPos] = []
         func visitor(_ coords : GridPos) {
             visited.append(coords)
         }
         
-        floodVisitor.visit(
+        bfs.search(
             startPos: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
