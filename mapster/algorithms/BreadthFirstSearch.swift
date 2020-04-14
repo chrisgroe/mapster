@@ -10,7 +10,7 @@ import Foundation
 
 protocol GraphClosedList {
     associatedtype Vertex
-    mutating func setClosed(_ vertex : Vertex)
+    mutating func add(_ vertex : Vertex)
     mutating func isClosed(_ vertex : Vertex) -> Bool
 }
 
@@ -48,7 +48,7 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
         var queue = queueFactory.create()
         
         queue.push(start)
-        closedList.setClosed(start)
+        closedList.add(start)
         
         while let pos = queue.pop() {
             
@@ -62,7 +62,7 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
             for neighbour in neighbors {
                 if closedList.isClosed(neighbour) == false {
                     queue.push(neighbour)
-                    closedList.setClosed(pos)
+                    closedList.add(pos)
 
                 }
                 

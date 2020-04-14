@@ -60,7 +60,7 @@ class BreadthFirstSearchTests: XCTestCase {
         typealias Vertex = MockVertex
         
         var set = Set<Vertex>()
-        mutating func setClosed(_ vertex: Vertex) {
+        mutating func add(_ vertex: Vertex) {
             set.insert(vertex)
         }
         

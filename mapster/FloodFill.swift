@@ -27,7 +27,7 @@ public class FloodFill {
             self.map = Array<Int>.init(repeating: 0, count: xlen*ylen)
         }
         
-        mutating func setClosed(_ vertex: Vertex) {
+        mutating func add(_ vertex: Vertex) {
             map[vertex.x + vertex.y * xlen] = 1
         }
         
