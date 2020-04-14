@@ -8,8 +8,11 @@
 
 import Foundation
 
-public class Map<T> : NavigatableGraph
+
+public struct Map<T> : NavigatableGraph where T : MapVertexPos
 {
+    typealias Vertex = T
+    
     var map : Array<Array<T>>
     let xlen : Int
     let ylen : Int
@@ -34,7 +37,7 @@ public class Map<T> : NavigatableGraph
         }
     }
     
-    convenience init?(_ mapString : String, _ factory: (_ x : Int, _ y : Int, _ ch: Character)->T) {
+    init?(_ mapString : String, _ factory: (_ x : Int, _ y : Int, _ ch: Character)->T) {
         
         let mapLines = mapString.split(separator: "\n")
         var chars = Array<Array<Character>>()
@@ -62,19 +65,38 @@ public class Map<T> : NavigatableGraph
     }
     
     
+    
+    
     subscript(_ x : Int, _ y: Int) -> T? {
-        guard x>=0 && x<xlen else {
-            return nil
-        }
         
-        guard y>=0 && y<ylen else {
-            return nil
+        set {
+            guard let val = newValue else {
+                return
+            }
+            guard x>=0 && x<xlen else {
+                return
+            }
+            
+            guard y>=0 && y<ylen else {
+                return
+            }
+            map[x][y] = val
+            
         }
-        
-        return map[x][y]
+        get {
+            guard x>=0 && x<xlen else {
+                return nil
+            }
+            
+            guard y>=0 && y<ylen else {
+                return nil
+            }
+            
+            return map[x][y]
+        }
     }
     
-    func getNeighbors(of node: GridPos) -> [GridPos] {
+    func getNeighbors(of node: Vertex) -> [Vertex] {
         
         //           4 (y-1)
         //           |
@@ -89,11 +111,8 @@ public class Map<T> : NavigatableGraph
             (x: Int(node.x)-1, y: Int(node.y)),
             (x: Int(node.x)  , y: Int(node.y)-1),
         ]
-        return neighb.filter{
-            $0.x >= 0 && $0.x < xlen &&
-            $0.y >= 0 && $0.y < ylen
-        }.map{
-            GridPos(x: $0.x, y: $0.y)
+        return neighb.compactMap{
+            self[$0.x, $0.y] // nil values will be deleted by compactMap
         }
     }
     

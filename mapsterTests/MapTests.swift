@@ -14,7 +14,7 @@ import XCTest
 
 class MapTests: XCTestCase {
 
-    struct MockTile: Equatable {
+    struct MockTile: Equatable, MapVertexPos {
         let x : Int
         let y : Int
         let ch : Character
@@ -63,7 +63,7 @@ class MapTests: XCTestCase {
     }
 
     
-    func test_subscript_withMap2x2AndValidAccess_shouldReturnValue () {
+    func test_subscriptGet_withMap2x2AndValidAccess_shouldReturnValue () {
         let map = Map(2, 2, {x,y in
             MockTile(x:x,y:y)
         })
@@ -74,7 +74,7 @@ class MapTests: XCTestCase {
         XCTAssertEqual(map?[1,1], MockTile(x:1,y:1))
     }
 
-    func test_subscript_withMap2x2AndOutOfBoundAccess_shouldReturnNil () {
+    func test_subscriptGet_withMap2x2AndOutOfBoundAccess_shouldReturnNil () {
         let map = Map(2, 2, {x,y in
             MockTile(x:x,y:y)
         })
@@ -86,6 +86,23 @@ class MapTests: XCTestCase {
         XCTAssertNil(map?[0,2])
         XCTAssertNil(map?[2,2])
     }
+    
+    func test_subscriptSet_withMap2x2SetAllIndices_shouldReturnCorrectArray () {
+        var map = Map(2, 2, {x,y in
+            MockTile(x:x,y:y)
+        })
+        
+        map?[0,0] = MockTile(x:0,y:0,ch:"A")
+        map?[1,0] = MockTile(x:1,y:0,ch:"B")
+        map?[0,1] = MockTile(x:0,y:1,ch:"C")
+        map?[1,1] = MockTile(x:1,y:1,ch:"D")
+        
+        XCTAssertEqual(map?[0,0], MockTile(x:0,y:0,ch: "A"))
+        XCTAssertEqual(map?[1,0], MockTile(x:1,y:0,ch: "B"))
+        XCTAssertEqual(map?[0,1], MockTile(x:0,y:1,ch: "C"))
+        XCTAssertEqual(map?[1,1], MockTile(x:1,y:1,ch: "D"))
+    }
+    
     
     func test_init_withString_shouldReturnCorrectMap () {
 
@@ -116,7 +133,7 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res = map?.getNeighbors(of: GridPos(x:0,y:0))
+        let res = map?.getNeighbors(of: MockTile(x:0,y:0))
         
         XCTAssertEqual(res, [])
     }
@@ -125,7 +142,7 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res = map?.getNeighbors(of: GridPos(x:1,y:1))
+        let res = map?.getNeighbors(of: MockTile(x:1,y:1))
         
         XCTAssertEqual(res, [])
     }
@@ -135,10 +152,10 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res00 = map?.getNeighbors(of: GridPos(x:0,y:0))
-        let res10 = map?.getNeighbors(of: GridPos(x:1,y:0))
-        let res01 = map?.getNeighbors(of: GridPos(x:0,y:1))
-        let res11 = map?.getNeighbors(of: GridPos(x:1,y:1))
+        let res00 = map?.getNeighbors(of: MockTile(x:0,y:0))
+        let res10 = map?.getNeighbors(of: MockTile(x:1,y:0))
+        let res01 = map?.getNeighbors(of: MockTile(x:0,y:1))
+        let res11 = map?.getNeighbors(of: MockTile(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -146,10 +163,10 @@ class MapTests: XCTestCase {
         //           |
         //           2 (y+1)
         
-        XCTAssertEqual(res00, [GridPos(x:1,y:0), GridPos(x:0,y:1)])
-        XCTAssertEqual(res10, [GridPos(x:1,y:1), GridPos(x:0,y:0)])
-        XCTAssertEqual(res01, [GridPos(x:1,y:1), GridPos(x:0,y:0)])
-        XCTAssertEqual(res11, [GridPos(x:0,y:1), GridPos(x:1,y:0)])
+        XCTAssertEqual(res00, [MockTile(x:1,y:0), MockTile(x:0,y:1)])
+        XCTAssertEqual(res10, [MockTile(x:1,y:1), MockTile(x:0,y:0)])
+        XCTAssertEqual(res01, [MockTile(x:1,y:1), MockTile(x:0,y:0)])
+        XCTAssertEqual(res11, [MockTile(x:0,y:1), MockTile(x:1,y:0)])
     }
     
     func test_getEdges_with3x3MapMid () {
@@ -157,7 +174,7 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res11 = map?.getNeighbors(of: GridPos(x:1,y:1))
+        let res11 = map?.getNeighbors(of: MockTile(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -165,7 +182,7 @@ class MapTests: XCTestCase {
         //           |
         //           2 (y+1)
         
-        XCTAssertEqual(res11, [GridPos(x:2,y:1), GridPos(x:1,y:2), GridPos(x:0,y:1), GridPos(x:1,y:0)])
+        XCTAssertEqual(res11, [MockTile(x:2,y:1), MockTile(x:1,y:2), MockTile(x:0,y:1), MockTile(x:1,y:0)])
     }
     
     

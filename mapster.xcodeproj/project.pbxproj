@@ -14,11 +14,13 @@
 		0867E2B02445AFD300EC5CC9 /* QueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */; };
 		0867E2B22445B37B00EC5CC9 /* FloodFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B12445B37B00EC5CC9 /* FloodFill.swift */; };
 		0867E2B42445B3EE00EC5CC9 /* GraphTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */; };
+		0867E2B62445B7BD00EC5CC9 /* QueueArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B52445B7BD00EC5CC9 /* QueueArray.swift */; };
+		0867E2B82445C7B000EC5CC9 /* MapVertexPos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B72445C7B000EC5CC9 /* MapVertexPos.swift */; };
 		087EF3AC243F604B0030720F /* mapster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087EF3A2243F604B0030720F /* mapster.framework */; };
 		087EF3B1243F604B0030720F /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3B0243F604B0030720F /* MapTests.swift */; };
 		087EF3B3243F604B0030720F /* mapster.h in Headers */ = {isa = PBXBuildFile; fileRef = 087EF3A5243F604B0030720F /* mapster.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		087EF3BD243F61540030720F /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3BC243F61540030720F /* Map.swift */; };
-		0895ECFB243F63C300F9FFE7 /* GridPos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFA243F63C300F9FFE7 /* GridPos.swift */; };
+		0895ECFB243F63C300F9FFE7 /* CompactPos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFA243F63C300F9FFE7 /* CompactPos.swift */; };
 		0895ECFD2440450B00F9FFE7 /* ForwardLinkedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFC2440450B00F9FFE7 /* ForwardLinkedListTests.swift */; };
 		0895ECFF2440451200F9FFE7 /* ForwardLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */; };
 		0895ED012440531200F9FFE7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED002440531200F9FFE7 /* Stack.swift */; };
@@ -44,6 +46,8 @@
 		0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueFactory.swift; sourceTree = "<group>"; };
 		0867E2B12445B37B00EC5CC9 /* FloodFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodFill.swift; sourceTree = "<group>"; };
 		0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTypes.swift; sourceTree = "<group>"; };
+		0867E2B52445B7BD00EC5CC9 /* QueueArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueArray.swift; sourceTree = "<group>"; };
+		0867E2B72445C7B000EC5CC9 /* MapVertexPos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapVertexPos.swift; sourceTree = "<group>"; };
 		087EF3A2243F604B0030720F /* mapster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mapster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		087EF3A5243F604B0030720F /* mapster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mapster.h; sourceTree = "<group>"; };
 		087EF3A6243F604B0030720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -51,7 +55,7 @@
 		087EF3B0243F604B0030720F /* MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
 		087EF3B2243F604B0030720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		087EF3BC243F61540030720F /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		0895ECFA243F63C300F9FFE7 /* GridPos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GridPos.swift; sourceTree = "<group>"; };
+		0895ECFA243F63C300F9FFE7 /* CompactPos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactPos.swift; sourceTree = "<group>"; };
 		0895ECFC2440450B00F9FFE7 /* ForwardLinkedListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardLinkedListTests.swift; sourceTree = "<group>"; };
 		0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardLinkedList.swift; sourceTree = "<group>"; };
 		0895ED002440531200F9FFE7 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
@@ -86,6 +90,7 @@
 				0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */,
 				0837F6BF2444ABC20075AA66 /* Queue.swift */,
 				0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */,
+				0867E2B72445C7B000EC5CC9 /* MapVertexPos.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -116,10 +121,11 @@
 				087EF3A5243F604B0030720F /* mapster.h */,
 				087EF3A6243F604B0030720F /* Info.plist */,
 				087EF3BC243F61540030720F /* Map.swift */,
-				0895ECFA243F63C300F9FFE7 /* GridPos.swift */,
+				0895ECFA243F63C300F9FFE7 /* CompactPos.swift */,
 				0895ED002440531200F9FFE7 /* Stack.swift */,
 				0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */,
 				0867E2B12445B37B00EC5CC9 /* FloodFill.swift */,
+				0867E2B52445B7BD00EC5CC9 /* QueueArray.swift */,
 			);
 			path = mapster;
 			sourceTree = "<group>";
@@ -253,9 +259,11 @@
 				0837F6BE2444ABA30075AA66 /* NavigateableGraph.swift in Sources */,
 				0837F6C02444ABC20075AA66 /* Queue.swift in Sources */,
 				0867E2B22445B37B00EC5CC9 /* FloodFill.swift in Sources */,
+				0867E2B62445B7BD00EC5CC9 /* QueueArray.swift in Sources */,
 				087EF3BD243F61540030720F /* Map.swift in Sources */,
-				0895ECFB243F63C300F9FFE7 /* GridPos.swift in Sources */,
+				0895ECFB243F63C300F9FFE7 /* CompactPos.swift in Sources */,
 				0895ED012440531200F9FFE7 /* Stack.swift in Sources */,
+				0867E2B82445C7B000EC5CC9 /* MapVertexPos.swift in Sources */,
 				0837F6B72441F77E0075AA66 /* BreadthFirstSearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
