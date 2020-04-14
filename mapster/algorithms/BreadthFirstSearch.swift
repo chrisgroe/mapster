@@ -8,12 +8,20 @@
 
 import Foundation
 
+protocol GraphVisited {
+    associatedtype Vertex
+    mutating func setVisited(_ vertex : Vertex)
+    mutating func wasVisited(_ vertex : Vertex) -> Bool
+}
+
 protocol BreadthFirstSearchTypes {
     associatedtype GT : GraphTypes where GT.Vertex : Hashable
     typealias Vertex = GT.Vertex
     typealias NavGraph = GT.NavGraph
+    associatedtype Visited : GraphVisited where Visited.Vertex == Vertex
     associatedtype QFactory : QueueFactory where QFactory.QueueType.Element == Vertex
 }
+
 
 /// Breadth First Search (BFS) is an algorithmn for traversing or searching  a graph.
 /// BFS explores the nearest vertices first.
@@ -22,7 +30,8 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
     typealias Vertex = T.Vertex
     typealias NavGraph = T.NavGraph
     typealias QFactory = T.QFactory
-    
+    typealias Visited = T.Visited
+
     private var queueFactory : QFactory
     
     init (queueFactory : QFactory)  {
@@ -34,13 +43,12 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
     ///     - start: One vertex of the graph where the traversal should begin.
     ///     - navGraph: A class which implements the graph NavigatableGraph protocol.
     ///     - visitor: This function is called everytime a vertex is opended by the algorithmn
-    func traverse( start : Vertex, navGraph : NavGraph,  visitor: (_ coords : Vertex) ->() )
+    func traverse( start : Vertex, navGraph : NavGraph,  visited : inout Visited, visitor: (_ coords : Vertex) ->() )
     {
-        var visited = Set<Vertex>() // store information which nodes were visited
         var queue = queueFactory.create()
         
         queue.push(start)
-        visited.insert(start)
+        visited.setVisited(start)
         
         while let pos = queue.pop() {
             
@@ -52,9 +60,10 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
             
             // enqueue connections if they are navigatable
             for neighbour in neighbours {
-                if visited.contains(neighbour) == false {
+                if visited.wasVisited(neighbour) == false {
                     queue.push(neighbour)
-                    visited.insert(pos)
+                    visited.setVisited(pos)
+
                 }
                 
             }

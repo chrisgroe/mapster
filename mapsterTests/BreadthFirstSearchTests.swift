@@ -56,6 +56,19 @@ class BreadthFirstSearchTests: XCTestCase {
         }
     }
     
+    struct MockVisited : GraphVisited {
+        typealias Vertex = MockVertex
+        
+        var set = Set<Vertex>()
+        mutating func setVisited(_ vertex: Vertex) {
+            set.insert(vertex)
+        }
+        
+        mutating func wasVisited(_ vertex: Vertex) -> Bool {
+            return set.contains(vertex)
+        }
+    }
+    
     struct MockGraphTypeTraits : GraphTypes {
         typealias Vertex = MockVertex
         typealias NavGraph = MockNavigatableGraph
@@ -64,6 +77,7 @@ class BreadthFirstSearchTests: XCTestCase {
     struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypes {
         typealias GT = MockGraphTypeTraits
         typealias QFactory = MockQueueFactory
+        typealias Visited = MockVisited
     }
     
     func test_traverse_withSingleNodeWithoutNeighbours() {
@@ -88,9 +102,12 @@ class BreadthFirstSearchTests: XCTestCase {
             visited.append(coords)
         }
         
+        var visitChecker = MockVisited()
+        
         bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            visited: &visitChecker,
             visitor:visitor
         )
         
@@ -119,10 +136,12 @@ class BreadthFirstSearchTests: XCTestCase {
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
+        var visitChecker = MockVisited()
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            visited: &visitChecker,
             visitor:visitor
         )
         
@@ -150,10 +169,13 @@ class BreadthFirstSearchTests: XCTestCase {
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
+        var visitChecker = MockVisited()
+        
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            visited: &visitChecker,
             visitor:visitor
         )
         
@@ -181,10 +203,12 @@ class BreadthFirstSearchTests: XCTestCase {
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
+        var visitChecker = MockVisited()
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            visited: &visitChecker,
             visitor:visitor
         )
         
@@ -212,9 +236,13 @@ class BreadthFirstSearchTests: XCTestCase {
             visited.append(coords)
         }
         
+        var visitChecker = MockVisited()
+        
+        
         bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            visited: &visitChecker,
             visitor:visitor
         )
         

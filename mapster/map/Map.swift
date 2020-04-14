@@ -105,13 +105,14 @@ public struct Map<T> : NavigatableGraph
         
     }
     
-    private static func isInBounds(pos: MapPos, xlen: Int, ylen:Int ) -> Bool {
-          if pos.x<0 || pos.x>=xlen || pos.y<0 || pos.y>=ylen {
-              return false
+
+    private  func isInBounds(x:Int, y:Int ) -> Bool {
+          if x>=0 && x<xlen && y>=0 && y<ylen {
+              return true
           }
-          return true
+          return false
     }
-      
+    
     
     func getNeighbors(of vertex: Vertex) -> [Vertex] {
         
@@ -128,23 +129,17 @@ public struct Map<T> : NavigatableGraph
         var neighb = [Vertex]()
         neighb.reserveCapacity(4)
         
-        let p0 = MapPos(x: vertex.x+1, y: vertex.y)
-        if Map<T>.isInBounds(pos: p0, xlen: xlen, ylen: ylen) {
-            neighb.append(p0)
+        if isInBounds(x: vertex.x+1, y: vertex.y) {
+            neighb.append(MapPos(x: vertex.x+1, y: vertex.y))
         }
-        let p1 = MapPos(x: vertex.x, y: vertex.y+1)
-        if Map<T>.isInBounds(pos: p1, xlen: xlen, ylen: ylen) {
-            neighb.append(p1)
+        if isInBounds(x: vertex.x, y: vertex.y+1) {
+            neighb.append(MapPos(x: vertex.x, y: vertex.y+1))
         }
-        
-        let p2 = MapPos(x: vertex.x-1, y: vertex.y)
-        if Map<T>.isInBounds(pos: p2, xlen: xlen, ylen: ylen) {
-            neighb.append(p2)
+        if isInBounds(x: vertex.x-1, y: vertex.y) {
+            neighb.append(MapPos(x: vertex.x-1, y: vertex.y))
         }
-        
-        let p3 = MapPos(x: vertex.x, y: vertex.y-1)
-        if Map<T>.isInBounds(pos: p3, xlen: xlen, ylen: ylen) {
-            neighb.append(p3)
+        if isInBounds(x: vertex.x, y: vertex.y-1) {
+            neighb.append(MapPos(x: vertex.x, y: vertex.y-1))
         }
         
         return neighb

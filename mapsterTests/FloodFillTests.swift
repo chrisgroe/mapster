@@ -11,8 +11,8 @@ import XCTest
 @testable import mapster
 
 class FloodFillTests: XCTestCase {
-    func test_floodfill_WithEmpty50x50Map() {
-        let map = Map<MapTile>(50, 50, {p in
+    func test_floodfill_WithEmpty100x100Map() {
+        let map = Map<MapTile>(100, 100, {p in
             MapTile(data: "O")
         })
         
@@ -26,24 +26,9 @@ class FloodFillTests: XCTestCase {
         
     }
     
-    /*func test_floodfill_WithEmpty500x500Map() {
-        let map = Map<MapTile>(500, 500, {p in
-            MapTile(data: "O")
-        })
-        
-        let resMap = map?.floodFill(MapPos(x: 5, y:5), factory: {p in MapTile(data: "X")})
-        
-        for x in 0..<10 {
-            for y in 0..<10 {
-                XCTAssertEqual(resMap![x,y]?.data, "X")
-            }
-        }
-        
-    }*/
-    
-    func test_floodfillPerfomance_WithEmpty50x50Maps() {
+    func test_floodfillPerfomance_WithEmpty100x100Maps() {
         self.measure {
-            test_floodfill_WithEmpty50x50Map()
+            test_floodfill_WithEmpty100x100Map()
         }
             
     }

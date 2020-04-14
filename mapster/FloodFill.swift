@@ -19,19 +19,39 @@ public class FloodFill {
             return QueueArray()
         }
     }
+    
+    private struct VisitMap<T> : GraphVisited {
+        typealias Vertex = MapTypes<T>.Vertex
+        
+        var set = Set<Vertex>()
+        
+        mutating func setVisited(_ vertex: Vertex) {
+            set.insert(vertex)
+        }
+        
+        mutating func wasVisited(_ vertex: Vertex) -> Bool {
+            return set.contains(vertex)
+        }
+        
+        
+    }
+    
 
     private struct BFSTypes<T> : BreadthFirstSearchTypes {
         typealias GT = MapTypes<T>
         typealias QFactory = QueueForMapVertexFactory<T>
+        typealias Visited = VisitMap<T>
     }
 
+    
     
     public static func floodFill<T>(start:MapPos, map: Map<T>, factory: (_ pos : MapPos)->T) -> Map<T> {
         
         let bfs = BreadthFirstSearch<BFSTypes<T>>(queueFactory: QueueForMapVertexFactory())
+        var visited = VisitMap<T>()
         var newMap = map // copy
         
-        bfs.traverse(start: start, navGraph: map, visitor: { p in
+        bfs.traverse(start: start, navGraph: map, visited: &visited, visitor: { p in
             newMap[p] = factory(p)
         })
         
