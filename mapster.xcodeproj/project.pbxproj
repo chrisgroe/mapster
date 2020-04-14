@@ -96,6 +96,17 @@
 			path = protocols;
 			sourceTree = "<group>";
 		};
+		0867E2BF2445DF4D00EC5CC9 /* map */ = {
+			isa = PBXGroup;
+			children = (
+				087EF3BC243F61540030720F /* Map.swift */,
+				0867E2B92445DDF300EC5CC9 /* MapTile.swift */,
+				0867E2BB2445DE2000EC5CC9 /* MapTypes.swift */,
+				0867E2BD2445DEF200EC5CC9 /* MapPos.swift */,
+			);
+			path = map;
+			sourceTree = "<group>";
+		};
 		087EF398243F604B0030720F = {
 			isa = PBXGroup;
 			children = (
@@ -117,14 +128,11 @@
 		087EF3A4243F604B0030720F /* mapster */ = {
 			isa = PBXGroup;
 			children = (
+				0867E2BF2445DF4D00EC5CC9 /* map */,
 				0837F6BC2444AB8A0075AA66 /* protocols */,
 				0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */,
 				087EF3A5243F604B0030720F /* mapster.h */,
 				087EF3A6243F604B0030720F /* Info.plist */,
-				087EF3BC243F61540030720F /* Map.swift */,
-				0867E2B92445DDF300EC5CC9 /* MapTile.swift */,
-				0867E2BB2445DE2000EC5CC9 /* MapTypes.swift */,
-				0867E2BD2445DEF200EC5CC9 /* MapPos.swift */,
 				0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */,
 				0867E2B12445B37B00EC5CC9 /* FloodFill.swift */,
 				0895ED002440531200F9FFE7 /* Stack.swift */,
