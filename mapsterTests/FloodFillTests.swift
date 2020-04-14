@@ -20,7 +20,22 @@ class FloodFillTests: XCTestCase {
         
         for x in 0..<100 {
             for y in 0..<100 {
-                XCTAssertEqual(resMap![x,y]?.data, "X")
+                XCTAssertEqual(resMap?[x,y].data, "X")
+            }
+        }
+        
+    }
+    
+    func test_floodfill_WithEmpty500x500Map() {
+        let map = Map<MapTile>(1000, 1000, {p in
+            MapTile(data: "O")
+        })
+        
+        let resMap = map?.floodFill(MapPos(x: 5, y:5), factory: {p in MapTile(data: "X")})
+        
+        for x in 0..<100 {
+            for y in 0..<100 {
+                XCTAssertEqual(resMap?[x,y].data, "X")
             }
         }
         

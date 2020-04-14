@@ -71,18 +71,6 @@ class MapTests: XCTestCase {
         XCTAssertEqual(map?[1,1], MockTile(x:1,y:1))
     }
 
-    func test_subscriptGet_withMap2x2AndOutOfBoundAccess_shouldReturnNil () {
-        let map = Map(2, 2, {pos in
-            MockTile(x:pos.x,y:pos.y)
-        })
-        
-        XCTAssertNil(map?[-1,0])
-        XCTAssertNil(map?[0,-1])
-        XCTAssertNil(map?[-1,-1])
-        XCTAssertNil(map?[2,0])
-        XCTAssertNil(map?[0,2])
-        XCTAssertNil(map?[2,2])
-    }
     
     func test_subscriptSet_withMap2x2SetAllIndices_shouldReturnCorrectArray () {
         var map = Map(2, 2, {pos in

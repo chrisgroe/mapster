@@ -27,9 +27,10 @@ public struct Map<T> : NavigatableGraph
         }
         
         map = Array<Array<T>>()
+        map.reserveCapacity(ylen)
         for x in 0..<xlen {
             var row = Array<T>()
-            
+            row.reserveCapacity(xlen)
             for y in 0..<ylen {
                 row.append(factory(MapPos(x:x, y:y)))
             }
@@ -65,36 +66,22 @@ public struct Map<T> : NavigatableGraph
         })
     }
     
-    subscript(_ x : Int, _ y: Int) -> T? {
+    subscript(_ x : Int, _ y: Int) -> T {
         
         set {
-            guard let val = newValue else {
-                return
-            }
-            guard x>=0 && x<xlen else {
-                return
-            }
-            
-            guard y>=0 && y<ylen else {
-                return
-            }
-            map[x][y] = val
+            assert(x>=0 && x<xlen)
+            assert(y>=0 && y<ylen)
+            map[x][y] = newValue
             
         }
         get {
-            guard x>=0 && x<xlen else {
-                return nil
-            }
-            
-            guard y>=0 && y<ylen else {
-                return nil
-            }
-            
+            assert(x>=0 && x<xlen)
+            assert(y>=0 && y<ylen)
             return map[x][y]
         }
     }
     
-    subscript(_ pos : MapPos) -> T? {
+    subscript(_ pos : MapPos) -> T {
         set {
             self[pos.x, pos.y] = newValue
         }
