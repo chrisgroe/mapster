@@ -107,6 +107,17 @@
 			path = map;
 			sourceTree = "<group>";
 		};
+		0867E2C02445E1FD00EC5CC9 /* algorithmns */ = {
+			isa = PBXGroup;
+			children = (
+				0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */,
+				0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */,
+				0895ED002440531200F9FFE7 /* Stack.swift */,
+				0867E2B52445B7BD00EC5CC9 /* QueueArray.swift */,
+			);
+			path = algorithmns;
+			sourceTree = "<group>";
+		};
 		087EF398243F604B0030720F = {
 			isa = PBXGroup;
 			children = (
@@ -128,15 +139,12 @@
 		087EF3A4243F604B0030720F /* mapster */ = {
 			isa = PBXGroup;
 			children = (
+				0867E2C02445E1FD00EC5CC9 /* algorithmns */,
 				0867E2BF2445DF4D00EC5CC9 /* map */,
 				0837F6BC2444AB8A0075AA66 /* protocols */,
-				0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */,
 				087EF3A5243F604B0030720F /* mapster.h */,
 				087EF3A6243F604B0030720F /* Info.plist */,
-				0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */,
 				0867E2B12445B37B00EC5CC9 /* FloodFill.swift */,
-				0895ED002440531200F9FFE7 /* Stack.swift */,
-				0867E2B52445B7BD00EC5CC9 /* QueueArray.swift */,
 			);
 			path = mapster;
 			sourceTree = "<group>";
