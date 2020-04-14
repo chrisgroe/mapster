@@ -8,16 +8,16 @@
 
 import Foundation
 
-protocol BreadthFirstSearchTypeTraits {
-    associatedtype GraphTypes : GraphTypeTraits where GraphTypes.Vertex : Hashable
-    typealias Vertex = GraphTypes.Vertex
-    typealias NavGraph = GraphTypes.NavGraph
+protocol BreadthFirstSearchTypes {
+    associatedtype GT : GraphTypes where GT.Vertex : Hashable
+    typealias Vertex = GT.Vertex
+    typealias NavGraph = GT.NavGraph
     associatedtype QFactory : QueueFactory where QFactory.QueueType.Element == Vertex
 }
 
 /// Breadth First Search (BFS) is an algorithmn for traversing or searching  a graph.
 /// BFS explores the nearest vertices first.
-struct BreadthFirstSearch<T : BreadthFirstSearchTypeTraits>
+struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
 {
     typealias Vertex = T.Vertex
     typealias NavGraph = T.NavGraph

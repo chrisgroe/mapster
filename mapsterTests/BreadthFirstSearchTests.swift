@@ -56,13 +56,13 @@ class BreadthFirstSearchTests: XCTestCase {
         }
     }
     
-    struct MockGraphTypeTraits : GraphTypeTraits {
+    struct MockGraphTypeTraits : GraphTypes {
         typealias Vertex = MockVertex
         typealias NavGraph = MockNavigatableGraph
     }
     
-    struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypeTraits {
-        typealias GraphTypes = MockGraphTypeTraits
+    struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypes {
+        typealias GT = MockGraphTypeTraits
         typealias QFactory = MockQueueFactory
     }
     

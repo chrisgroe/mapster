@@ -13,7 +13,7 @@
 		0837F6C02444ABC20075AA66 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6BF2444ABC20075AA66 /* Queue.swift */; };
 		0867E2B02445AFD300EC5CC9 /* QueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */; };
 		0867E2B22445B37B00EC5CC9 /* FloodFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B12445B37B00EC5CC9 /* FloodFill.swift */; };
-		0867E2B42445B3EE00EC5CC9 /* GraphTypeTraits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B32445B3EE00EC5CC9 /* GraphTypeTraits.swift */; };
+		0867E2B42445B3EE00EC5CC9 /* GraphTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */; };
 		087EF3AC243F604B0030720F /* mapster.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 087EF3A2243F604B0030720F /* mapster.framework */; };
 		087EF3B1243F604B0030720F /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3B0243F604B0030720F /* MapTests.swift */; };
 		087EF3B3243F604B0030720F /* mapster.h in Headers */ = {isa = PBXBuildFile; fileRef = 087EF3A5243F604B0030720F /* mapster.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -43,7 +43,7 @@
 		0837F6BF2444ABC20075AA66 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueFactory.swift; sourceTree = "<group>"; };
 		0867E2B12445B37B00EC5CC9 /* FloodFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodFill.swift; sourceTree = "<group>"; };
-		0867E2B32445B3EE00EC5CC9 /* GraphTypeTraits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTypeTraits.swift; sourceTree = "<group>"; };
+		0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTypes.swift; sourceTree = "<group>"; };
 		087EF3A2243F604B0030720F /* mapster.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = mapster.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		087EF3A5243F604B0030720F /* mapster.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = mapster.h; sourceTree = "<group>"; };
 		087EF3A6243F604B0030720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -81,7 +81,7 @@
 		0837F6BC2444AB8A0075AA66 /* protocols */ = {
 			isa = PBXGroup;
 			children = (
-				0867E2B32445B3EE00EC5CC9 /* GraphTypeTraits.swift */,
+				0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */,
 				0895ED042440C65D00F9FFE7 /* StackContainer.swift */,
 				0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */,
 				0837F6BF2444ABC20075AA66 /* Queue.swift */,
@@ -246,7 +246,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0867E2B42445B3EE00EC5CC9 /* GraphTypeTraits.swift in Sources */,
+				0867E2B42445B3EE00EC5CC9 /* GraphTypes.swift in Sources */,
 				0867E2B02445AFD300EC5CC9 /* QueueFactory.swift in Sources */,
 				0895ECFF2440451200F9FFE7 /* ForwardLinkedList.swift in Sources */,
 				0895ED052440C65D00F9FFE7 /* StackContainer.swift in Sources */,
