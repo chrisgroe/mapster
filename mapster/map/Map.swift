@@ -105,7 +105,15 @@ public struct Map<T> : NavigatableGraph
         
     }
     
-    func getNeighbors(of node: Vertex) -> [Vertex] {
+    private static func isInBounds(pos: MapPos, xlen: Int, ylen:Int ) -> Bool {
+          if pos.x<0 || pos.x>=xlen || pos.y<0 || pos.y>=ylen {
+              return false
+          }
+          return true
+    }
+      
+    
+    func getNeighbors(of vertex: Vertex) -> [Vertex] {
         
         //           4 (y-1)
         //           |
@@ -114,18 +122,32 @@ public struct Map<T> : NavigatableGraph
         //           2 (y+1)
         
         
-        let neighb = [
-            (x: Int(node.x)+1, y: Int(node.y)),
-            (x: Int(node.x)  , y: Int(node.y)+1),
-            (x: Int(node.x)-1, y: Int(node.y)),
-            (x: Int(node.x)  , y: Int(node.y)-1),
-        ]
-         return neighb.filter{
-                   $0.x >= 0 && $0.x < xlen &&
-                   $0.y >= 0 && $0.y < ylen
-           }.map{
-               MapPos(x: $0.x, y: $0.y)
-           }
+        // This algorithmn seems a little bit complicated since this can be done
+        // with "filter". But this implementation here is a lot faster and all
+        // algorithmns traversing the graph use this.
+        var neighb = [Vertex]()
+        neighb.reserveCapacity(4)
+        
+        let p0 = MapPos(x: vertex.x+1, y: vertex.y)
+        if Map<T>.isInBounds(pos: p0, xlen: xlen, ylen: ylen) {
+            neighb.append(p0)
+        }
+        let p1 = MapPos(x: vertex.x, y: vertex.y+1)
+        if Map<T>.isInBounds(pos: p1, xlen: xlen, ylen: ylen) {
+            neighb.append(p1)
+        }
+        
+        let p2 = MapPos(x: vertex.x-1, y: vertex.y)
+        if Map<T>.isInBounds(pos: p2, xlen: xlen, ylen: ylen) {
+            neighb.append(p2)
+        }
+        
+        let p3 = MapPos(x: vertex.x, y: vertex.y-1)
+        if Map<T>.isInBounds(pos: p3, xlen: xlen, ylen: ylen) {
+            neighb.append(p3)
+        }
+        
+        return neighb
     }
     
 }

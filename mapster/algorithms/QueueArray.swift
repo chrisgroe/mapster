@@ -18,7 +18,10 @@ struct QueueArray<T> : Queue {
     }
     
     mutating func pop() -> Element? {
-        queue.removeFirst()
+        if queue.isEmpty {
+            return nil
+        }
+        return queue.removeLast()
     }
     
     

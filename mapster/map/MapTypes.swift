@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct MapTypes : GraphTypes {
-    typealias Vertex = Map<MapTile>.Vertex
-    typealias NavGraph = Map<MapTile>
+struct MapTypes<T> : GraphTypes {
+    typealias Vertex = Map<T>.Vertex
+    typealias NavGraph = Map<T>
 }
 

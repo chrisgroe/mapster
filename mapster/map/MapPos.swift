@@ -12,4 +12,6 @@ import Foundation
 public struct MapPos : Hashable ,Equatable {
     var x : Int
     var y : Int
+    
+    
 }
