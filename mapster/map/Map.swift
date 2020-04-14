@@ -26,16 +26,12 @@ public struct Map<T> : NavigatableGraph
             return nil
         }
         
-        map = Array<Array<T>>()
-        map.reserveCapacity(ylen)
-        for x in 0..<xlen {
-            var row = Array<T>()
-            row.reserveCapacity(xlen)
+        map = Array<Array<T>>(repeating: Array<T>(), count: xlen)
+        for (x, var row) in map.enumerated() {
             for y in 0..<ylen {
                 row.append(factory(MapPos(x:x, y:y)))
             }
-            
-            map.append(row)
+            map[x] = row
         }
     }
     

@@ -8,17 +8,17 @@
 
 import Foundation
 
-protocol GraphVisited {
+protocol GraphClosedList {
     associatedtype Vertex
-    mutating func setVisited(_ vertex : Vertex)
-    mutating func wasVisited(_ vertex : Vertex) -> Bool
+    mutating func setClosed(_ vertex : Vertex)
+    mutating func isClosed(_ vertex : Vertex) -> Bool
 }
 
 protocol BreadthFirstSearchTypes {
     associatedtype GT : GraphTypes where GT.Vertex : Hashable
     typealias Vertex = GT.Vertex
     typealias NavGraph = GT.NavGraph
-    associatedtype Visited : GraphVisited where Visited.Vertex == Vertex
+    associatedtype ClosedList : GraphClosedList where ClosedList.Vertex == Vertex
     associatedtype QFactory : QueueFactory where QFactory.QueueType.Element == Vertex
 }
 
@@ -30,7 +30,7 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
     typealias Vertex = T.Vertex
     typealias NavGraph = T.NavGraph
     typealias QFactory = T.QFactory
-    typealias Visited = T.Visited
+    typealias ClosedList = T.ClosedList
 
     private var queueFactory : QFactory
     
@@ -43,12 +43,12 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
     ///     - start: One vertex of the graph where the traversal should begin.
     ///     - navGraph: A class which implements the graph NavigatableGraph protocol.
     ///     - visitor: This function is called everytime a vertex is opended by the algorithmn
-    func traverse( start : Vertex, navGraph : NavGraph,  visited : inout Visited, visitor: (_ coords : Vertex) ->() )
+    func traverse( start : Vertex, navGraph : NavGraph,  closedList : inout ClosedList, visitor: (_ coords : Vertex) ->() )
     {
         var queue = queueFactory.create()
         
         queue.push(start)
-        visited.setVisited(start)
+        closedList.setClosed(start)
         
         while let pos = queue.pop() {
             
@@ -56,13 +56,13 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
             visitor(pos)
             
             // get connections
-            let neighbours = navGraph.getNeighbors(of: pos)
+            let neighbors = navGraph.getNeighbors(of: pos)
             
             // enqueue connections if they are navigatable
-            for neighbour in neighbours {
-                if visited.wasVisited(neighbour) == false {
+            for neighbour in neighbors {
+                if closedList.isClosed(neighbour) == false {
                     queue.push(neighbour)
-                    visited.setVisited(pos)
+                    closedList.setClosed(pos)
 
                 }
                 

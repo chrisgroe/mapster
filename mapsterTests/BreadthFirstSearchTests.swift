@@ -56,15 +56,15 @@ class BreadthFirstSearchTests: XCTestCase {
         }
     }
     
-    struct MockVisited : GraphVisited {
+    struct MockVisited : GraphClosedList {
         typealias Vertex = MockVertex
         
         var set = Set<Vertex>()
-        mutating func setVisited(_ vertex: Vertex) {
+        mutating func setClosed(_ vertex: Vertex) {
             set.insert(vertex)
         }
         
-        mutating func wasVisited(_ vertex: Vertex) -> Bool {
+        mutating func isClosed(_ vertex: Vertex) -> Bool {
             return set.contains(vertex)
         }
     }
@@ -77,7 +77,7 @@ class BreadthFirstSearchTests: XCTestCase {
     struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypes {
         typealias GT = MockGraphTypeTraits
         typealias QFactory = MockQueueFactory
-        typealias Visited = MockVisited
+        typealias ClosedList = MockVisited
     }
     
     func test_traverse_withSingleNodeWithoutNeighbours() {
@@ -102,12 +102,12 @@ class BreadthFirstSearchTests: XCTestCase {
             visited.append(coords)
         }
         
-        var visitChecker = MockVisited()
+        var closedList = MockVisited()
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
-            visited: &visitChecker,
+            closedList: &closedList,
             visitor:visitor
         )
         
@@ -136,12 +136,12 @@ class BreadthFirstSearchTests: XCTestCase {
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
-        var visitChecker = MockVisited()
+        var closedList = MockVisited()
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
-            visited: &visitChecker,
+            closedList: &closedList,
             visitor:visitor
         )
         
@@ -169,13 +169,13 @@ class BreadthFirstSearchTests: XCTestCase {
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
-        var visitChecker = MockVisited()
+        var closedList = MockVisited()
         
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
-            visited: &visitChecker,
+            closedList: &closedList,
             visitor:visitor
         )
         
@@ -203,12 +203,12 @@ class BreadthFirstSearchTests: XCTestCase {
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
-        var visitChecker = MockVisited()
+        var closedList = MockVisited()
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
-            visited: &visitChecker,
+            closedList: &closedList,
             visitor:visitor
         )
         
@@ -236,13 +236,13 @@ class BreadthFirstSearchTests: XCTestCase {
             visited.append(coords)
         }
         
-        var visitChecker = MockVisited()
+        var closedList = MockVisited()
         
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
-            visited: &visitChecker,
+            closedList: &closedList,
             visitor:visitor
         )
         
