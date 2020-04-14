@@ -12,20 +12,22 @@ import XCTest
 
 class BreadthFirstSearchTests: XCTestCase {
     
-    struct MockNode {
+    struct MockVertex : Hashable{
+        var x : Int
+        var y : Int
     }
     
     struct MockQueue : Queue {
-        var popArray : [GridPos] = []
-        var pushDelegate : (_ element: GridPos) ->() = {x in
+        var popArray : [MockVertex] = []
+        var pushDelegate : (_ element: MockVertex) ->() = {x in
             return
         }
         
-        func push(_ element: GridPos) {
+        func push(_ element: MockVertex) {
             pushDelegate(element)
         }
         
-        mutating func pop() -> GridPos? {
+        mutating func pop() -> MockVertex? {
             guard popArray.count != 0 else {
                 return nil
             }
@@ -35,9 +37,9 @@ class BreadthFirstSearchTests: XCTestCase {
     
     
     class MockNavigatable : NavigatableGraph {
-        var testVector : [[GridPos]] =  []
+        var testVector : [[MockVertex]] =  []
         
-        func getNeighbors(of: GridPos) -> [GridPos] {
+        func getNeighbors(of: MockVertex) -> [MockVertex] {
             guard testVector.count != 0 else {
                 return []
             }
@@ -55,16 +57,16 @@ class BreadthFirstSearchTests: XCTestCase {
     }
     
     struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypeTraits {
-        typealias Vertex = GridPos
+        typealias Vertex = MockVertex
         typealias NavGraph = MockNavigatable
         typealias QFactory = MockQueueFactory
     }
     
     func test_traverse_withSingleNodeWithoutNeighbours() {
         
-        var pushList = [GridPos]()
+        var pushList = [MockVertex]()
         let mockQueue = MockQueue(
-            popArray: [GridPos(x:0, y:0)],
+            popArray: [MockVertex(x:0, y:0)],
             pushDelegate: { x in
                 pushList.append(x)
         })
@@ -77,143 +79,143 @@ class BreadthFirstSearchTests: XCTestCase {
         
         let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory:mockQueueFactory)
         
-        var visited : [GridPos] = []
-        func visitor(_ coords : GridPos) {
+        var visited : [MockVertex] = []
+        func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
         
         bfs.traverse(
-            start: GridPos(x:0,y:0),
+            start: MockVertex(x:0,y:0),
             navGraph: mockNavigatable,
             visitor:visitor
         )
         
-        XCTAssertEqual(visited, [GridPos(x:0, y:0)])
-        XCTAssertEqual(pushList, [GridPos(x:0, y:0)])
+        XCTAssertEqual(visited, [MockVertex(x:0, y:0)])
+        XCTAssertEqual(pushList, [MockVertex(x:0, y:0)])
     }
     
     func test_traverse_withSingleNodeWithLoopNeighbour() {
         
-        var pushList = [GridPos]()
+        var pushList = [MockVertex]()
         let mockQueue = MockQueue(
-            popArray: [GridPos(x:0, y:0)],
+            popArray: [MockVertex(x:0, y:0)],
             pushDelegate: { x in
                 pushList.append(x)
         })
         
         
         let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[GridPos(x:0, y:0)]]
+        mockNavigatable.testVector = [[MockVertex(x:0, y:0)]]
         
         let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
         
         let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
         
-        var visited : [GridPos] = []
-        func visitor(_ coords : GridPos) {
+        var visited : [MockVertex] = []
+        func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
         
         bfs.traverse(
-            start: GridPos(x:0,y:0),
+            start: MockVertex(x:0,y:0),
             navGraph: mockNavigatable,
             visitor:visitor
         )
         
-        XCTAssertEqual(visited, [GridPos(x:0, y:0)])
-        XCTAssertEqual(pushList, [GridPos(x:0, y:0)])
+        XCTAssertEqual(visited, [MockVertex(x:0, y:0)])
+        XCTAssertEqual(pushList, [MockVertex(x:0, y:0)])
     }
     
     func test_traverse_with1NeighbourAndPopListIsEmpty() {
         
-        var pushList = [GridPos]()
+        var pushList = [MockVertex]()
         let mockQueue = MockQueue(
-            popArray: [GridPos(x:0, y:0)],
+            popArray: [MockVertex(x:0, y:0)],
             pushDelegate: { x in
                 pushList.append(x)
         })
  
         let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
+        mockNavigatable.testVector = [[MockVertex(x:1, y:0)]] // result of neighbor query
         
         let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
         
         let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
         
-        var visited : [GridPos] = []
-        func visitor(_ coords : GridPos) {
+        var visited : [MockVertex] = []
+        func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
         
         bfs.traverse(
-            start: GridPos(x:0,y:0),
+            start: MockVertex(x:0,y:0),
             navGraph: mockNavigatable,
             visitor:visitor
         )
         
-        XCTAssertEqual(visited, [GridPos(x:0, y:0)]) // neighbor not on pop list
-        XCTAssertEqual(pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
+        XCTAssertEqual(visited, [MockVertex(x:0, y:0)]) // neighbor not on pop list
+        XCTAssertEqual(pushList, [MockVertex(x:0, y:0), MockVertex(x:1, y:0)])
     }
     
     func test_traverse_with1NeighbourAndPopReturns1Neighbour() {
         
-        var pushList = [GridPos]()
+        var pushList = [MockVertex]()
         let mockQueue = MockQueue(
-            popArray: [GridPos(x:0, y:0),GridPos(x:1, y:0)] ,
+            popArray: [MockVertex(x:0, y:0),MockVertex(x:1, y:0)] ,
             pushDelegate: { x in
                 pushList.append(x)
         })
         
         let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[GridPos(x:1, y:0)]] // result of neighbor query
+        mockNavigatable.testVector = [[MockVertex(x:1, y:0)]] // result of neighbor query
         
         let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
         
         let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
         
-        var visited : [GridPos] = []
-        func visitor(_ coords : GridPos) {
+        var visited : [MockVertex] = []
+        func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
         
         bfs.traverse(
-            start: GridPos(x:0,y:0),
+            start: MockVertex(x:0,y:0),
             navGraph: mockNavigatable,
             visitor:visitor
         )
         
-        XCTAssertEqual(visited, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
-        XCTAssertEqual(pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
+        XCTAssertEqual(visited, [MockVertex(x:0, y:0), MockVertex(x:1, y:0)])
+        XCTAssertEqual(pushList, [MockVertex(x:0, y:0), MockVertex(x:1, y:0)])
     }
     
     func test_traverse_with1NeighbourAndPopReturns1NeighbourAndSelf() {
         
-        var pushList = [GridPos]()
+        var pushList = [MockVertex]()
         let mockQueue = MockQueue(
-            popArray: [GridPos(x:0, y:0), GridPos(x:1, y:0)] ,
+            popArray: [MockVertex(x:0, y:0), MockVertex(x:1, y:0)] ,
             pushDelegate: { x in
                 pushList.append(x)
         })
         
         let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[GridPos(x:1, y:0), GridPos(x:0, y:0)]] // result of neighbor query
+        mockNavigatable.testVector = [[MockVertex(x:1, y:0), MockVertex(x:0, y:0)]] // result of neighbor query
         
         let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
         let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
         
-        var visited : [GridPos] = []
-        func visitor(_ coords : GridPos) {
+        var visited : [MockVertex] = []
+        func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
         
         bfs.traverse(
-            start: GridPos(x:0,y:0),
+            start: MockVertex(x:0,y:0),
             navGraph: mockNavigatable,
             visitor:visitor
         )
         
-        XCTAssertEqual(visited, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
-        XCTAssertEqual(pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)]) // Following element 0,0 is excluded!
+        XCTAssertEqual(visited, [MockVertex(x:0, y:0), MockVertex(x:1, y:0)])
+        XCTAssertEqual(pushList, [MockVertex(x:0, y:0), MockVertex(x:1, y:0)]) // Following element 0,0 is excluded!
     }
     
     
