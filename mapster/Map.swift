@@ -8,16 +8,21 @@
 
 import Foundation
 
+struct MapId : Hashable{
+    var x : Int
+    var y : Int
+}
 
-public struct Map<T> : NavigatableGraph where T : MapVertexPos
+public struct Map<T> : NavigatableGraph
 {
-    typealias Vertex = T
+    typealias Vertex = MapId
+    typealias Data = T
     
-    var map : Array<Array<T>>
+    var map : Array<Array<Data>>
     let xlen : Int
     let ylen : Int
     
-    init?(_ xlen: Int, _ ylen: Int, _ factory: (_ x : Int, _ y: Int)->T) {
+    init?(_ xlen: Int, _ ylen: Int, _ factory: (_ pos : MapId)->T) {
         
         self.xlen = xlen
         self.ylen = ylen
@@ -30,14 +35,14 @@ public struct Map<T> : NavigatableGraph where T : MapVertexPos
             var row = Array<T>()
             
             for y in 0..<ylen {
-                row.append(factory(x,y))
+                row.append(factory(MapId(x:x, y:y)))
             }
             
             map.append(row)
         }
     }
     
-    init?(_ mapString : String, _ factory: (_ x : Int, _ y : Int, _ ch: Character)->T) {
+    init?(_ mapString : String, _ factory: (_ pos : MapId, _ ch: Character)->T) {
         
         let mapLines = mapString.split(separator: "\n")
         var chars = Array<Array<Character>>()
@@ -59,8 +64,8 @@ public struct Map<T> : NavigatableGraph where T : MapVertexPos
             }
         }
         
-        self.init(xl,yl, {x,y in
-            factory(x,y, chars[x][y])
+        self.init(xl,yl, {pos in
+            factory(pos, chars[pos.x][pos.y])
         })
     }
     
@@ -111,9 +116,12 @@ public struct Map<T> : NavigatableGraph where T : MapVertexPos
             (x: Int(node.x)-1, y: Int(node.y)),
             (x: Int(node.x)  , y: Int(node.y)-1),
         ]
-        return neighb.compactMap{
-            self[$0.x, $0.y] // nil values will be deleted by compactMap
-        }
+         return neighb.filter{
+                   $0.x >= 0 && $0.x < xlen &&
+                   $0.y >= 0 && $0.y < ylen
+           }.map{
+               MapId(x: $0.x, y: $0.y)
+           }
     }
     
 }
