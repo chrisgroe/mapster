@@ -8,15 +8,9 @@
 
 import Foundation
 
-
+/// Each queue must conform to this protocol
 protocol Queue  {
     associatedtype Element
     mutating func push(_ element: Element)
     mutating func pop() -> Element?
 }
-
-protocol QueueFactory {
-    associatedtype QueueType  : Queue
-    func create() -> QueueType
-}
-

@@ -34,10 +34,10 @@ class BreadthFirstSearchTests: XCTestCase {
     }
     
     
-    class MockNavigatable : Navigatable {
+    class MockNavigatable : NavigatableGraph {
         var testVector : [[GridPos]] =  []
         
-        func getNeighbours(coords: GridPos) -> [GridPos] {
+        func getEdges(of: GridPos) -> [GridPos] {
             guard testVector.count != 0 else {
                 return []
             }
@@ -55,8 +55,8 @@ class BreadthFirstSearchTests: XCTestCase {
     }
     
     struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypeTraits {
-        typealias Element = GridPos
-        typealias Nav = MockNavigatable
+        typealias Node = GridPos
+        typealias NavGraph = MockNavigatable
         typealias QFactory = MockQueueFactory
     }
     
@@ -84,7 +84,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         bfs.traverse(
             start: GridPos(x:0,y:0),
-            navigation: mockNavigatable,
+            navGraph: mockNavigatable,
             visitor:visitor
         )
         
@@ -116,7 +116,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         bfs.traverse(
             start: GridPos(x:0,y:0),
-            navigation: mockNavigatable,
+            navGraph: mockNavigatable,
             visitor:visitor
         )
         
@@ -147,7 +147,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         bfs.traverse(
             start: GridPos(x:0,y:0),
-            navigation: mockNavigatable,
+            navGraph: mockNavigatable,
             visitor:visitor
         )
         
@@ -178,7 +178,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         bfs.traverse(
             start: GridPos(x:0,y:0),
-            navigation: mockNavigatable,
+            navGraph: mockNavigatable,
             visitor:visitor
         )
         
@@ -208,7 +208,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         bfs.traverse(
             start: GridPos(x:0,y:0),
-            navigation: mockNavigatable,
+            navGraph: mockNavigatable,
             visitor:visitor
         )
         

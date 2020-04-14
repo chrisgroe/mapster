@@ -111,34 +111,34 @@ class MapTests: XCTestCase {
         XCTAssertEqual(map?[1,1], MockTile(x:1,y:1,ch: "X"))
     }
     
-    func test_getNeighbours_with1x1Map_shouldReturnEmptyList () {
+    func test_getEdges_with1x1Map_shouldReturnEmptyList () {
         let map = Map(1, 1, {x,y in
             MockTile(x:x,y:y)
         })
         
-        let res = map?.getNeighbours(coords: GridPos(x:0,y:0))
+        let res = map?.getEdges(of: GridPos(x:0,y:0))
         
         XCTAssertEqual(res, [])
     }
-    func test_getNeighbours_with1x1MapOutOfBoundAccess_shouldReturnEmptyList () {
+    func test_getEdges_with1x1MapOutOfBoundAccess_shouldReturnEmptyList () {
         let map = Map(1, 1, {x,y in
             MockTile(x:x,y:y)
         })
         
-        let res = map?.getNeighbours(coords: GridPos(x:1,y:1))
+        let res = map?.getEdges(of: GridPos(x:1,y:1))
         
         XCTAssertEqual(res, [])
     }
     
-    func test_getNeighbours_with2x2Map () {
+    func test_getEdges_with2x2Map () {
         let map = Map(2, 2, {x,y in
             MockTile(x:x,y:y)
         })
         
-        let res00 = map?.getNeighbours(coords: GridPos(x:0,y:0))
-        let res10 = map?.getNeighbours(coords: GridPos(x:1,y:0))
-        let res01 = map?.getNeighbours(coords: GridPos(x:0,y:1))
-        let res11 = map?.getNeighbours(coords: GridPos(x:1,y:1))
+        let res00 = map?.getEdges(of: GridPos(x:0,y:0))
+        let res10 = map?.getEdges(of: GridPos(x:1,y:0))
+        let res01 = map?.getEdges(of: GridPos(x:0,y:1))
+        let res11 = map?.getEdges(of: GridPos(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -152,12 +152,12 @@ class MapTests: XCTestCase {
         XCTAssertEqual(res11, [GridPos(x:0,y:1), GridPos(x:1,y:0)])
     }
     
-    func test_getNeighbours_with3x3MapMid () {
+    func test_getEdges_with3x3MapMid () {
         let map = Map(3, 3, {x,y in
             MockTile(x:x,y:y)
         })
         
-        let res11 = map?.getNeighbours(coords: GridPos(x:1,y:1))
+        let res11 = map?.getEdges(of: GridPos(x:1,y:1))
         
         //           4 (y-1)
         //           |

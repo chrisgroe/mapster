@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Map<T> : Navigatable
+public class Map<T> : NavigatableGraph
 {
     var map : Array<Array<T>>
     let xlen : Int
@@ -74,7 +74,7 @@ public class Map<T> : Navigatable
         return map[x][y]
     }
     
-    func getNeighbours(coords: GridPos) -> [GridPos] {
+    func getEdges(of node: GridPos) -> [GridPos] {
         
         //           4 (y-1)
         //           |
@@ -84,10 +84,10 @@ public class Map<T> : Navigatable
         
         
         let neighb = [
-            (x: Int(coords.x)+1, y: Int(coords.y)),
-            (x: Int(coords.x)  , y: Int(coords.y)+1),
-            (x: Int(coords.x)-1, y: Int(coords.y)),
-            (x: Int(coords.x)  , y: Int(coords.y)-1),
+            (x: Int(node.x)+1, y: Int(node.y)),
+            (x: Int(node.x)  , y: Int(node.y)+1),
+            (x: Int(node.x)-1, y: Int(node.y)),
+            (x: Int(node.x)  , y: Int(node.y)-1),
         ]
         return neighb.filter{
             $0.x >= 0 && $0.x < xlen &&

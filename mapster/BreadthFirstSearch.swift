@@ -1,5 +1,5 @@
 //
-//  FloodVisitor.swift
+//  BreadthFirstSearch.swift
 //  mapster
 //
 //  Created by Christian Gröling on 11.04.20.
@@ -9,16 +9,17 @@
 import Foundation
 
 protocol BreadthFirstSearchTypeTraits {
-    associatedtype Element : Hashable
-    associatedtype Nav : Navigatable where Nav.Element == Element
-    associatedtype QFactory : QueueFactory where QFactory.QueueType.Element == Element
+    associatedtype Node : Hashable
+    associatedtype NavGraph : NavigatableGraph where NavGraph.Node == Node
+    associatedtype QFactory : QueueFactory where QFactory.QueueType.Element == Node
 }
 
 /// Breadth First Search (BFS) is an algorithmn for traversing or searching  a graph.
+/// BFS explores the nearest nodes first.
 struct BreadthFirstSearch<T : BreadthFirstSearchTypeTraits>
 {
-    typealias Element = T.Element
-    typealias Nav = T.Nav
+    typealias Node = T.Node
+    typealias NavGraph = T.NavGraph
     typealias QFactory = T.QFactory
     
     private var queueFactory : QFactory
@@ -29,10 +30,12 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypeTraits>
     
     /// Traverses the given graph
     /// - Parameters:
-    ///     - start: The node of the graph where the traversal should begin
-    func traverse( start : Element, navigation : Nav,  visitor: (_ coords : Element) ->() )
+    ///     - start: The node of the graph where the traversal should begin.
+    ///     - navGraph: A class which implements the graph NavigatableGraph protocol.
+    ///     - visitor: This function is called everytime a node is opended by the algorithmn
+    func traverse( start : Node, navGraph : NavGraph,  visitor: (_ coords : Node) ->() )
     {
-        var visited = Set<Element>() // store information which nodes were visited
+        var visited = Set<Node>() // store information which nodes were visited
         var queue = queueFactory.create()
         
         queue.push(start)
@@ -44,7 +47,7 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypeTraits>
             visitor(pos)
             
             // get connections
-            let neighbours = navigation.getNeighbours(coords: pos)
+            let neighbours = navGraph.getEdges(of: pos)
             
             // enqueue connections if they are navigatable
             for neighbour in neighbours {
