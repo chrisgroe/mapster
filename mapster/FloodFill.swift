@@ -22,15 +22,20 @@ public class FloodFill {
     
     private struct VisitMap<T> : GraphVisited {
         typealias Vertex = MapTypes<T>.Vertex
+        let xlen : Int
+        var map : Array<Int>
         
-        var set = Set<Vertex>()
-        
-        mutating func setVisited(_ vertex: Vertex) {
-            set.insert(vertex)
+        init(_ xlen: Int, _ ylen :Int) {
+            self.xlen = ylen
+            self.map = Array<Int>.init(repeating: 0, count: xlen*ylen)
         }
         
-        mutating func wasVisited(_ vertex: Vertex) -> Bool {
-            return set.contains(vertex)
+        mutating func setVisited(_ vertex: Vertex) {
+            map[vertex.x + vertex.y * xlen] = 1
+        }
+        
+        func wasVisited(_ vertex: Vertex) -> Bool {
+            return map[vertex.x + vertex.y * xlen] == 1 ? true : false
         }
         
         
@@ -48,7 +53,7 @@ public class FloodFill {
     public static func floodFill<T>(start:MapPos, map: Map<T>, factory: (_ pos : MapPos)->T) -> Map<T> {
         
         let bfs = BreadthFirstSearch<BFSTypes<T>>(queueFactory: QueueForMapVertexFactory())
-        var visited = VisitMap<T>()
+        var visited = VisitMap<T>(map.xlen, map.ylen)
         var newMap = map // copy
         
         bfs.traverse(start: start, navGraph: map, visited: &visited, visitor: { p in

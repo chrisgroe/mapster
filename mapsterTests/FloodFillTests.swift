@@ -18,8 +18,8 @@ class FloodFillTests: XCTestCase {
         
         let resMap = map?.floodFill(MapPos(x: 5, y:5), factory: {p in MapTile(data: "X")})
         
-        for x in 0..<10 {
-            for y in 0..<10 {
+        for x in 0..<100 {
+            for y in 0..<100 {
                 XCTAssertEqual(resMap![x,y]?.data, "X")
             }
         }
