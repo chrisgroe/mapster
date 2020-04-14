@@ -9,8 +9,9 @@
 import Foundation
 
 protocol BreadthFirstSearchTypeTraits {
-    associatedtype Vertex : Hashable
-    associatedtype NavGraph : NavigatableGraph where NavGraph.Vertex == Vertex
+    associatedtype GraphTypes : GraphTypeTraits where GraphTypes.Vertex : Hashable
+    typealias Vertex = GraphTypes.Vertex
+    typealias NavGraph = GraphTypes.NavGraph
     associatedtype QFactory : QueueFactory where QFactory.QueueType.Element == Vertex
 }
 

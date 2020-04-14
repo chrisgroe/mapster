@@ -1,5 +1,5 @@
 //
-//  Tile.swift
+//  GridPos.swift
 //  mapster
 //
 //  Created by Christian Gröling on 09.04.20.
@@ -24,6 +24,8 @@ public struct GridPos : Equatable, Hashable, CustomDebugStringConvertible {
         coords = (UInt32(x) & 0xFFFF) + ((UInt32(y)&0xFFFF)<<16)
     }
     init(x : Int, y: Int) {
+        assert(x>=0)
+        assert(y>=0)
         coords = (UInt32(x) & 0xFFFF) + ((UInt32(y)&0xFFFF)<<16)
     }
     
@@ -36,7 +38,6 @@ public struct GridPos : Equatable, Hashable, CustomDebugStringConvertible {
     }
     
     public var debugDescription: String {
-        
         return "x:\(x) y:\(y)"
     }
 

@@ -36,7 +36,7 @@ class BreadthFirstSearchTests: XCTestCase {
     }
     
     
-    class MockNavigatable : NavigatableGraph {
+    class MockNavigatableGraph : NavigatableGraph {
         var testVector : [[MockVertex]] =  []
         
         func getNeighbors(of: MockVertex) -> [MockVertex] {
@@ -56,9 +56,13 @@ class BreadthFirstSearchTests: XCTestCase {
         }
     }
     
-    struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypeTraits {
+    struct MockGraphTypeTraits : GraphTypeTraits {
         typealias Vertex = MockVertex
-        typealias NavGraph = MockNavigatable
+        typealias NavGraph = MockNavigatableGraph
+    }
+    
+    struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypeTraits {
+        typealias GraphTypes = MockGraphTypeTraits
         typealias QFactory = MockQueueFactory
     }
     
@@ -72,8 +76,8 @@ class BreadthFirstSearchTests: XCTestCase {
         })
         
         
-        let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [] // no neighbours
+        let mockNavGraph = MockNavigatableGraph()
+        mockNavGraph.testVector = [] // no neighbours
         
         let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
         
@@ -86,7 +90,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
-            navGraph: mockNavigatable,
+            navGraph: mockNavGraph,
             visitor:visitor
         )
         
@@ -104,8 +108,8 @@ class BreadthFirstSearchTests: XCTestCase {
         })
         
         
-        let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[MockVertex(x:0, y:0)]]
+        let mockNavGraph = MockNavigatableGraph()
+        mockNavGraph.testVector = [[MockVertex(x:0, y:0)]]
         
         let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
         
@@ -118,7 +122,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
-            navGraph: mockNavigatable,
+            navGraph: mockNavGraph,
             visitor:visitor
         )
         
@@ -135,8 +139,8 @@ class BreadthFirstSearchTests: XCTestCase {
                 pushList.append(x)
         })
  
-        let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[MockVertex(x:1, y:0)]] // result of neighbor query
+        let mockNavGraph = MockNavigatableGraph()
+        mockNavGraph.testVector = [[MockVertex(x:1, y:0)]] // result of neighbor query
         
         let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
         
@@ -149,7 +153,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
-            navGraph: mockNavigatable,
+            navGraph: mockNavGraph,
             visitor:visitor
         )
         
@@ -166,8 +170,8 @@ class BreadthFirstSearchTests: XCTestCase {
                 pushList.append(x)
         })
         
-        let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[MockVertex(x:1, y:0)]] // result of neighbor query
+        let mockNavGraph = MockNavigatableGraph()
+        mockNavGraph.testVector = [[MockVertex(x:1, y:0)]] // result of neighbor query
         
         let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
         
@@ -180,7 +184,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
-            navGraph: mockNavigatable,
+            navGraph: mockNavGraph,
             visitor:visitor
         )
         
@@ -197,8 +201,8 @@ class BreadthFirstSearchTests: XCTestCase {
                 pushList.append(x)
         })
         
-        let mockNavigatable = MockNavigatable()
-        mockNavigatable.testVector = [[MockVertex(x:1, y:0), MockVertex(x:0, y:0)]] // result of neighbor query
+        let mockNavGraph = MockNavigatableGraph()
+        mockNavGraph.testVector = [[MockVertex(x:1, y:0), MockVertex(x:0, y:0)]] // result of neighbor query
         
         let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
         let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
@@ -210,7 +214,7 @@ class BreadthFirstSearchTests: XCTestCase {
         
         bfs.traverse(
             start: MockVertex(x:0,y:0),
-            navGraph: mockNavigatable,
+            navGraph: mockNavGraph,
             visitor:visitor
         )
         
