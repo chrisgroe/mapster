@@ -107,7 +107,7 @@
 			path = map;
 			sourceTree = "<group>";
 		};
-		0867E2C02445E1FD00EC5CC9 /* algorithmns */ = {
+		0867E2C02445E1FD00EC5CC9 /* algorithms */ = {
 			isa = PBXGroup;
 			children = (
 				0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */,
@@ -115,7 +115,7 @@
 				0895ED002440531200F9FFE7 /* Stack.swift */,
 				0867E2B52445B7BD00EC5CC9 /* QueueArray.swift */,
 			);
-			path = algorithmns;
+			path = algorithms;
 			sourceTree = "<group>";
 		};
 		087EF398243F604B0030720F = {
@@ -139,7 +139,7 @@
 		087EF3A4243F604B0030720F /* mapster */ = {
 			isa = PBXGroup;
 			children = (
-				0867E2C02445E1FD00EC5CC9 /* algorithmns */,
+				0867E2C02445E1FD00EC5CC9 /* algorithms */,
 				0867E2BF2445DF4D00EC5CC9 /* map */,
 				0837F6BC2444AB8A0075AA66 /* protocols */,
 				087EF3A5243F604B0030720F /* mapster.h */,
