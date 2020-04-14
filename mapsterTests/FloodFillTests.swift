@@ -16,7 +16,7 @@ class FloodFillTests: XCTestCase {
             MapTile(data: "O")
         })
         
-        let resMap = map?.floodFill(MapPos(x: 5, y:5), factory: {p in MapTile(data: "X")})
+        let resMap = map?.floodFill(MapPos(x: 50, y:50), factory: {p in MapTile(data: "X")})
         
         for x in 0..<100 {
             for y in 0..<100 {
