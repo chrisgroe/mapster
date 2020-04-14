@@ -44,18 +44,11 @@ class StackTests: XCTestCase {
        
     }
     
-    func test_init_withEmpty_shouldFirstNilAndCount0() {
-        let stack = Stack<MockStackContainer>()
-        
-        
-        XCTAssertNil(stack.front)
-        XCTAssertEqual(stack.count, 0)
-    }
-    
     func test_init_with3VariadicParameters_shouldFrontCorrectElementAndCount3() {
         let mock = MockStackContainer()
         mock.removeFirstList = [12]
         mock.count = 3
+        mock.isEmpty = false
         
         let stack = StackGeneric(container: mock, 10,11,12)
         
@@ -65,20 +58,12 @@ class StackTests: XCTestCase {
         XCTAssertEqual(mock.prependList, [10,11,12])
     }
     
-    func test_init_withSequenceContaining3Elements_shouldFrontCorrectElementAndCount3() {
-        let stack = StackGeneric<ForwardLinkedList<Int>>([10,11,12])
-
-        XCTAssertEqual(stack.front, 12)
-        XCTAssertEqual(stack.count, 3)
-        
-    }
-    
-    
     func test_push_with1Call_shouldFrontCorrectElementAndCount1() {
         
         let mock = MockStackContainer()
         mock.removeFirstList = [10]
         mock.count = 1
+        mock.isEmpty = false
         
         let stack = StackGeneric(container: mock)
         stack.push(10)
@@ -93,6 +78,7 @@ class StackTests: XCTestCase {
         let mock = MockStackContainer()
         mock.removeFirstList = [11]
         mock.count = 2
+        mock.isEmpty = false
         
         let stack = StackGeneric(container: mock)
         stack.push(10)
@@ -105,19 +91,9 @@ class StackTests: XCTestCase {
     
 
 
-    func test_pop_withEmptyStack_shouldReturnNil() {
-        
-        let mock = MockStackContainer()
-        mock.removeFirstList = []
-        mock.count = 0
-        
-        let stack = StackGeneric(container: mock)
-        
-        XCTAssertNil(stack.pop())
-        XCTAssertEqual(stack.count, 0)
-    }
     
-    func test_pop_withStack3ElementsAnd4Calls_shouldReturnElementsInCorrectOrderAndNilAfterThat() {
+    
+    func test_pop_with3ElementsAnd4Calls_shouldReturnElementsInCorrectOrderAndNilAfterThat() {
         let mock = MockStackContainer()
         mock.removeFirstList = [10,11,12]
         mock.count = 3
@@ -131,7 +107,7 @@ class StackTests: XCTestCase {
         XCTAssertEqual(mock.prependList, [10,11,12])
     }
     
-    func test_pop_withStack0Elements_shouldReturnNil() {
+    func test_pop_with0Elements_shouldReturnNil() {
         let mock = MockStackContainer()
         mock.removeFirstList = []
         mock.count = 0

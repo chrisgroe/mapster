@@ -8,25 +8,29 @@
 
 import Foundation
 
-protocol BreadthFirstSearchTraits {
+protocol BreadthFirstSearchTypeTraits {
     associatedtype Element : Hashable
     associatedtype Nav : Navigatable where Nav.Element == Element
     associatedtype QFactory : QueueFactory where QFactory.QueueType.Element == Element
 }
 
-struct BreadthFirstSearch<T : BreadthFirstSearchTraits>
+/// Breadth First Search (BFS) is an algorithmn for traversing or searching  a graph.
+struct BreadthFirstSearch<T : BreadthFirstSearchTypeTraits>
 {
     typealias Element = T.Element
     typealias Nav = T.Nav
     typealias QFactory = T.QFactory
     
-    var queueFactory : QFactory
+    private var queueFactory : QFactory
     
     init (queueFactory : QFactory)  {
         self.queueFactory = queueFactory
     }
     
-    func search( start : Element, navigation : Nav,  visitor: (_ coords : Element) ->() )
+    /// Traverses the given graph
+    /// - Parameters:
+    ///     - start: The node of the graph where the traversal should begin
+    func traverse( start : Element, navigation : Nav,  visitor: (_ coords : Element) ->() )
     {
         var visited = Set<Element>() // store information which nodes were visited
         var queue = queueFactory.create()

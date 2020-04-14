@@ -54,13 +54,13 @@ class BreadthFirstSearchTests: XCTestCase {
         }
     }
     
-    struct MockBreadthFirstSearchTraits : BreadthFirstSearchTraits {
+    struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypeTraits {
         typealias Element = GridPos
         typealias Nav = MockNavigatable
         typealias QFactory = MockQueueFactory
     }
     
-    func test_search_withSingleNodeWithoutNeighbours() {
+    func test_traverse_withSingleNodeWithoutNeighbours() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
@@ -82,7 +82,7 @@ class BreadthFirstSearchTests: XCTestCase {
             visited.append(coords)
         }
         
-        bfs.search(
+        bfs.traverse(
             start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
@@ -92,7 +92,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0)])
     }
     
-    func test_search_withSingleNodeWithLoopNeighbour() {
+    func test_traverse_withSingleNodeWithLoopNeighbour() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
@@ -114,7 +114,7 @@ class BreadthFirstSearchTests: XCTestCase {
             visited.append(coords)
         }
         
-        bfs.search(
+        bfs.traverse(
             start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
@@ -124,7 +124,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0)])
     }
     
-    func test_search_with1NeighbourAndPopListIsEmpty() {
+    func test_traverse_with1NeighbourAndPopListIsEmpty() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
@@ -145,7 +145,7 @@ class BreadthFirstSearchTests: XCTestCase {
             visited.append(coords)
         }
         
-        bfs.search(
+        bfs.traverse(
             start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
@@ -155,7 +155,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
     }
     
-    func test_search_with1NeighbourAndPopReturns1Neighbour() {
+    func test_traverse_with1NeighbourAndPopReturns1Neighbour() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
@@ -176,7 +176,7 @@ class BreadthFirstSearchTests: XCTestCase {
             visited.append(coords)
         }
         
-        bfs.search(
+        bfs.traverse(
             start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
@@ -186,7 +186,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [GridPos(x:0, y:0), GridPos(x:1, y:0)])
     }
     
-    func test_search_with1NeighbourAndPopReturns1NeighbourAndSelf() {
+    func test_traverse_with1NeighbourAndPopReturns1NeighbourAndSelf() {
         
         var pushList = [GridPos]()
         let mockQueue = MockQueue(
@@ -206,7 +206,7 @@ class BreadthFirstSearchTests: XCTestCase {
             visited.append(coords)
         }
         
-        bfs.search(
+        bfs.traverse(
             start: GridPos(x:0,y:0),
             navigation: mockNavigatable,
             visitor:visitor
