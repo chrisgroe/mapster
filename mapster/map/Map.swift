@@ -12,9 +12,9 @@ import Foundation
 public struct Map<T> : NavigatableGraph
 {
     typealias Vertex = MapPos
-    typealias Data = T
+    typealias Element = T
     
-    var map : Array<Array<Data>>
+    var map : Array<Array<Element>>
     let xlen : Int
     let ylen : Int
     
@@ -44,10 +44,8 @@ public struct Map<T> : NavigatableGraph
         let xl = mapLines[0].count
         
         for _ in 0..<xl {
-            var row = Array<Character>()
-            for _ in 0..<yl {
-                row.append("O")
-            }
+            let row = Array<Character>(repeating: "O", count: yl)
+
             chars.append(row)
         }
         
