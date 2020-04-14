@@ -9,38 +9,30 @@
 import Foundation
 
 
-struct MapVertex : Hashable{
-    var data : Character = " "
-    
-}
-
-struct MapTypes : GraphTypes {
-    typealias Vertex = Map<MapVertex>.Vertex
-    typealias NavGraph = Map<MapVertex>
-}
-
-struct QueueForGridPosFactory : QueueFactory {
-    typealias QueueType = QueueArray<Map<MapVertex>.Vertex>
-    
-    func create() -> QueueType {
-        return QueueArray()
-    }
-}
-
-struct BFSTypes : BreadthFirstSearchTypes {
-    typealias GT = MapTypes
-    typealias QFactory = QueueForGridPosFactory
-}
 
 
-class FloodFill {
-    static func floodfill(start:MapId , map: Map<MapVertex>) -> Map<MapVertex> {
+public class FloodFill {
+    private struct QueueForMapVertexFactory : QueueFactory {
+        typealias QueueType = QueueArray<Map<MapTile>.Vertex>
         
-        let bfs = BreadthFirstSearch<BFSTypes>(queueFactory: QueueForGridPosFactory())
-        var newMap = map
+        func create() -> QueueType {
+            return QueueArray()
+        }
+    }
+
+    private struct BFSTypes : BreadthFirstSearchTypes {
+        typealias GT = MapTypes
+        typealias QFactory = QueueForMapVertexFactory
+    }
+
+    
+    public static func floodFill(start:MapPos , map: Map<MapTile>) -> Map<MapTile> {
+        
+        let bfs = BreadthFirstSearch<BFSTypes>(queueFactory: QueueForMapVertexFactory())
+        var newMap = map // copy
         
         bfs.traverse(start: start, navGraph: map) { v in
-
+            newMap[v] = MapTile(data: "X")
         }
         
         return newMap
