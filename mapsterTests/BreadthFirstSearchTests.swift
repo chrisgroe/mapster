@@ -98,7 +98,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [MockVertex(x:0, y:0)])
     }
     
-    func test_traverse_withSingleNodeWithLoopNeighbour() {
+    func test_traverse_withSingleNodeWithLoopNeighbor() {
         
         var pushList = [MockVertex]()
         let mockQueue = MockQueue(
@@ -130,7 +130,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [MockVertex(x:0, y:0)])
     }
     
-    func test_traverse_with1NeighbourAndPopListIsEmpty() {
+    func test_traverse_with1NeighborAndPopListIsEmpty() {
         
         var pushList = [MockVertex]()
         let mockQueue = MockQueue(
@@ -161,7 +161,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [MockVertex(x:0, y:0), MockVertex(x:1, y:0)])
     }
     
-    func test_traverse_with1NeighbourAndPopReturns1Neighbour() {
+    func test_traverse_with1NeighborAndPopReturns1Neighbour() {
         
         var pushList = [MockVertex]()
         let mockQueue = MockQueue(
@@ -192,7 +192,7 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(pushList, [MockVertex(x:0, y:0), MockVertex(x:1, y:0)])
     }
     
-    func test_traverse_with1NeighbourAndPopReturns1NeighbourAndSelf() {
+    func test_traverse_with1NeighborAndPopReturns1NeighborAndSelf() {
         
         var pushList = [MockVertex]()
         let mockQueue = MockQueue(

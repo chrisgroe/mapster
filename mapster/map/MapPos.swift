@@ -8,6 +8,7 @@
 
 import Foundation
 
+// The MapPos is also the Vertex of the Graph
 public struct MapPos : Hashable ,Equatable {
     var x : Int
     var y : Int

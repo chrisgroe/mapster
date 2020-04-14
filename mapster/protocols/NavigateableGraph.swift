@@ -12,9 +12,9 @@ import Foundation
 protocol NavigatableGraph {
     associatedtype Vertex
     
-    /// Returns all available edges of the given Node
+    /// Returns all neighbors of the given vertex
     /// - Parameters:
-    ///     - vertex: The vertex which neighbors should be returned
+    ///     - vertex: The vertex of which all neighbors should be returned
     /// - Returns: All vertices neighboring the given vertex.
     func getNeighbors(of vertex: Vertex) -> [Vertex]
 }
