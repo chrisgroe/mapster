@@ -10,12 +10,12 @@ import Foundation
 
 /// Each graph which is navigatable must conform this protocol
 protocol NavigatableGraph {
-    associatedtype Node
+    associatedtype Vertex
     
     /// Returns all available edges of the given Node
     /// - Parameters:
-    ///     - node: The node of which the edges should be returned
-    /// - Returns: All edges of the Node node
-    func getEdges(of node: Node) -> [Node]
+    ///     - vertex: The vertex which neighbors should be returned
+    /// - Returns: All vertices neighboring the given vertex.
+    func getNeighbors(of vertex: Vertex) -> [Vertex]
 }
 

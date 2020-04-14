@@ -116,7 +116,7 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res = map?.getEdges(of: GridPos(x:0,y:0))
+        let res = map?.getNeighbors(of: GridPos(x:0,y:0))
         
         XCTAssertEqual(res, [])
     }
@@ -125,7 +125,7 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res = map?.getEdges(of: GridPos(x:1,y:1))
+        let res = map?.getNeighbors(of: GridPos(x:1,y:1))
         
         XCTAssertEqual(res, [])
     }
@@ -135,10 +135,10 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res00 = map?.getEdges(of: GridPos(x:0,y:0))
-        let res10 = map?.getEdges(of: GridPos(x:1,y:0))
-        let res01 = map?.getEdges(of: GridPos(x:0,y:1))
-        let res11 = map?.getEdges(of: GridPos(x:1,y:1))
+        let res00 = map?.getNeighbors(of: GridPos(x:0,y:0))
+        let res10 = map?.getNeighbors(of: GridPos(x:1,y:0))
+        let res01 = map?.getNeighbors(of: GridPos(x:0,y:1))
+        let res11 = map?.getNeighbors(of: GridPos(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -157,7 +157,7 @@ class MapTests: XCTestCase {
             MockTile(x:x,y:y)
         })
         
-        let res11 = map?.getEdges(of: GridPos(x:1,y:1))
+        let res11 = map?.getNeighbors(of: GridPos(x:1,y:1))
         
         //           4 (y-1)
         //           |

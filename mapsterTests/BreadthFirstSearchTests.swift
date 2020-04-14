@@ -37,7 +37,7 @@ class BreadthFirstSearchTests: XCTestCase {
     class MockNavigatable : NavigatableGraph {
         var testVector : [[GridPos]] =  []
         
-        func getEdges(of: GridPos) -> [GridPos] {
+        func getNeighbors(of: GridPos) -> [GridPos] {
             guard testVector.count != 0 else {
                 return []
             }
@@ -55,7 +55,7 @@ class BreadthFirstSearchTests: XCTestCase {
     }
     
     struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypeTraits {
-        typealias Node = GridPos
+        typealias Vertex = GridPos
         typealias NavGraph = MockNavigatable
         typealias QFactory = MockQueueFactory
     }

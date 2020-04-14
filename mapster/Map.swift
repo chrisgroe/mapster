@@ -74,7 +74,7 @@ public class Map<T> : NavigatableGraph
         return map[x][y]
     }
     
-    func getEdges(of node: GridPos) -> [GridPos] {
+    func getNeighbors(of node: GridPos) -> [GridPos] {
         
         //           4 (y-1)
         //           |
