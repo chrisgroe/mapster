@@ -19,5 +19,10 @@ protocol NavigatableGraph {
     ///     - vertex: The vertex of which all neighbors should be returned
     /// - Returns: All vertices neighboring the given vertex.
     func getNeighborIterator(of vertex: Vertex) -> NeighborIterator
+    
+    /// Returns the predicate which is used to check if a vertex is blocked
+    var isBlocked : (_ vertex: Vertex) -> Bool {
+        get
+    }
 }
 

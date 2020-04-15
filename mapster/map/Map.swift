@@ -13,10 +13,12 @@ public struct Map<T> : NavigatableGraph
 {
     typealias Vertex = MapPos
     typealias Element = T
-    
+     
     var map : Array<Array<Element>>
     let xlen : Int
     let ylen : Int
+    
+    var isBlocked : (_ pos : MapPos) -> Bool = {p in return false}
     
     init?(_ xlen: Int, _ ylen: Int, _ factory: (_ pos : MapPos)->T) {
         
@@ -96,8 +98,7 @@ public struct Map<T> : NavigatableGraph
     
     
     class NeighborIterator : IteratorProtocol {
-        typealias Element = Vertex
-        
+
         var step : Int = 0
         var x : Int = 0
         var y : Int = 0
@@ -108,36 +109,44 @@ public struct Map<T> : NavigatableGraph
             self.y = y
             self.master  = master
         }
-        func isInBounds(x:Int, y:Int ) -> Bool {
-            if x>=0 && x<master.xlen && y>=0 && y<master.ylen {
+   
+        
+        func isPassable(_ vertex : MapPos) -> Bool
+        {
+            if vertex.x>=0 && vertex.x<master.xlen && vertex.y>=0 && vertex.y<master.ylen {
                 return true
             }
             return false
         }
-        func next() -> Element? {
+        
+        func next() -> MapPos? {
             while (step < 5) {
                 switch (step) {
                 case 0:
                     step += 1
-                    if isInBounds(x: x+1, y: y) {
-                        return (MapPos(x: x+1, y: y))
+                    let p0 = MapPos(x: x+1, y: y)
+                    if isPassable(p0)  {
+                        return p0
                     }
                     
                 case 1:
                     step += 1
-                    if isInBounds(x: x, y: y+1) {
-                        return(MapPos(x: x, y: y+1))
+                    let p1 = MapPos(x: x, y: y+1)
+                    if isPassable(p1) {
+                        return(p1)
                     }
                 case 2:
                     step += 1
-                    if isInBounds(x: x-1, y: y) {
-                        return (MapPos(x: x-1, y: y))
+                    let p2 = MapPos(x: x-1, y: y)
+                    if isPassable(p2) {
+                        return (p2)
                     }
                     
                 case 3:
                     step += 1
-                    if isInBounds(x: x, y: y-1) {
-                        return (MapPos(x: x, y: y-1))
+                    let p3 = MapPos(x: x, y: y-1)
+                    if isPassable(p3) {
+                        return (p3)
                     }
                     
                 default:
@@ -149,7 +158,7 @@ public struct Map<T> : NavigatableGraph
         
         
     }
-    func getNeighborIterator(of vertex: Vertex) -> NeighborIterator {
+    func getNeighborIterator(of vertex: MapPos) -> NeighborIterator {
         
         //           4 (y-1)
         //           |

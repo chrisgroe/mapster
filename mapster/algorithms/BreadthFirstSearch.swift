@@ -45,8 +45,11 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
     ///     - visitor: This function is called everytime a vertex is opended by the algorithmn
     func traverse( start : Vertex, navGraph : NavGraph,  closedList : inout ClosedList, visitor: (_ coords : Vertex) ->() )
     {
+        // no not allow traversal from blocked node
+        if navGraph.isBlocked(start) {
+            return
+        }
         var queue = queueFactory.create()
-        
         queue.push(start)
         closedList.add(start)
         
@@ -58,9 +61,9 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
             // get connections
             var neighbors = navGraph.getNeighborIterator(of: pos)
         
-            // enqueue connections if they are navigatable
+            // enqueue connections if they are navigatable and not blocked
             while let neighbour = neighbors.next() {
-                if closedList.isClosed(neighbour) == false {
+                if closedList.isClosed(neighbour) == false && navGraph.isBlocked(neighbour) == false {
                     queue.push(neighbour)
                     closedList.add(pos)
 

@@ -42,6 +42,7 @@ class BreadthFirstSearchTests: XCTestCase {
         typealias NeighborIterator = AnyIterator<Vertex>
         
         var testVector : [[MockVertex]] =  []
+        var isBlocked: (_ vertex : MockVertex) -> Bool = {p in false}
         
         func getNeighborIterator(of: MockVertex) -> NeighborIterator{
             guard testVector.count != 0 else {
@@ -126,6 +127,44 @@ class BreadthFirstSearchTests: XCTestCase {
         XCTAssertEqual(visited, [MockVertex(x:0, y:0)])
         XCTAssertEqual(pushList, [MockVertex(x:0, y:0)])
     }
+    
+    func test_traverse_withSingleBlockedNodeWithNeighbours() {
+        
+        var pushList = [MockVertex]()
+        let mockQueue = MockQueue(
+            popArray: [MockVertex(x:0, y:0)],
+            pushDelegate: { x in
+                pushList.append(x)
+        })
+        
+        
+        let mockNavGraph = MockNavigatableGraph()
+        mockNavGraph.isBlocked = {p in p.x==0 && p.y==0}
+        mockNavGraph.testVector = [[MockVertex(x: 1, y: 1)]] // no neighbours
+        
+        
+        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
+        
+        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory:mockQueueFactory)
+        
+        var visited : [MockVertex] = []
+        func visitor(_ coords : MockVertex) {
+            visited.append(coords)
+        }
+        
+        var closedList = MockVisited()
+        
+        bfs.traverse(
+            start: MockVertex(x:0,y:0),
+            navGraph: mockNavGraph,
+            closedList: &closedList,
+            visitor:visitor
+        )
+        
+        XCTAssertEqual(visited, [])
+        XCTAssertEqual(pushList, [])
+    }
+    
     
     func test_traverse_withSingleNodeWithLoopNeighbor() {
         
