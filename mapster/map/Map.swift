@@ -12,6 +12,7 @@ import Foundation
 public struct Map<T> : NavigatableGraph
 {
     typealias Vertex = MapPos
+    typealias VertexIterator = NeighborIterator
     typealias Element = T
     
     var map : Array<Array<Element>>
@@ -45,7 +46,7 @@ public struct Map<T> : NavigatableGraph
         
         for _ in 0..<xl {
             let row = Array<Character>(repeating: "O", count: yl)
-
+            
             chars.append(row)
         }
         
@@ -86,16 +87,70 @@ public struct Map<T> : NavigatableGraph
         
     }
     
-
-    private  func isInBounds(x:Int, y:Int ) -> Bool {
-          if x>=0 && x<xlen && y>=0 && y<ylen {
-              return true
-          }
-          return false
+    
+    func isInBounds(x:Int, y:Int ) -> Bool {
+        if x>=0 && x<xlen && y>=0 && y<ylen {
+            return true
+        }
+        return false
     }
     
     
-    func getNeighbors(of vertex: Vertex) -> [Vertex] {
+    class NeighborIterator : IteratorProtocol {
+        typealias Element = Vertex
+        
+        var step : Int = 0
+        var x : Int = 0
+        var y : Int = 0
+        var master : Map<T>
+        
+        init(_ x: Int, _ y : Int, _ master : Map<T>){
+            self.x = x
+            self.y = y
+            self.master  = master
+        }
+        func isInBounds(x:Int, y:Int ) -> Bool {
+            if x>=0 && x<master.xlen && y>=0 && y<master.ylen {
+                return true
+            }
+            return false
+        }
+        func next() -> Element? {
+            while (step < 5) {
+                switch (step) {
+                case 0:
+                    step += 1
+                    if isInBounds(x: x+1, y: y) {
+                        return (MapPos(x: x+1, y: y))
+                    }
+                    
+                case 1:
+                    step += 1
+                    if isInBounds(x: x, y: y+1) {
+                        return(MapPos(x: x, y: y+1))
+                    }
+                case 2:
+                    step += 1
+                    if isInBounds(x: x-1, y: y) {
+                        return (MapPos(x: x-1, y: y))
+                    }
+                    
+                case 3:
+                    step += 1
+                    if isInBounds(x: x, y: y-1) {
+                        return (MapPos(x: x, y: y-1))
+                    }
+                    
+                default:
+                    return nil
+                }
+            }
+            return nil
+        }
+        
+        
+    }
+    func getNeighbors(of vertex: Vertex) -> NeighborIterator {
         
         //           4 (y-1)
         //           |
@@ -103,27 +158,7 @@ public struct Map<T> : NavigatableGraph
         //           |
         //           2 (y+1)
         
-        
-        // This algorithmn seems a little bit complicated since this can be done
-        // with "filter". But this implementation here is a lot faster and all
-        // algorithmns traversing the graph use this.
-        var neighb = [Vertex]()
-        neighb.reserveCapacity(4)
-        
-        if isInBounds(x: vertex.x+1, y: vertex.y) {
-            neighb.append(MapPos(x: vertex.x+1, y: vertex.y))
-        }
-        if isInBounds(x: vertex.x, y: vertex.y+1) {
-            neighb.append(MapPos(x: vertex.x, y: vertex.y+1))
-        }
-        if isInBounds(x: vertex.x-1, y: vertex.y) {
-            neighb.append(MapPos(x: vertex.x-1, y: vertex.y))
-        }
-        if isInBounds(x: vertex.x, y: vertex.y-1) {
-            neighb.append(MapPos(x: vertex.x, y: vertex.y-1))
-        }
-        
-        return neighb
+        return NeighborIterator(vertex.x, vertex.y, self)
     }
     
 }

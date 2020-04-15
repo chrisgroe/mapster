@@ -26,6 +26,14 @@ class MapTests: XCTestCase {
         }
     }
     
+    func iteratorToArray(_ it : Map<MockTile>.NeighborIterator) -> [MapPos] {
+        var ar = [MapPos]()
+        while let i = it.next() {
+            ar.append(i)
+        }
+        return ar
+    }
+    
     func test_init_withXlen0AndYLen6_shouldReturnNil () {
         let map = Map(0, 6, {pos in
             MockTile(x:pos.x,y:pos.y)
@@ -118,18 +126,18 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res = map?.getNeighbors(of: MapPos(x:0,y:0))
+        let res = map!.getNeighbors(of: MapPos(x:0,y:0))
         
-        XCTAssertEqual(res, [])
+        XCTAssertEqual(iteratorToArray(res), [])
     }
     func test_getEdges_with1x1MapOutOfBoundAccess_shouldReturnEmptyList () {
         let map = Map(1, 1, {pos in
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res = map?.getNeighbors(of: MapPos(x:1,y:1))
+        let res = map!.getNeighbors(of: MapPos(x:1,y:1))
         
-        XCTAssertEqual(res, [])
+        XCTAssertEqual(iteratorToArray(res), [])
     }
     
     func test_getEdges_with2x2Map () {
@@ -137,10 +145,10 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res00 = map?.getNeighbors(of: MapPos(x:0,y:0))
-        let res10 = map?.getNeighbors(of: MapPos(x:1,y:0))
-        let res01 = map?.getNeighbors(of: MapPos(x:0,y:1))
-        let res11 = map?.getNeighbors(of: MapPos(x:1,y:1))
+        let res00 = map!.getNeighbors(of: MapPos(x:0,y:0))
+        let res10 = map!.getNeighbors(of: MapPos(x:1,y:0))
+        let res01 = map!.getNeighbors(of: MapPos(x:0,y:1))
+        let res11 = map!.getNeighbors(of: MapPos(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -148,10 +156,10 @@ class MapTests: XCTestCase {
         //           |
         //           2 (y+1)
         
-        XCTAssertEqual(res00, [MapPos(x:1,y:0), MapPos(x:0,y:1)])
-        XCTAssertEqual(res10, [MapPos(x:1,y:1), MapPos(x:0,y:0)])
-        XCTAssertEqual(res01, [MapPos(x:1,y:1), MapPos(x:0,y:0)])
-        XCTAssertEqual(res11, [MapPos(x:0,y:1), MapPos(x:1,y:0)])
+        XCTAssertEqual(iteratorToArray(res00), [MapPos(x:1,y:0), MapPos(x:0,y:1)])
+        XCTAssertEqual(iteratorToArray(res10), [MapPos(x:1,y:1), MapPos(x:0,y:0)])
+        XCTAssertEqual(iteratorToArray(res01), [MapPos(x:1,y:1), MapPos(x:0,y:0)])
+        XCTAssertEqual(iteratorToArray(res11), [MapPos(x:0,y:1), MapPos(x:1,y:0)])
     }
     
     func test_getEdges_with3x3MapMid () {
@@ -159,7 +167,7 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res11 = map?.getNeighbors(of: MapPos(x:1,y:1))
+        let res11 = map!.getNeighbors(of: MapPos(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -167,7 +175,7 @@ class MapTests: XCTestCase {
         //           |
         //           2 (y+1)
         
-        XCTAssertEqual(res11, [MapPos(x:2,y:1), MapPos(x:1,y:2), MapPos(x:0,y:1), MapPos(x:1,y:0)])
+        XCTAssertEqual(iteratorToArray(res11), [MapPos(x:2,y:1), MapPos(x:1,y:2), MapPos(x:0,y:1), MapPos(x:1,y:0)])
     }
     
     

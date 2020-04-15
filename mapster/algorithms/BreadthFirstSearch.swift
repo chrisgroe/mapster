@@ -56,10 +56,10 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
             visitor(pos)
             
             // get connections
-            let neighbors = navGraph.getNeighbors(of: pos)
+            var neighbors = navGraph.getNeighbors(of: pos)
             
             // enqueue connections if they are navigatable
-            for neighbour in neighbors {
+            while let neighbour = neighbors.next() {
                 if closedList.isClosed(neighbour) == false {
                     queue.push(neighbour)
                     closedList.add(pos)
