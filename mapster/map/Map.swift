@@ -12,7 +12,6 @@ import Foundation
 public struct Map<T> : NavigatableGraph
 {
     typealias Vertex = MapPos
-    typealias VertexIterator = NeighborIterator
     typealias Element = T
     
     var map : Array<Array<Element>>
@@ -150,7 +149,7 @@ public struct Map<T> : NavigatableGraph
         
         
     }
-    func getNeighbors(of vertex: Vertex) -> NeighborIterator {
+    func getNeighborIterator(of vertex: Vertex) -> NeighborIterator {
         
         //           4 (y-1)
         //           |

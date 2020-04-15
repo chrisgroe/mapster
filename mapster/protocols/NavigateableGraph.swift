@@ -12,12 +12,12 @@ import Foundation
 /// Each graph which is navigatable must conform this protocol
 protocol NavigatableGraph {
     associatedtype Vertex
-    associatedtype VertexIterator : IteratorProtocol where VertexIterator.Element == Vertex
+    associatedtype NeighborIterator : IteratorProtocol where NeighborIterator.Element == Vertex
     
     /// Returns all neighbors of the given vertex
     /// - Parameters:
     ///     - vertex: The vertex of which all neighbors should be returned
     /// - Returns: All vertices neighboring the given vertex.
-    func getNeighbors(of vertex: Vertex) -> VertexIterator
+    func getNeighborIterator(of vertex: Vertex) -> NeighborIterator
 }
 

@@ -126,7 +126,7 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res = map!.getNeighbors(of: MapPos(x:0,y:0))
+        let res = map!.getNeighborIterator(of: MapPos(x:0,y:0))
         
         XCTAssertEqual(iteratorToArray(res), [])
     }
@@ -135,7 +135,7 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res = map!.getNeighbors(of: MapPos(x:1,y:1))
+        let res = map!.getNeighborIterator(of: MapPos(x:1,y:1))
         
         XCTAssertEqual(iteratorToArray(res), [])
     }
@@ -145,10 +145,10 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res00 = map!.getNeighbors(of: MapPos(x:0,y:0))
-        let res10 = map!.getNeighbors(of: MapPos(x:1,y:0))
-        let res01 = map!.getNeighbors(of: MapPos(x:0,y:1))
-        let res11 = map!.getNeighbors(of: MapPos(x:1,y:1))
+        let res00 = map!.getNeighborIterator(of: MapPos(x:0,y:0))
+        let res10 = map!.getNeighborIterator(of: MapPos(x:1,y:0))
+        let res01 = map!.getNeighborIterator(of: MapPos(x:0,y:1))
+        let res11 = map!.getNeighborIterator(of: MapPos(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -167,7 +167,7 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res11 = map!.getNeighbors(of: MapPos(x:1,y:1))
+        let res11 = map!.getNeighborIterator(of: MapPos(x:1,y:1))
         
         //           4 (y-1)
         //           |

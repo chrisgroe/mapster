@@ -39,11 +39,11 @@ class BreadthFirstSearchTests: XCTestCase {
     class MockNavigatableGraph : NavigatableGraph {
         
         typealias Vertex = MockVertex
-        typealias VertexIterator = AnyIterator<Vertex>
+        typealias NeighborIterator = AnyIterator<Vertex>
         
         var testVector : [[MockVertex]] =  []
         
-        func getNeighbors(of: MockVertex) -> VertexIterator{
+        func getNeighborIterator(of: MockVertex) -> NeighborIterator{
             guard testVector.count != 0 else {
                 return AnyIterator<Vertex>{
                     return nil
