@@ -57,7 +57,7 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
             
             // get connections
             var neighbors = navGraph.getNeighbors(of: pos)
-            
+        
             // enqueue connections if they are navigatable
             while let neighbour = neighbors.next() {
                 if closedList.isClosed(neighbour) == false {

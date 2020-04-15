@@ -38,33 +38,24 @@ class BreadthFirstSearchTests: XCTestCase {
     
     class MockNavigatableGraph : NavigatableGraph {
         
-        class MockVertexIterator : IteratorProtocol {
-            typealias Element = MockVertex
-            
-             var testVector : [MockVertex] =  []
-            
-            init (_ testVector : [MockVertex]) {
-                self.testVector = testVector
-            }
-            func next() -> Element? {
-                if testVector.count == 0 {
-                    return nil
-                }
-                return testVector.removeFirst()
-            }
-            
-            
-        }
         typealias Vertex = MockVertex
-        typealias VertexIterator = MockVertexIterator
+        typealias VertexIterator = AnyIterator<Vertex>
         
         var testVector : [[MockVertex]] =  []
         
-        func getNeighbors(of: MockVertex) -> MockVertexIterator{
+        func getNeighbors(of: MockVertex) -> VertexIterator{
             guard testVector.count != 0 else {
-                return MockVertexIterator([])
+                return AnyIterator<Vertex>{
+                    return nil
+                }
             }
-            return MockVertexIterator(testVector.removeFirst())
+            var testSequence = testVector.removeFirst()
+            return AnyIterator<Vertex>{
+                if testSequence.count == 0 {
+                    return nil
+                }
+                return testSequence.removeFirst()
+            }
         }
     }
     
@@ -178,7 +169,7 @@ class BreadthFirstSearchTests: XCTestCase {
             pushDelegate: { x in
                 pushList.append(x)
         })
- 
+        
         let mockNavGraph = MockNavigatableGraph()
         mockNavGraph.testVector = [[MockVertex(x:1, y:0)]] // result of neighbor query
         
