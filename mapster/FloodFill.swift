@@ -43,7 +43,7 @@ public class FloodFill {
         typealias ClosedList = MapClosedList<T>
     }
 
-    public static func floodFill<T>(start:MapPos, map: Map<T>, factory: (_ pos : MapPos)->T) -> Map<T> {
+    public static func floodFill<T>(start:MapPos, map: Map<T>, _ factory: (_ pos : MapPos)->T) -> Map<T> {
         
         let bfs = BreadthFirstSearch<BFSTypes<T>>(queueFactory: QueueForMapVertexFactory())
         var closedList = MapClosedList<T>(map.xlen, map.ylen)
