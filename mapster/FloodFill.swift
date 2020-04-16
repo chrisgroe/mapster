@@ -11,10 +11,6 @@ import datastructures
 
 import datastructures
 
-extension StackFLinkedList : Queue{
-    
-}
-
 public class FloodFill {
     private struct QueueForMapVertexFactory<T> : QueueFactory {
         typealias Vertex = MapTypes<T>.Vertex
