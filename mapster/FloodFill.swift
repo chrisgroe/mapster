@@ -9,12 +9,18 @@
 import Foundation
 import datastructures
 
+import datastructures
+
+extension StackFLinkedList : Queue{
+    
+}
+
 public class FloodFill {
     private struct QueueForMapVertexFactory<T> : QueueFactory {
-        typealias QueueType = QueueArray<Map<T>.Vertex>
+        typealias Vertex = MapTypes<T>.Vertex
         
-        func create() -> QueueType {
-            return QueueArray()
+        func create() -> QueueArray<Vertex> {
+            return QueueArray<Vertex>()
         }
     }
     

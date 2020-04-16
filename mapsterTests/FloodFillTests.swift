@@ -25,7 +25,7 @@ class FloodFillTests: XCTestCase {
         }
         
     }
-    
+
     func test_floodfill_withEmpty100x100MapAndHalfBlocked() {
         var map = Map<MapTile>(100, 100, {p in
             MapTile(data: "O")
