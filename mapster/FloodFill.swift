@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import datastructures
 
 public class FloodFill {
     private struct QueueForMapVertexFactory<T> : QueueFactory {

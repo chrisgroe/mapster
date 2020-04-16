@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import datastructures
 
 protocol GraphClosedList {
     associatedtype Vertex

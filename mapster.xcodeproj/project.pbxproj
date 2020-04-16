@@ -3,18 +3,16 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		0837F6B72441F77E0075AA66 /* BreadthFirstSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */; };
 		0837F6B92442326C0075AA66 /* BreadthFirstSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */; };
 		0837F6BE2444ABA30075AA66 /* NavigateableGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */; };
-		0837F6C02444ABC20075AA66 /* Queue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6BF2444ABC20075AA66 /* Queue.swift */; };
 		0867E2B02445AFD300EC5CC9 /* QueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */; };
 		0867E2B22445B37B00EC5CC9 /* FloodFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B12445B37B00EC5CC9 /* FloodFill.swift */; };
 		0867E2B42445B3EE00EC5CC9 /* GraphTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */; };
-		0867E2B62445B7BD00EC5CC9 /* QueueArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B52445B7BD00EC5CC9 /* QueueArray.swift */; };
 		0867E2BA2445DDF300EC5CC9 /* MapTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B92445DDF300EC5CC9 /* MapTile.swift */; };
 		0867E2BC2445DE2000EC5CC9 /* MapTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2BB2445DE2000EC5CC9 /* MapTypes.swift */; };
 		0867E2BE2445DEF200EC5CC9 /* MapPos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2BD2445DEF200EC5CC9 /* MapPos.swift */; };
@@ -24,11 +22,8 @@
 		087EF3B1243F604B0030720F /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3B0243F604B0030720F /* MapTests.swift */; };
 		087EF3B3243F604B0030720F /* mapster.h in Headers */ = {isa = PBXBuildFile; fileRef = 087EF3A5243F604B0030720F /* mapster.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		087EF3BD243F61540030720F /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3BC243F61540030720F /* Map.swift */; };
-		0895ECFD2440450B00F9FFE7 /* ForwardLinkedListTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFC2440450B00F9FFE7 /* ForwardLinkedListTests.swift */; };
-		0895ECFF2440451200F9FFE7 /* ForwardLinkedList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */; };
-		0895ED012440531200F9FFE7 /* Stack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED002440531200F9FFE7 /* Stack.swift */; };
-		0895ED032440554500F9FFE7 /* StackTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED022440554500F9FFE7 /* StackTests.swift */; };
 		0895ED052440C65D00F9FFE7 /* StackContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED042440C65D00F9FFE7 /* StackContainer.swift */; };
+		0898B22924488ABB008D90B8 /* datastructures in Frameworks */ = {isa = PBXBuildFile; productRef = 0898B22824488ABB008D90B8 /* datastructures */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,11 +40,9 @@
 		0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadthFirstSearch.swift; sourceTree = "<group>"; };
 		0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadthFirstSearchTests.swift; sourceTree = "<group>"; };
 		0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateableGraph.swift; sourceTree = "<group>"; };
-		0837F6BF2444ABC20075AA66 /* Queue.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Queue.swift; sourceTree = "<group>"; };
 		0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueFactory.swift; sourceTree = "<group>"; };
 		0867E2B12445B37B00EC5CC9 /* FloodFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodFill.swift; sourceTree = "<group>"; };
 		0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTypes.swift; sourceTree = "<group>"; };
-		0867E2B52445B7BD00EC5CC9 /* QueueArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueArray.swift; sourceTree = "<group>"; };
 		0867E2B92445DDF300EC5CC9 /* MapTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTile.swift; sourceTree = "<group>"; };
 		0867E2BB2445DE2000EC5CC9 /* MapTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTypes.swift; sourceTree = "<group>"; };
 		0867E2BD2445DEF200EC5CC9 /* MapPos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPos.swift; sourceTree = "<group>"; };
@@ -62,10 +55,6 @@
 		087EF3B0243F604B0030720F /* MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
 		087EF3B2243F604B0030720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		087EF3BC243F61540030720F /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		0895ECFC2440450B00F9FFE7 /* ForwardLinkedListTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardLinkedListTests.swift; sourceTree = "<group>"; };
-		0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ForwardLinkedList.swift; sourceTree = "<group>"; };
-		0895ED002440531200F9FFE7 /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
-		0895ED022440554500F9FFE7 /* StackTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackTests.swift; sourceTree = "<group>"; };
 		0895ED042440C65D00F9FFE7 /* StackContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -74,6 +63,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0898B22924488ABB008D90B8 /* datastructures in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -94,7 +84,6 @@
 				0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */,
 				0895ED042440C65D00F9FFE7 /* StackContainer.swift */,
 				0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */,
-				0837F6BF2444ABC20075AA66 /* Queue.swift */,
 				0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */,
 			);
 			path = protocols;
@@ -114,10 +103,7 @@
 		0867E2C02445E1FD00EC5CC9 /* algorithms */ = {
 			isa = PBXGroup;
 			children = (
-				0895ECFE2440451200F9FFE7 /* ForwardLinkedList.swift */,
 				0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */,
-				0895ED002440531200F9FFE7 /* Stack.swift */,
-				0867E2B52445B7BD00EC5CC9 /* QueueArray.swift */,
 			);
 			path = algorithms;
 			sourceTree = "<group>";
@@ -165,10 +151,8 @@
 		087EF3AF243F604B0030720F /* mapsterTests */ = {
 			isa = PBXGroup;
 			children = (
-				0895ECFC2440450B00F9FFE7 /* ForwardLinkedListTests.swift */,
 				087EF3B0243F604B0030720F /* MapTests.swift */,
 				087EF3B2243F604B0030720F /* Info.plist */,
-				0895ED022440554500F9FFE7 /* StackTests.swift */,
 				0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */,
 				0867E2C12445E2E500EC5CC9 /* FloodFillTests.swift */,
 			);
@@ -203,6 +187,9 @@
 			dependencies = (
 			);
 			name = mapster;
+			packageProductDependencies = (
+				0898B22824488ABB008D90B8 /* datastructures */,
+			);
 			productName = mapster;
 			productReference = 087EF3A2243F604B0030720F /* mapster.framework */;
 			productType = "com.apple.product-type.framework";
@@ -253,6 +240,9 @@
 				Base,
 			);
 			mainGroup = 087EF398243F604B0030720F;
+			packageReferences = (
+				0898B22724488ABB008D90B8 /* XCRemoteSwiftPackageReference "datastructures" */,
+			);
 			productRefGroup = 087EF3A3243F604B0030720F /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -288,17 +278,13 @@
 				0867E2BA2445DDF300EC5CC9 /* MapTile.swift in Sources */,
 				0867E2B42445B3EE00EC5CC9 /* GraphTypes.swift in Sources */,
 				0867E2B02445AFD300EC5CC9 /* QueueFactory.swift in Sources */,
-				0895ECFF2440451200F9FFE7 /* ForwardLinkedList.swift in Sources */,
 				0867E2BC2445DE2000EC5CC9 /* MapTypes.swift in Sources */,
 				0867E2BE2445DEF200EC5CC9 /* MapPos.swift in Sources */,
 				0895ED052440C65D00F9FFE7 /* StackContainer.swift in Sources */,
 				0837F6BE2444ABA30075AA66 /* NavigateableGraph.swift in Sources */,
-				0837F6C02444ABC20075AA66 /* Queue.swift in Sources */,
 				0867E2B22445B37B00EC5CC9 /* FloodFill.swift in Sources */,
 				0867E2C52446279D00EC5CC9 /* MapExtension.swift in Sources */,
-				0867E2B62445B7BD00EC5CC9 /* QueueArray.swift in Sources */,
 				087EF3BD243F61540030720F /* Map.swift in Sources */,
-				0895ED012440531200F9FFE7 /* Stack.swift in Sources */,
 				0837F6B72441F77E0075AA66 /* BreadthFirstSearch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -307,11 +293,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0895ECFD2440450B00F9FFE7 /* ForwardLinkedListTests.swift in Sources */,
 				0837F6B92442326C0075AA66 /* BreadthFirstSearchTests.swift in Sources */,
 				087EF3B1243F604B0030720F /* MapTests.swift in Sources */,
 				0867E2C22445E2E500EC5CC9 /* FloodFillTests.swift in Sources */,
-				0895ED032440554500F9FFE7 /* StackTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -565,6 +549,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		0898B22724488ABB008D90B8 /* XCRemoteSwiftPackageReference "datastructures" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:chrisgroe/datastructures.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		0898B22824488ABB008D90B8 /* datastructures */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0898B22724488ABB008D90B8 /* XCRemoteSwiftPackageReference "datastructures" */;
+			productName = datastructures;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 087EF399243F604B0030720F /* Project object */;
 }

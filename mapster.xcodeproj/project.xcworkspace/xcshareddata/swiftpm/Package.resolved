@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "datastructures",
+        "repositoryURL": "git@github.com:chrisgroe/datastructures.git",
+        "state": {
+          "branch": "master",
+          "revision": "d868b23706b8772b0b1b0a5465dafcd240cd2f5c",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

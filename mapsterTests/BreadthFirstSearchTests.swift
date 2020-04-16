@@ -8,6 +8,8 @@
 
 import Foundation
 import XCTest
+import datastructures
+
 @testable import mapster
 
 class BreadthFirstSearchTests: XCTestCase {

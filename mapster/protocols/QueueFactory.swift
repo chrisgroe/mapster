@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import datastructures
 
 /// Factory protocol to create an queue conforming the QueueProcotol
 protocol QueueFactory {
