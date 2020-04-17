@@ -21,7 +21,6 @@
 		087EF3B1243F604B0030720F /* MapTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3B0243F604B0030720F /* MapTests.swift */; };
 		087EF3B3243F604B0030720F /* mapster.h in Headers */ = {isa = PBXBuildFile; fileRef = 087EF3A5243F604B0030720F /* mapster.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		087EF3BD243F61540030720F /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3BC243F61540030720F /* Map.swift */; };
-		0895ED052440C65D00F9FFE7 /* StackContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0895ED042440C65D00F9FFE7 /* StackContainer.swift */; };
 		0898B22924488ABB008D90B8 /* datastructures in Frameworks */ = {isa = PBXBuildFile; productRef = 0898B22824488ABB008D90B8 /* datastructures */; };
 /* End PBXBuildFile section */
 
@@ -53,7 +52,6 @@
 		087EF3B0243F604B0030720F /* MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
 		087EF3B2243F604B0030720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		087EF3BC243F61540030720F /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		0895ED042440C65D00F9FFE7 /* StackContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StackContainer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,7 +78,6 @@
 			isa = PBXGroup;
 			children = (
 				0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */,
-				0895ED042440C65D00F9FFE7 /* StackContainer.swift */,
 				0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */,
 			);
 			path = protocols;
@@ -276,7 +273,6 @@
 				0867E2B42445B3EE00EC5CC9 /* GraphTypes.swift in Sources */,
 				0867E2BC2445DE2000EC5CC9 /* MapTypes.swift in Sources */,
 				0867E2BE2445DEF200EC5CC9 /* MapPos.swift in Sources */,
-				0895ED052440C65D00F9FFE7 /* StackContainer.swift in Sources */,
 				0837F6BE2444ABA30075AA66 /* NavigateableGraph.swift in Sources */,
 				0867E2B22445B37B00EC5CC9 /* FloodFill.swift in Sources */,
 				0867E2C52446279D00EC5CC9 /* MapExtension.swift in Sources */,
