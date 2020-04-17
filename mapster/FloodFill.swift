@@ -12,6 +12,10 @@ import datastructures
 import datastructures
 
 public class FloodFill {
+    
+    /// A datastructure to hold closed vertices
+    /// - Note: A map is a 2d array, in this case an array can be used as closed list. This is a bit faster than using
+    ///         a Set.
     private struct MapClosedList<T> : GraphClosedList {
         typealias Vertex = MapTypes<T>.Vertex
         let xlen : Int
