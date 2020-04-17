@@ -168,5 +168,25 @@ public struct Map<T> : NavigatableGraph
         
         return NeighborIterator(vertex.x, vertex.y, self)
     }
-    
+}
+
+extension Map : CustomStringConvertible {
+    public var description: String {
+        var str = ""
+
+        for (idx, row) in map.enumerated() {
+            for col in row {
+
+                if let cellCh = col as? CharacterRepresentable {
+                    str += String(cellCh.characterRepresentation)
+                } else {
+                    str += "."
+                }
+            }
+            if idx != map.count-1 {
+                str += "\n"
+            }
+        }
+        return str
+    }
 }

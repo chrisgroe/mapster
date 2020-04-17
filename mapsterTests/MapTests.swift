@@ -11,7 +11,15 @@ import XCTest
 
 class MapTests: XCTestCase {
 
-    struct MockTile: Equatable {
+    struct MockTile: Equatable, CharacterRepresentable {
+        var characterRepresentation: Character {
+            ch
+        }
+
+        var description: String {
+            return String(ch)
+        }
+
         let x : Int
         let y : Int
         let ch : Character
@@ -177,6 +185,22 @@ class MapTests: XCTestCase {
         
         XCTAssertEqual(iteratorToArray(res11), [MapPos(x:2,y:1), MapPos(x:1,y:2), MapPos(x:0,y:1), MapPos(x:1,y:0)])
     }
-    
+
+    func test_customStringConvertible() {
+        let expected = """
+            ..
+            .X
+            """
+        let map = Map(expected,  {(pos, ch) in
+            MockTile(x:pos.x,y:pos.y, ch:ch)
+        })
+
+        let actual  = map?.description
+
+        XCTAssertEqual(actual, expected )
+
+
+
+    }
     
 }
