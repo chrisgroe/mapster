@@ -15,12 +15,19 @@ protocol GraphClosedList {
     mutating func isClosed(_ vertex : Vertex) -> Bool
 }
 
+protocol GraphOpenedList {
+    associatedtype Vertex
+    mutating func push(_ vertex : Vertex)
+    mutating func pop() -> Vertex?
+}
+
+
 protocol BreadthFirstSearchTypes {
     associatedtype GT : GraphTypes where GT.Vertex : Hashable
     typealias Vertex = GT.Vertex
     typealias NavGraph = GT.NavGraph
     associatedtype ClosedList : GraphClosedList where ClosedList.Vertex == Vertex
-    associatedtype QFactory : QueueFactory where QFactory.QueueType.Element == Vertex
+    associatedtype OpenedList : GraphOpenedList where OpenedList.Vertex == Vertex
 }
 
 
@@ -30,31 +37,24 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
 {
     typealias Vertex = T.Vertex
     typealias NavGraph = T.NavGraph
-    typealias QFactory = T.QFactory
     typealias ClosedList = T.ClosedList
-
-    private var queueFactory : QFactory
-    
-    init (queueFactory : QFactory)  {
-        self.queueFactory = queueFactory
-    }
+    typealias OpenedList = T.OpenedList
     
     /// Traverses the given graph
     /// - Parameters:
     ///     - start: One vertex of the graph where the traversal should begin.
     ///     - navGraph: A class which implements the graph NavigatableGraph protocol.
     ///     - visitor: This function is called everytime a vertex is opended by the algorithmn
-    func traverse( start : Vertex, navGraph : NavGraph,  closedList : inout ClosedList, visitor: (_ coords : Vertex) ->() )
+    static func traverse( start : Vertex, navGraph : NavGraph,  openedList: inout OpenedList, closedList : inout ClosedList, visitor: (_ coords : Vertex) ->() )
     {
         // no not allow traversal from blocked node
         if navGraph.isBlocked(start) {
             return
         }
-        var queue = queueFactory.create()
-        queue.push(start)
+        openedList.push(start)
         closedList.add(start)
         
-        while let pos = queue.pop() {
+        while let pos = openedList.pop() {
             
             // visit the node
             visitor(pos)
@@ -65,7 +65,7 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
             // enqueue connections if they are navigatable and not blocked
             while let neighbour = neighbors.next() {
                 if closedList.isClosed(neighbour) == false && navGraph.isBlocked(neighbour) == false {
-                    queue.push(neighbour)
+                    openedList.push(neighbour)
                     closedList.add(pos)
 
                 }

@@ -10,7 +10,6 @@
 		0837F6B72441F77E0075AA66 /* BreadthFirstSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */; };
 		0837F6B92442326C0075AA66 /* BreadthFirstSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */; };
 		0837F6BE2444ABA30075AA66 /* NavigateableGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */; };
-		0867E2B02445AFD300EC5CC9 /* QueueFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */; };
 		0867E2B22445B37B00EC5CC9 /* FloodFill.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B12445B37B00EC5CC9 /* FloodFill.swift */; };
 		0867E2B42445B3EE00EC5CC9 /* GraphTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */; };
 		0867E2BA2445DDF300EC5CC9 /* MapTile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0867E2B92445DDF300EC5CC9 /* MapTile.swift */; };
@@ -40,7 +39,6 @@
 		0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadthFirstSearch.swift; sourceTree = "<group>"; };
 		0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadthFirstSearchTests.swift; sourceTree = "<group>"; };
 		0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateableGraph.swift; sourceTree = "<group>"; };
-		0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QueueFactory.swift; sourceTree = "<group>"; };
 		0867E2B12445B37B00EC5CC9 /* FloodFill.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloodFill.swift; sourceTree = "<group>"; };
 		0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphTypes.swift; sourceTree = "<group>"; };
 		0867E2B92445DDF300EC5CC9 /* MapTile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTile.swift; sourceTree = "<group>"; };
@@ -84,7 +82,6 @@
 				0867E2B32445B3EE00EC5CC9 /* GraphTypes.swift */,
 				0895ED042440C65D00F9FFE7 /* StackContainer.swift */,
 				0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */,
-				0867E2AF2445AFD300EC5CC9 /* QueueFactory.swift */,
 			);
 			path = protocols;
 			sourceTree = "<group>";
@@ -277,7 +274,6 @@
 			files = (
 				0867E2BA2445DDF300EC5CC9 /* MapTile.swift in Sources */,
 				0867E2B42445B3EE00EC5CC9 /* GraphTypes.swift in Sources */,
-				0867E2B02445AFD300EC5CC9 /* QueueFactory.swift in Sources */,
 				0867E2BC2445DE2000EC5CC9 /* MapTypes.swift in Sources */,
 				0867E2BE2445DEF200EC5CC9 /* MapPos.swift in Sources */,
 				0895ED052440C65D00F9FFE7 /* StackContainer.swift in Sources */,

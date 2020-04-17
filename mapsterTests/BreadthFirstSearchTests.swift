@@ -14,6 +14,8 @@ import datastructures
 
 class BreadthFirstSearchTests: XCTestCase {
     
+    typealias Bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>
+    
     struct MockVertex : Hashable{
         var x : Int
         var y : Int
@@ -62,16 +64,7 @@ class BreadthFirstSearchTests: XCTestCase {
         }
     }
     
-    struct MockQueueFactory : QueueFactory {
-        typealias QueueType = MockQueue
-        
-        let mockQueue : MockQueue
-        func create() -> QueueType {
-            return mockQueue
-        }
-    }
-    
-    struct MockVisited : GraphClosedList {
+    struct MockClosedList : GraphClosedList {
         typealias Vertex = MockVertex
         
         var set = Set<Vertex>()
@@ -84,6 +77,18 @@ class BreadthFirstSearchTests: XCTestCase {
         }
     }
     
+    struct MockOpenedList : GraphOpenedList {
+        typealias Vertex = MockVertex
+        var queue = MockQueue()
+        mutating func push(_ vertex: Vertex) {
+            queue.push(vertex)
+        }
+        
+        mutating func pop() -> Vertex? {
+            return queue.pop()
+        }
+    }
+    
     struct MockGraphTypeTraits : GraphTypes {
         typealias Vertex = MockVertex
         typealias NavGraph = MockNavigatableGraph
@@ -91,8 +96,8 @@ class BreadthFirstSearchTests: XCTestCase {
     
     struct MockBreadthFirstSearchTraits : BreadthFirstSearchTypes {
         typealias GT = MockGraphTypeTraits
-        typealias QFactory = MockQueueFactory
-        typealias ClosedList = MockVisited
+        typealias ClosedList = MockClosedList
+        typealias OpenedList = MockOpenedList
     }
     
     func test_traverse_withSingleNodeWithoutNeighbours() {
@@ -107,21 +112,20 @@ class BreadthFirstSearchTests: XCTestCase {
         
         let mockNavGraph = MockNavigatableGraph()
         mockNavGraph.testVector = [] // no neighbours
-        
-        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
-        
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory:mockQueueFactory)
-        
+                
         var visited : [MockVertex] = []
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
         
-        var closedList = MockVisited()
+        var closedList = MockClosedList()
+        var openedList = MockOpenedList()
+        openedList.queue = mockQueue
         
-        bfs.traverse(
+        Bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            openedList: &openedList,
             closedList: &closedList,
             visitor:visitor
         )
@@ -143,22 +147,20 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavGraph = MockNavigatableGraph()
         mockNavGraph.isBlocked = {p in p.x==0 && p.y==0}
         mockNavGraph.testVector = [[MockVertex(x: 1, y: 1)]] // no neighbours
-        
-        
-        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
-        
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory:mockQueueFactory)
-        
+                
         var visited : [MockVertex] = []
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
         
-        var closedList = MockVisited()
+        var closedList = MockClosedList()
+        var openedList = MockOpenedList()
+        openedList.queue = mockQueue
         
-        bfs.traverse(
+        Bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            openedList: &openedList,
             closedList: &closedList,
             visitor:visitor
         )
@@ -181,19 +183,19 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavGraph = MockNavigatableGraph()
         mockNavGraph.testVector = [[MockVertex(x:0, y:0)]]
         
-        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
-        
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
-        
         var visited : [MockVertex] = []
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
-        var closedList = MockVisited()
+
+        var closedList = MockClosedList()
+        var openedList = MockOpenedList()
+        openedList.queue = mockQueue
         
-        bfs.traverse(
+        Bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            openedList: &openedList,
             closedList: &closedList,
             visitor:visitor
         )
@@ -213,21 +215,19 @@ class BreadthFirstSearchTests: XCTestCase {
         
         let mockNavGraph = MockNavigatableGraph()
         mockNavGraph.testVector = [[MockVertex(x:1, y:0)]] // result of neighbor query
-        
-        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
-        
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
-        
+                
         var visited : [MockVertex] = []
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
-        var closedList = MockVisited()
+        var closedList = MockClosedList()
+        var openedList = MockOpenedList()
+        openedList.queue = mockQueue
         
-        
-        bfs.traverse(
+        Bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            openedList: &openedList,
             closedList: &closedList,
             visitor:visitor
         )
@@ -247,20 +247,19 @@ class BreadthFirstSearchTests: XCTestCase {
         
         let mockNavGraph = MockNavigatableGraph()
         mockNavGraph.testVector = [[MockVertex(x:1, y:0)]] // result of neighbor query
-        
-        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
-        
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
-        
+                
         var visited : [MockVertex] = []
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
-        var closedList = MockVisited()
+        var closedList = MockClosedList()
+        var openedList = MockOpenedList()
+        openedList.queue = mockQueue
         
-        bfs.traverse(
+        Bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            openedList: &openedList,
             closedList: &closedList,
             visitor:visitor
         )
@@ -281,20 +280,19 @@ class BreadthFirstSearchTests: XCTestCase {
         let mockNavGraph = MockNavigatableGraph()
         mockNavGraph.testVector = [[MockVertex(x:1, y:0), MockVertex(x:0, y:0)]] // result of neighbor query
         
-        let mockQueueFactory = MockQueueFactory(mockQueue: mockQueue)
-        let bfs = BreadthFirstSearch<MockBreadthFirstSearchTraits>(queueFactory: mockQueueFactory)
-        
         var visited : [MockVertex] = []
         func visitor(_ coords : MockVertex) {
             visited.append(coords)
         }
         
-        var closedList = MockVisited()
+        var closedList = MockClosedList()
+        var openedList = MockOpenedList()
+        openedList.queue = mockQueue
         
-        
-        bfs.traverse(
+        Bfs.traverse(
             start: MockVertex(x:0,y:0),
             navGraph: mockNavGraph,
+            openedList: &openedList,
             closedList: &closedList,
             visitor:visitor
         )

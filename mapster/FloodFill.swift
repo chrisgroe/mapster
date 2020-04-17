@@ -12,14 +12,6 @@ import datastructures
 import datastructures
 
 public class FloodFill {
-    private struct QueueForMapVertexFactory<T> : QueueFactory {
-        typealias Vertex = MapTypes<T>.Vertex
-        
-        func create() -> QueueArray<Vertex> {
-            return QueueArray<Vertex>()
-        }
-    }
-    
     private struct MapClosedList<T> : GraphClosedList {
         typealias Vertex = MapTypes<T>.Vertex
         let xlen : Int
@@ -39,20 +31,36 @@ public class FloodFill {
         }
     }
     
+    private struct MapOpenedList<T> : GraphOpenedList {
+        typealias Vertex = MapTypes<T>.Vertex
+        
+        var queue = QueueArray<Vertex>()
+        mutating func push(_ vertex: Vertex) {
+            queue.push(vertex)
+        }
+        
+        mutating func pop() -> Vertex? {
+            return queue.pop()
+        }
+        
+        
+    }
 
     private struct BFSTypes<T> : BreadthFirstSearchTypes {
         typealias GT = MapTypes<T>
-        typealias QFactory = QueueForMapVertexFactory<T>
         typealias ClosedList = MapClosedList<T>
+        typealias OpenedList = MapOpenedList<T>
+        
     }
 
     public static func floodFill<T>(start:MapPos, map: Map<T>, _ factory: (_ pos : MapPos)->T) -> Map<T> {
         
-        let bfs = BreadthFirstSearch<BFSTypes<T>>(queueFactory: QueueForMapVertexFactory())
+        typealias bfs = BreadthFirstSearch<BFSTypes<T>>
         var closedList = MapClosedList<T>(map.xlen, map.ylen)
+        var openedList = MapOpenedList<T>()
         var floodedMap = map // copy
         
-        bfs.traverse(start: start, navGraph: map, closedList: &closedList, visitor: { p in
+        bfs.traverse(start: start, navGraph: map, openedList: &openedList, closedList: &closedList, visitor: { p in
             floodedMap[p] = factory(p)
         })
         
