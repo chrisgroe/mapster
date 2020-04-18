@@ -15,11 +15,12 @@ class MapBreadthFirstTraversalTests: XCTestCase {
         let map = Map<MapTile>(100, 100, {p in
             MapTile(data: "O")
         })
-        
-        let resMap = MapBreadthFirstTraversal.traverse(
+        var resMap = map
+
+        MapBreadthFirstTraversal.traverse(
             start: MapPos(x: 50, y:50),
             map: map,
-            visitor: {p in MapTile(data: "X")}
+            visitor: {p in resMap[p] = MapTile(data: "X")}
         )
         
         for x in 0..<100 {
@@ -35,10 +36,11 @@ class MapBreadthFirstTraversalTests: XCTestCase {
             MapTile(data: "O")
         })
 
-        let resMap = MapBreadthFirstTraversal.traverse(
+        var resMap = map
+        MapBreadthFirstTraversal.traverse(
             start: MapPos(x: 25, y:50),
             map: map,
-            visitor: {p in MapTile(data: "X")},
+            visitor: {p in resMap[p] = MapTile(data: "X")},
             isBlocked: {p in
                 if p.x>=50 {
                     return true

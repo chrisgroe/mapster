@@ -9,13 +9,13 @@
 import Foundation
 
 
-extension Map where Element == MapTile{
+extension Map {
     
     func bfsTraverse(
         start: MapPos,
-        visitor: (_ pos : MapPos)->MapTile,
+        visitor: (_ pos : MapPos)->(),
         isBlocked: (_ pos: MapPos) -> Bool = {p in false}
-    ) -> Map<MapTile> {
+    ) {
         return MapBreadthFirstTraversal.traverse(start: start, map: self, visitor: visitor, isBlocked: isBlocked)
     }
 }

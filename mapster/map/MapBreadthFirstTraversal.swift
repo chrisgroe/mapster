@@ -61,28 +61,21 @@ public class MapBreadthFirstTraversal
     public static func traverse<T>(
         start:MapPos,
         map: Map<T>,
-        visitor: (_ pos : MapPos)->T,
+        visitor: (_ pos : MapPos)->(),
         isBlocked: (_ pos : MapPos)->Bool = {p in false}
-    ) -> Map<T> {
+    ) {
         
         typealias bfs = BreadthFirstSearch<BFSTypes<T>>
         var closedList = MapClosedList<T>(map.xlen, map.ylen)
         var openedList = MapOpenedList<T>()
-        var floodedMap = map // copy
-        
+ 
         bfs.traverse(start: start,
                      navGraph: map,
                      openedList: &openedList,
                      closedList: &closedList,
-                     visitor: { p in
-                        floodedMap[p] = visitor(p)
-                     },
-                     isBlocked: { p in
-                        isBlocked(p)
-                    }
+                     visitor: visitor,
+                     isBlocked: isBlocked
         )
-        
-        return floodedMap
     }
 }
 

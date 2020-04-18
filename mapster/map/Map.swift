@@ -171,13 +171,13 @@ public struct Map<T> : NavigatableGraph
 }
 
 extension Map {
-    public func createStringView(_ mapToChar : (_ vertex : Vertex) -> Character) -> String {
+    public func createStringView(_ mapToChar : (_ element : Element) -> Character) -> String {
         var str = ""
 
         for y in 0..<ylen {
             for x in 0..<xlen {
 
-                str += String(mapToChar(Vertex(x: x, y: y)))
+                str += String(mapToChar(self[x,y]))
             }
 
             if y != ylen-1 {

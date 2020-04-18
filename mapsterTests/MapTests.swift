@@ -164,7 +164,7 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y, ch:ch)
         })
 
-        let actual  = map.createStringView{ map[$0].ch }
+        let actual  = map.createStringView{ $0.ch }
 
         XCTAssertEqual(actual, expected )
 
