@@ -8,16 +8,15 @@
 
 import Foundation
 
-protocol Shape {
+protocol RadialShape {
     associatedtype Element
     var center : (x: Int, y: Int) {
         get
     }
-    func radialFunc(x: Int, y: Int) -> Bool
-
+    func radialFunc(radius : Double, phi: Double ) -> Bool
 }
 
-extension Shape {
+extension RadialShape {
     func draw(map: Map<Element>, transform : (_ element: Element) -> (Element)) -> Map<Element> {
         var result = map // copy
         map.bfsTraverse(
@@ -26,14 +25,17 @@ extension Shape {
                 result[pos] = transform(map[pos])
             },
             isBlocked: {pos in
-                radialFunc(x: pos.x, y: pos.y)
+                let x = pos.x - center.x
+                let y = pos.y - center.y
+                let (radius, phi) = PolarTransformation.discreteCartesianToPolar(x, y)
+                return radialFunc(radius: radius, phi: phi)
             }
         )
         return result
     }
 }
 
-struct RadialShape<T> : Shape {
+struct SquareShape<T> : RadialShape {
     typealias Element = T
     var mid: MapPos
     var center : (x: Int, y: Int) {
@@ -47,7 +49,31 @@ struct RadialShape<T> : Shape {
         self.length = length
     }
 
-    func radialFunc(x: Int, y: Int) -> Bool {
-        return abs(x-mid.x) >= length || abs(y-mid.y) >= length
+    func radialFunc(radius : Double, phi: Double) -> Bool {
+        // convert polar coordinates back to cartesian ones. This
+        // is a lot easiert to handle than trying to represent the square
+        // in polar coordinates
+        let (x, y) = PolarTransformation.polarToDiscreteCartesian(radius, phi)
+        return abs(x) >= self.length || abs(y) >= self.length
     }
 }
+
+struct CircleShape<T> : RadialShape {
+    typealias Element = T
+    var mid: MapPos
+    var center : (x: Int, y: Int) {
+        get {
+            return (x: mid.x, y: mid.y)
+        }
+    }
+    var radius : Double
+    init(_ mid: MapPos, _ radius: Double ) {
+        self.mid = mid
+        self.radius = radius
+    }
+
+    func radialFunc(radius : Double, phi: Double) -> Bool {
+        return radius > self.radius
+    }
+}
+

@@ -11,7 +11,7 @@ import XCTest
 @testable import mapster
 
 
-class RectangleTest: XCTestCase {
+class ShapeTest: XCTestCase {
     struct MockTile {
         var ch : Character
     }
@@ -25,8 +25,8 @@ class RectangleTest: XCTestCase {
         """) { (v, ch) in
             MockTile(ch:ch)
         }
-
-        let square = RadialShape<MockTile>(MapPos(x: 2, y: 2), 1)
+        
+        let square = SquareShape<MockTile>(MapPos(x: 2, y: 2), 1)
         let resultMap = square.draw(map: map, transform: {
             pos in
             MockTile(ch: "X")
@@ -34,7 +34,7 @@ class RectangleTest: XCTestCase {
         let actual = resultMap.createStringView{
             $0.ch
         }
-
+        
         let expected = """
         OOOOO
         OOOOO
@@ -44,7 +44,7 @@ class RectangleTest: XCTestCase {
         """
         XCTAssertEqual(actual, expected)
     }
-
+    
     func test_draw_symmetricalSquareLength2() {
         let map = Map<MockTile>("""
         OOOOO
@@ -55,8 +55,8 @@ class RectangleTest: XCTestCase {
         """) { (v, ch) in
             MockTile(ch:ch)
         }
-
-        let square = RadialShape<MockTile>(MapPos(x: 2, y: 2), 2)
+        
+        let square = SquareShape<MockTile>(MapPos(x: 2, y: 2), 2)
         let resultMap = square.draw(map: map, transform: {
             pos in
             MockTile(ch: "X")
@@ -64,7 +64,7 @@ class RectangleTest: XCTestCase {
         let actual = resultMap.createStringView{
             $0.ch
         }
-
+        
         let expected = """
         OOOOO
         OXXXO
@@ -74,37 +74,39 @@ class RectangleTest: XCTestCase {
         """
         XCTAssertEqual(actual, expected)
     }
-
+    
     func test_draw_symmetricalSquareLength3() {
-           let map = Map<MockTile>("""
-           OOOOO
-           OOOOO
-           OOOOO
-           OOOOO
-           OOOOO
+        let map = Map<MockTile>("""
+           OOOOOO
+           OOOOOO
+           OOOOOO
+           OOOOOO
+           OOOOOO
+           OOOOOO
            """) { (v, ch) in
-               MockTile(ch:ch)
-           }
-
-           let square = RadialShape<MockTile>(MapPos(x: 2, y: 2), 3)
-           let resultMap = square.draw(map: map, transform: {
-               pos in
-               MockTile(ch: "X")
-           })
-           let actual = resultMap.createStringView{
-               $0.ch
-           }
-
-           let expected = """
-           XXXXX
-           XXXXX
-           XXXXX
-           XXXXX
-           XXXXX
+            MockTile(ch:ch)
+        }
+        
+        let square = SquareShape<MockTile>(MapPos(x: 2, y: 2), 3)
+        let resultMap = square.draw(map: map, transform: {
+            pos in
+            MockTile(ch: "X")
+        })
+        let actual = resultMap.createStringView{
+            $0.ch
+        }
+        
+        let expected = """
+           XXXXXO
+           XXXXXO
+           XXXXXO
+           XXXXXO
+           XXXXXO
+           OOOOOO
            """
-           XCTAssertEqual(actual, expected)
-       }
-
+        XCTAssertEqual(actual, expected)
+    }
+    
     func test_draw_asymmetricalSquareLength2() {
         let map = Map<MockTile>("""
         OOOOO
@@ -115,8 +117,8 @@ class RectangleTest: XCTestCase {
         """) { (v, ch) in
             MockTile(ch:ch)
         }
-
-        let square = RadialShape<MockTile>(MapPos(x: 1, y: 1), 2)
+        
+        let square = SquareShape<MockTile>(MapPos(x: 1, y: 1), 2)
         let resultMap = square.draw(map: map, transform: {
             pos in
             MockTile(ch: "X")
@@ -124,7 +126,7 @@ class RectangleTest: XCTestCase {
         let actual = resultMap.createStringView{
             $0.ch
         }
-
+        
         let expected = """
         XXXOO
         XXXOO
@@ -134,4 +136,39 @@ class RectangleTest: XCTestCase {
         """
         XCTAssertEqual(actual, expected)
     }
+    
+    func test_draw_circleRadius3() {
+        let map = Map<MockTile>("""
+        OOOOOOO
+        OOOOOOO
+        OOOOOOO
+        OOOOOOO
+        OOOOOOO
+        OOOOOOO
+        OOOOOOO
+        """) { (v, ch) in
+            MockTile(ch:ch)
+        }
+        
+        let square = CircleShape<MockTile>(MapPos(x: 3, y: 3), 2.0)
+        let resultMap = square.draw(map: map, transform: {
+            pos in
+            MockTile(ch: "X")
+        })
+        let actual = resultMap.createStringView{
+            $0.ch
+        }
+        
+        let expected = """
+        OOOOOOO
+        OOOXOOO
+        OOXXXOO
+        OXXXXXO
+        OOXXXOO
+        OOOXOOO
+        OOOOOOO
+        """
+        XCTAssertEqual(actual, expected)
+    }
+    
 }
