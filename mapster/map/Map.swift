@@ -11,22 +11,20 @@ import Foundation
 
 public struct Map<T> : NavigatableGraph
 {
-    typealias Vertex = MapPos
-    typealias Element = T
+    public typealias Vertex = MapPos
+    public typealias Element = T
      
     var map : Array<Array<Element>>
     let xlen : Int
     let ylen : Int
     
-    var isBlocked : (_ pos : MapPos) -> Bool = {p in return false}
-    
-    init?(_ xlen: Int, _ ylen: Int, _ factory: (_ pos : MapPos)->T) {
-        
+    init(_ xlen: Int, _ ylen: Int, _ factory: (_ pos : MapPos)->T) {
+
+        precondition(xlen>0, "xlen must be >0")
+        precondition(ylen>0, "ylen must be >0")
         self.xlen = xlen
         self.ylen = ylen
-        guard xlen>0 && ylen>0 else {
-            return nil
-        }
+
         
         map = Array<Array<T>>(repeating: Array<T>(), count: xlen)
         for (x, var row) in map.enumerated() {
@@ -37,7 +35,9 @@ public struct Map<T> : NavigatableGraph
         }
     }
     
-    init?(_ mapString : String, _ factory: (_ pos : MapPos, _ ch: Character)->T) {
+    init(_ mapString : String, _ factory: (_ pos : MapPos, _ ch: Character)->T) {
+
+        assert(mapString != "")
         
         let mapLines = mapString.split(separator: "\n")
         var chars = Array<Array<Character>>()
@@ -170,20 +170,17 @@ public struct Map<T> : NavigatableGraph
     }
 }
 
-extension Map : CustomStringConvertible {
-    public var description: String {
+extension Map {
+    public func createStringView(_ mapToChar : (_ vertex : Vertex) -> Character) -> String {
         var str = ""
 
-        for (idx, row) in map.enumerated() {
-            for col in row {
+        for y in 0..<ylen {
+            for x in 0..<xlen {
 
-                if let cellCh = col as? CharacterRepresentable {
-                    str += String(cellCh.characterRepresentation)
-                } else {
-                    str += "."
-                }
+                str += String(mapToChar(Vertex(x: x, y: y)))
             }
-            if idx != map.count-1 {
+
+            if y != ylen-1 {
                 str += "\n"
             }
         }

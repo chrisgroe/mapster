@@ -11,12 +11,13 @@ import XCTest
 @testable import mapster
 
 
-class RectangleTest {
+class RectangleTest: XCTestCase {
     struct MockTile {
         var ch : Character
     }
     func test_draw_symmetricalSquare() {
-        var map = Map<MockTile>("""
+        let map = Map<MockTile>("""
+        OOOOO
         OOOOO
         OOOOO
         OOOOO
@@ -24,5 +25,17 @@ class RectangleTest {
         """) { (v, ch) in
             MockTile(ch:ch)
         }
+        let actual = map.createStringView{
+            map[$0].ch
+        }
+
+        let expected = """
+        OOOOO
+        OXXXO
+        OXXXO
+        OXXXO
+        OOOOO
+        """
+        XCTAssertEqual(actual, expected)
     }
 }

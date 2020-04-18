@@ -11,8 +11,12 @@ import Foundation
 
 extension Map where Element == MapTile{
     
-    func floodFill(_ pos:MapPos, _ factory: (_ pos : MapPos)->MapTile) -> Map<MapTile> {
-        return FloodFill.floodFill(start: pos, map: self, factory)
+    func floodFill(
+        pos: MapPos,
+        visitor: (_ pos : MapPos)->MapTile,
+        isBlocked: (_ pos: MapPos) -> Bool = {p in false}
+    ) -> Map<MapTile> {
+        return FloodFill.floodFill(start: pos, map: self, visitor: visitor, isBlocked: isBlocked)
     }
 }
 

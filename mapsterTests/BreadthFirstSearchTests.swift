@@ -162,7 +162,8 @@ class BreadthFirstSearchTests: XCTestCase {
             navGraph: mockNavGraph,
             openedList: &openedList,
             closedList: &closedList,
-            visitor:visitor
+            visitor:visitor,
+            isBlocked: {p in p.x==0 && p.y==0}
         )
         
         XCTAssertEqual(visited, [])

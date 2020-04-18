@@ -46,8 +46,6 @@ public class FloodFill {
         mutating func pop() -> Vertex? {
             return queue.pop()
         }
-        
-        
     }
 
     private struct BFSTypes<T> : BreadthFirstSearchTypes {
@@ -57,16 +55,29 @@ public class FloodFill {
         
     }
 
-    public static func floodFill<T>(start:MapPos, map: Map<T>, _ factory: (_ pos : MapPos)->T) -> Map<T> {
+    public static func floodFill<T>(
+        start:MapPos,
+        map: Map<T>,
+        visitor: (_ pos : MapPos)->T,
+        isBlocked: (_ pos : MapPos)->Bool = {p in false}
+    ) -> Map<T> {
         
         typealias bfs = BreadthFirstSearch<BFSTypes<T>>
         var closedList = MapClosedList<T>(map.xlen, map.ylen)
         var openedList = MapOpenedList<T>()
         var floodedMap = map // copy
         
-        bfs.traverse(start: start, navGraph: map, openedList: &openedList, closedList: &closedList, visitor: { p in
-            floodedMap[p] = factory(p)
-        })
+        bfs.traverse(start: start,
+                     navGraph: map,
+                     openedList: &openedList,
+                     closedList: &closedList,
+                     visitor: { p in
+                        floodedMap[p] = visitor(p)
+                     },
+                     isBlocked: { p in
+                        isBlocked(p)
+                    }
+        )
         
         return floodedMap
     }

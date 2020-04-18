@@ -45,10 +45,17 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
     ///     - start: One vertex of the graph where the traversal should begin.
     ///     - navGraph: A class which implements the graph NavigatableGraph protocol.
     ///     - visitor: This function is called everytime a vertex is opended by the algorithmn
-    static func traverse( start : Vertex, navGraph : NavGraph,  openedList: inout OpenedList, closedList : inout ClosedList, visitor: (_ coords : Vertex) ->() )
+    static func traverse(
+        start : Vertex,
+        navGraph : NavGraph,
+        openedList: inout OpenedList,
+        closedList : inout ClosedList,
+        visitor: (_ vertex: Vertex) ->(),
+        isBlocked: (_ vertex: Vertex) -> Bool = {v in false}
+    )
     {
         // no not allow traversal from blocked node
-        if navGraph.isBlocked(start) {
+        if isBlocked(start) {
             return
         }
         openedList.push(start)
@@ -64,7 +71,7 @@ struct BreadthFirstSearch<T : BreadthFirstSearchTypes>
         
             // enqueue connections if they are navigatable and not blocked
             while let neighbour = neighbors.next() {
-                if closedList.isClosed(neighbour) == false && navGraph.isBlocked(neighbour) == false {
+                if closedList.isClosed(neighbour) == false && isBlocked(neighbour) == false {
                     openedList.push(neighbour)
                     closedList.add(pos)
 

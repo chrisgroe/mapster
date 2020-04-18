@@ -8,13 +8,17 @@
 
 import Foundation
 
-class Rectangle {
-    init(_ xmid: Int, _ ymid: Int) {
-
+class Square {
+    var mid : MapPos
+    var length : Int
+    init(_ mid: MapPos, _ length: Int ) {
+        self.mid = mid
+        self.length = length
     }
 
     func draw(map : Map<MapTile>) {
-        
+
+        //FloodFill.floodFill(start: mid, map: map,     )
     }
 
 }

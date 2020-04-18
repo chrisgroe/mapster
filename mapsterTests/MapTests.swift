@@ -11,14 +11,7 @@ import XCTest
 
 class MapTests: XCTestCase {
 
-    struct MockTile: Equatable, CharacterRepresentable {
-        var characterRepresentation: Character {
-            ch
-        }
-
-        var description: String {
-            return String(ch)
-        }
+    struct MockTile: Equatable {
 
         let x : Int
         let y : Int
@@ -41,38 +34,14 @@ class MapTests: XCTestCase {
         }
         return ar
     }
-    
-    func test_init_withXlen0AndYLen6_shouldReturnNil () {
-        let map = Map(0, 6, {pos in
-            MockTile(x:pos.x,y:pos.y)
-        })
-        
-        XCTAssertNil(map)
-    }
-    
-    func test_init_withXlen6AndYLen0_shouldReturnNil() {
-        let map = Map(6, 0, {pos in
-            MockTile(x:pos.x,y:pos.y)
-        })
-        
-        XCTAssertNil(map)
-    }
-    
-    func test_init_withXlenMinus6AndYLen6_shouldReturnNil() {
-        let map = Map(-6, 6, {pos in
-            MockTile(x:pos.x,y:pos.y)
-        })
-        
-        XCTAssertNil(map)
-    }
 
     func test_init_withXlen5AndYLen6_shouldReturnObjectWithSize5x6 () {
         let map = Map(5, 6, {pos in
             MockTile(x:pos.x,y:pos.y)
         })
         
-        XCTAssertEqual(map?.xlen, 5)
-        XCTAssertEqual(map?.ylen, 6)
+        XCTAssertEqual(map.xlen, 5)
+        XCTAssertEqual(map.ylen, 6)
     }
 
     
@@ -81,10 +50,10 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        XCTAssertEqual(map?[0,0], MockTile(x:0,y:0))
-        XCTAssertEqual(map?[1,0], MockTile(x:1,y:0))
-        XCTAssertEqual(map?[0,1], MockTile(x:0,y:1))
-        XCTAssertEqual(map?[1,1], MockTile(x:1,y:1))
+        XCTAssertEqual(map[0,0], MockTile(x:0,y:0))
+        XCTAssertEqual(map[1,0], MockTile(x:1,y:0))
+        XCTAssertEqual(map[0,1], MockTile(x:0,y:1))
+        XCTAssertEqual(map[1,1], MockTile(x:1,y:1))
     }
 
     
@@ -93,15 +62,15 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        map?[0,0] = MockTile(x:0,y:0,ch:"A")
-        map?[1,0] = MockTile(x:1,y:0,ch:"B")
-        map?[0,1] = MockTile(x:0,y:1,ch:"C")
-        map?[1,1] = MockTile(x:1,y:1,ch:"D")
+        map[0,0] = MockTile(x:0,y:0,ch:"A")
+        map[1,0] = MockTile(x:1,y:0,ch:"B")
+        map[0,1] = MockTile(x:0,y:1,ch:"C")
+        map[1,1] = MockTile(x:1,y:1,ch:"D")
         
-        XCTAssertEqual(map?[0,0], MockTile(x:0,y:0,ch: "A"))
-        XCTAssertEqual(map?[1,0], MockTile(x:1,y:0,ch: "B"))
-        XCTAssertEqual(map?[0,1], MockTile(x:0,y:1,ch: "C"))
-        XCTAssertEqual(map?[1,1], MockTile(x:1,y:1,ch: "D"))
+        XCTAssertEqual(map[0,0], MockTile(x:0,y:0,ch: "A"))
+        XCTAssertEqual(map[1,0], MockTile(x:1,y:0,ch: "B"))
+        XCTAssertEqual(map[0,1], MockTile(x:0,y:1,ch: "C"))
+        XCTAssertEqual(map[1,1], MockTile(x:1,y:1,ch: "D"))
     }
     
     
@@ -115,18 +84,18 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y, ch:ch)
         })
         
-        XCTAssertEqual(map?.xlen, 2)
-        XCTAssertEqual(map?.ylen, 2)
+        XCTAssertEqual(map.xlen, 2)
+        XCTAssertEqual(map.ylen, 2)
         
         // y
         //x =01
         // =
         // 0 ..
         // 1 .X
-        XCTAssertEqual(map?[0,0], MockTile(x:0,y:0,ch: "."))
-        XCTAssertEqual(map?[1,0], MockTile(x:1,y:0,ch: "."))
-        XCTAssertEqual(map?[0,1], MockTile(x:0,y:1,ch: "."))
-        XCTAssertEqual(map?[1,1], MockTile(x:1,y:1,ch: "X"))
+        XCTAssertEqual(map[0,0], MockTile(x:0,y:0,ch: "."))
+        XCTAssertEqual(map[1,0], MockTile(x:1,y:0,ch: "."))
+        XCTAssertEqual(map[0,1], MockTile(x:0,y:1,ch: "."))
+        XCTAssertEqual(map[1,1], MockTile(x:1,y:1,ch: "X"))
     }
     
     func test_getEdges_with1x1Map_shouldReturnEmptyList () {
@@ -134,7 +103,7 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res = map!.getNeighborIterator(of: MapPos(x:0,y:0))
+        let res = map.getNeighborIterator(of: MapPos(x:0,y:0))
         
         XCTAssertEqual(iteratorToArray(res), [])
     }
@@ -143,7 +112,7 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res = map!.getNeighborIterator(of: MapPos(x:1,y:1))
+        let res = map.getNeighborIterator(of: MapPos(x:1,y:1))
         
         XCTAssertEqual(iteratorToArray(res), [])
     }
@@ -153,10 +122,10 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res00 = map!.getNeighborIterator(of: MapPos(x:0,y:0))
-        let res10 = map!.getNeighborIterator(of: MapPos(x:1,y:0))
-        let res01 = map!.getNeighborIterator(of: MapPos(x:0,y:1))
-        let res11 = map!.getNeighborIterator(of: MapPos(x:1,y:1))
+        let res00 = map.getNeighborIterator(of: MapPos(x:0,y:0))
+        let res10 = map.getNeighborIterator(of: MapPos(x:1,y:0))
+        let res01 = map.getNeighborIterator(of: MapPos(x:0,y:1))
+        let res11 = map.getNeighborIterator(of: MapPos(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -175,7 +144,7 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y)
         })
         
-        let res11 = map!.getNeighborIterator(of: MapPos(x:1,y:1))
+        let res11 = map.getNeighborIterator(of: MapPos(x:1,y:1))
         
         //           4 (y-1)
         //           |
@@ -195,7 +164,7 @@ class MapTests: XCTestCase {
             MockTile(x:pos.x,y:pos.y, ch:ch)
         })
 
-        let actual  = map?.description
+        let actual  = map.createStringView{ map[$0].ch }
 
         XCTAssertEqual(actual, expected )
 
