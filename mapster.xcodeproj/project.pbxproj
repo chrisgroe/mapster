@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		08038D91244A4CD700E4E62B /* RadialShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08038D90244A4CD700E4E62B /* RadialShape.swift */; };
-		08038D93244A4D7D00E4E62B /* ShapeTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08038D92244A4D7D00E4E62B /* ShapeTest.swift */; };
+		08038D93244A4D7D00E4E62B /* RadialShapeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08038D92244A4D7D00E4E62B /* RadialShapeTests.swift */; };
 		0837F6B72441F77E0075AA66 /* BreadthFirstSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */; };
 		0837F6B92442326C0075AA66 /* BreadthFirstSearchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */; };
 		0837F6BE2444ABA30075AA66 /* NavigateableGraph.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */; };
@@ -40,7 +40,7 @@
 
 /* Begin PBXFileReference section */
 		08038D90244A4CD700E4E62B /* RadialShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialShape.swift; sourceTree = "<group>"; };
-		08038D92244A4D7D00E4E62B /* ShapeTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShapeTest.swift; sourceTree = "<group>"; };
+		08038D92244A4D7D00E4E62B /* RadialShapeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RadialShapeTests.swift; sourceTree = "<group>"; };
 		0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadthFirstSearch.swift; sourceTree = "<group>"; };
 		0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BreadthFirstSearchTests.swift; sourceTree = "<group>"; };
 		0837F6BD2444ABA30075AA66 /* NavigateableGraph.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigateableGraph.swift; sourceTree = "<group>"; };
@@ -159,7 +159,7 @@
 				087EF3B2243F604B0030720F /* Info.plist */,
 				0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */,
 				0867E2C12445E2E500EC5CC9 /* MapBreadthFirstTraversalTests.swift */,
-				08038D92244A4D7D00E4E62B /* ShapeTest.swift */,
+				08038D92244A4D7D00E4E62B /* RadialShapeTests.swift */,
 				08A529DB244B077500296F09 /* CoordinateTrafoTests.swift */,
 			);
 			path = mapsterTests;
@@ -303,7 +303,7 @@
 				087EF3B1243F604B0030720F /* MapTests.swift in Sources */,
 				0867E2C22445E2E500EC5CC9 /* MapBreadthFirstTraversalTests.swift in Sources */,
 				08A529DC244B077500296F09 /* CoordinateTrafoTests.swift in Sources */,
-				08038D93244A4D7D00E4E62B /* ShapeTest.swift in Sources */,
+				08038D93244A4D7D00E4E62B /* RadialShapeTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
