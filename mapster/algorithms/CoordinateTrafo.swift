@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PolarTransformation {
+class CoordinateTrafo {
     // do not allow construction of this class
     private init() {
 

@@ -27,7 +27,7 @@ extension RadialShape {
             isBlocked: {pos in
                 let x = pos.x - center.x
                 let y = pos.y - center.y
-                let (radius, phi) = PolarTransformation.discreteCartesianToPolar(x, y)
+                let (radius, phi) = CoordinateTrafo.discreteCartesianToPolar(x, y)
                 return radialFunc(radius: radius, phi: phi)
             }
         )
@@ -53,7 +53,7 @@ struct SquareShape<T> : RadialShape {
         // convert polar coordinates back to cartesian ones. This
         // is a lot easiert to handle than trying to represent the square
         // in polar coordinates
-        let (x, y) = PolarTransformation.polarToDiscreteCartesian(radius, phi)
+        let (x, y) = CoordinateTrafo.polarToDiscreteCartesian(radius, phi)
         return abs(x) >= self.length || abs(y) >= self.length
     }
 }

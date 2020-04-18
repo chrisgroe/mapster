@@ -24,8 +24,8 @@
 		087EF3B3243F604B0030720F /* mapster.h in Headers */ = {isa = PBXBuildFile; fileRef = 087EF3A5243F604B0030720F /* mapster.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		087EF3BD243F61540030720F /* Map.swift in Sources */ = {isa = PBXBuildFile; fileRef = 087EF3BC243F61540030720F /* Map.swift */; };
 		0898B22924488ABB008D90B8 /* datastructures in Frameworks */ = {isa = PBXBuildFile; productRef = 0898B22824488ABB008D90B8 /* datastructures */; };
-		08A529DA244B063100296F09 /* PolarTransformation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A529D9244B063100296F09 /* PolarTransformation.swift */; };
-		08A529DC244B077500296F09 /* PolarTransformationTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A529DB244B077500296F09 /* PolarTransformationTest.swift */; };
+		08A529DA244B063100296F09 /* CoordinateTrafo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A529D9244B063100296F09 /* CoordinateTrafo.swift */; };
+		08A529DC244B077500296F09 /* CoordinateTrafoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08A529DB244B077500296F09 /* CoordinateTrafoTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,8 +58,8 @@
 		087EF3B0243F604B0030720F /* MapTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapTests.swift; sourceTree = "<group>"; };
 		087EF3B2243F604B0030720F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		087EF3BC243F61540030720F /* Map.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Map.swift; sourceTree = "<group>"; };
-		08A529D9244B063100296F09 /* PolarTransformation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarTransformation.swift; sourceTree = "<group>"; };
-		08A529DB244B077500296F09 /* PolarTransformationTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PolarTransformationTest.swift; sourceTree = "<group>"; };
+		08A529D9244B063100296F09 /* CoordinateTrafo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateTrafo.swift; sourceTree = "<group>"; };
+		08A529DB244B077500296F09 /* CoordinateTrafoTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoordinateTrafoTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,7 +108,7 @@
 			isa = PBXGroup;
 			children = (
 				0837F6B62441F77E0075AA66 /* BreadthFirstSearch.swift */,
-				08A529D9244B063100296F09 /* PolarTransformation.swift */,
+				08A529D9244B063100296F09 /* CoordinateTrafo.swift */,
 			);
 			path = algorithms;
 			sourceTree = "<group>";
@@ -160,7 +160,7 @@
 				0837F6B82442326C0075AA66 /* BreadthFirstSearchTests.swift */,
 				0867E2C12445E2E500EC5CC9 /* MapBreadthFirstTraversalTests.swift */,
 				08038D92244A4D7D00E4E62B /* ShapeTest.swift */,
-				08A529DB244B077500296F09 /* PolarTransformationTest.swift */,
+				08A529DB244B077500296F09 /* CoordinateTrafoTests.swift */,
 			);
 			path = mapsterTests;
 			sourceTree = "<group>";
@@ -287,7 +287,7 @@
 				0867E2BE2445DEF200EC5CC9 /* MapPos.swift in Sources */,
 				0837F6BE2444ABA30075AA66 /* NavigateableGraph.swift in Sources */,
 				08038D91244A4CD700E4E62B /* RadialShape.swift in Sources */,
-				08A529DA244B063100296F09 /* PolarTransformation.swift in Sources */,
+				08A529DA244B063100296F09 /* CoordinateTrafo.swift in Sources */,
 				0867E2B22445B37B00EC5CC9 /* MapBreadthFirstTraversal.swift in Sources */,
 				0867E2C52446279D00EC5CC9 /* MapExtension.swift in Sources */,
 				087EF3BD243F61540030720F /* Map.swift in Sources */,
@@ -302,7 +302,7 @@
 				0837F6B92442326C0075AA66 /* BreadthFirstSearchTests.swift in Sources */,
 				087EF3B1243F604B0030720F /* MapTests.swift in Sources */,
 				0867E2C22445E2E500EC5CC9 /* MapBreadthFirstTraversalTests.swift in Sources */,
-				08A529DC244B077500296F09 /* PolarTransformationTest.swift in Sources */,
+				08A529DC244B077500296F09 /* CoordinateTrafoTests.swift in Sources */,
 				08038D93244A4D7D00E4E62B /* ShapeTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -10,7 +10,7 @@ import Foundation
 import XCTest
 @testable import mapster
 
-class CoordinateTrafoTest : XCTestCase {
+class CoordinateTrafoTests : XCTestCase {
     func testForwardBack() {
 
         let testVector = [(4.78, 8.2), (1.33, -2.0), (-10, -2.0)]
