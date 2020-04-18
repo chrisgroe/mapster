@@ -11,8 +11,11 @@ import datastructures
 
 import datastructures
 
-public class FloodFill {
-    
+public class MapBreadthFirstTraversal
+{
+    private init(){
+    }
+
     /// A datastructure to hold closed vertices
     /// - Note: A map is a 2d array, in this case an array can be used as closed list. This is a bit faster than using
     ///         a Set.
@@ -55,7 +58,7 @@ public class FloodFill {
         
     }
 
-    public static func floodFill<T>(
+    public static func traverse<T>(
         start:MapPos,
         map: Map<T>,
         visitor: (_ pos : MapPos)->T,

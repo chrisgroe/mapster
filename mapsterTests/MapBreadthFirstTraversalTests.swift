@@ -10,14 +10,15 @@ import Foundation
 import XCTest
 @testable import mapster
 
-class FloodFillTests: XCTestCase {
+class MapBreadthFirstTraversalTests: XCTestCase {
     func test_floodfill_withEmpty100x100Map() {
         let map = Map<MapTile>(100, 100, {p in
             MapTile(data: "O")
         })
         
-        let resMap = map.floodFill(
-            pos: MapPos(x: 50, y:50),
+        let resMap = MapBreadthFirstTraversal.traverse(
+            start: MapPos(x: 50, y:50),
+            map: map,
             visitor: {p in MapTile(data: "X")}
         )
         
@@ -34,8 +35,9 @@ class FloodFillTests: XCTestCase {
             MapTile(data: "O")
         })
 
-        let resMap = map.floodFill(
-            pos: MapPos(x: 25, y:50),
+        let resMap = MapBreadthFirstTraversal.traverse(
+            start: MapPos(x: 25, y:50),
+            map: map,
             visitor: {p in MapTile(data: "X")},
             isBlocked: {p in
                 if p.x>=50 {

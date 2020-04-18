@@ -11,12 +11,12 @@ import Foundation
 
 extension Map where Element == MapTile{
     
-    func floodFill(
-        pos: MapPos,
+    func bfsTraverse(
+        start: MapPos,
         visitor: (_ pos : MapPos)->MapTile,
         isBlocked: (_ pos: MapPos) -> Bool = {p in false}
     ) -> Map<MapTile> {
-        return FloodFill.floodFill(start: pos, map: self, visitor: visitor, isBlocked: isBlocked)
+        return MapBreadthFirstTraversal.traverse(start: start, map: self, visitor: visitor, isBlocked: isBlocked)
     }
 }
 
